@@ -6,13 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="110dp"
+            android:layout_height="114dp"
+            android:layout_marginLeft="135dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="90dp"
+            app:srcCompat="@drawable/icon"
+            tools:layout_editor_absoluteX="137dp"
+            tools:layout_editor_absoluteY="66dp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            app:srcCompat="@drawable/title"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="180dp" />
+
+        <EditText
+            android:id="@+id/ed_userid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="account"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <EditText
+            android:id="@+id/ed_passwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="passwd"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140dp"
+            android:background="@android:color/holo_blue_light"
+            android:onClick="login"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textColorLink="@android:color/holo_blue_light"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="364dp" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
