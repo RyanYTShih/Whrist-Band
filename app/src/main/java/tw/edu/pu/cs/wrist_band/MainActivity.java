@@ -16,9 +16,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         edUserid = findViewById(R.id.ed_userid);
         edPasswd = findViewById(R.id.ed_passwd);
-        setContentView(R.layout.activity_main);
         bt =findViewById(R.id.button);
 
 
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View v) {
-        EditText edUserid = findViewById(R.id.ed_userid);
-        EditText edPasswd = findViewById(R.id.ed_passwd);
+//        EditText edUserid = findViewById(R.id.ed_userid);
+//        EditText edPasswd = findViewById(R.id.ed_passwd);
         String uid = edUserid.getText().toString();
         String pw = edPasswd.getText().toString();
         if (uid.equals("0000") && pw.equals("1")) { //登入成功
@@ -38,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (uid.equals("1111") && pw.equals("1")) { //登入成功
             Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(MainActivity.this,ELDER.class);
+            Intent intent = new Intent(MainActivity.this, ELDER.class);
             startActivity(intent);
             finish();
         }
         else if (uid.equals("2222") && pw.equals("1")) { //登入成功
             Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(MainActivity.this,MANAGEMENT.class);
+            Intent intent = new Intent(MainActivity.this, MANAGEMENT.class);
             startActivity(intent);
             finish();
         }

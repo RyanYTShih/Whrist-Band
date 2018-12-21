@@ -37,8 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:ems="10"
+            android:hint="@string/id"
             android:inputType="textPersonName"
-            android:text="account"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="251dp" />
@@ -49,8 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:ems="10"
+            android:hint="@string/passwd"
             android:inputType="textPassword"
-            android:text="passwd"
             android:textAlignment="center" />
 
         <Button
@@ -61,7 +61,7 @@
             android:layout_marginLeft="140dp"
             android:background="@android:color/holo_blue_light"
             android:onClick="login"
-            android:text="Login"
+            android:text="@string/login"
             android:textAlignment="center"
             android:textColorLink="@android:color/holo_blue_light"
             tools:layout_editor_absoluteX="148dp"
