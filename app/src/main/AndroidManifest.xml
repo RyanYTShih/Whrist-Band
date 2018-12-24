@@ -24,7 +24,9 @@
         <activity android:name=".BLECOLLECT" />
         <activity android:name=".UPLOADDATA" />
         <activity android:name=".ELDER" />
-        <activity android:name=".MANAGEMENT"></activity>
+        <activity android:name=".MANAGEMENT" />
+        <activity android:name=".SOCAILWORKER" />
+        <activity android:name=".healthreport"></activity>
     </application>
 
 </manifest>

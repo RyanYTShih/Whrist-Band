@@ -31,19 +31,19 @@ public class MainActivity extends AppCompatActivity {
 //        EditText edPasswd = findViewById(R.id.ed_passwd);
         String uid = edUserid.getText().toString();
         String pw = edPasswd.getText().toString();
-        if (uid.equals("0000") && pw.equals("1")) { //登入成功
+        if (uid.equals("worker") && pw.equals("1")) { //登入成功
             Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+            Intent intent = new Intent(MainActivity.this, socialfun.class);
             startActivity(intent);
             finish();
         }
-        else if (uid.equals("1111") && pw.equals("1")) { //登入成功
+        else if (uid.equals("elder") && pw.equals("1")) { //登入成功
             Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, ELDER.class);
             startActivity(intent);
             finish();
         }
-        else if (uid.equals("2222") && pw.equals("1")) { //登入成功
+        else if (uid.equals("chair") && pw.equals("1")) { //登入成功
             Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, MANAGEMENT.class);
             startActivity(intent);
