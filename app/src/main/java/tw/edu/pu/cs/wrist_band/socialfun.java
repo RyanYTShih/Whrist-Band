@@ -27,13 +27,13 @@ public class socialfun extends AppCompatActivity {
                         case R.id.blecoll: {
                             intent = new Intent(socialfun.this, BLECOLLECT.class);
                             startActivity(intent);
-                            finish();
+//                            finish();
                             break;
                         }
                         case R.id.uploadd: {
                             intent = new Intent(socialfun.this, UPLOADDATA.class);
                             startActivity(intent);
-                            finish();
+//                            finish();
                             break;
                         }
                     }

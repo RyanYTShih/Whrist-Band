@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
+    android:background="@drawable/back1500"
     tools:context=".UPLOADDATA">
 
     <TextView
@@ -14,9 +14,9 @@
         android:text="資料上傳"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
         android:textColor="@color/colorPrimary"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="124dp"
-        tools:layout_editor_absoluteY="190dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="190dp" />
 
     <Button
         android:id="@+id/button6"
@@ -26,9 +26,9 @@
         android:text="是"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColorLink="@color/colorPrimaryDark"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="295dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="295dp" />
 
     <Button
         android:id="@+id/button7"
@@ -38,7 +38,7 @@
         android:text="否"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColorLink="@color/colorPrimaryDark"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="218dp"
-        tools:layout_editor_absoluteY="295dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="295dp" />
 </android.support.constraint.ConstraintLayout>

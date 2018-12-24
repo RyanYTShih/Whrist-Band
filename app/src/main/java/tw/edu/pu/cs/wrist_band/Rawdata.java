@@ -2,11 +2,13 @@ package tw.edu.pu.cs.wrist_band;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 @Entity
 public class Rawdata {
 
     @PrimaryKey
+    @NonNull
     private String id;
     private String band_id;
     private String sleep_time;

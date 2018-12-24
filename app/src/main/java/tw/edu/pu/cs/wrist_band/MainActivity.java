@@ -35,19 +35,19 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, socialfun.class);
             startActivity(intent);
-            finish();
+//            finish();
         }
         else if (uid.equals("elder") && pw.equals("1")) { //登入成功
             Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, ELDER.class);
             startActivity(intent);
-            finish();
+//            finish();
         }
         else if (uid.equals("chair") && pw.equals("1")) { //登入成功
             Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, MANAGEMENT.class);
             startActivity(intent);
-            finish();
+//            finish();
         }
         else {  //登入失敗
             new AlertDialog.Builder(this)
