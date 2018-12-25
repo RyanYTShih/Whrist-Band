@@ -17,8 +17,12 @@ public class UserRepository {
         mAllUsers = mUserDao.getAllUsers();
     }
 
-    LiveData<List<User>> getmAllUsers() {
+    LiveData<List<User>> getAllUsers() {
         return mAllUsers;
+    }
+
+    public void insert(User user) {
+        new insertAsyncTask(mUserDao).execute(user);
     }
 
     private static class insertAsyncTask extends AsyncTask<User, Void, Void> {

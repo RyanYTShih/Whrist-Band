@@ -2,6 +2,9 @@ package tw.edu.pu.cs.wrist_band;
 
 
 import android.app.AlertDialog;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    private UserViewModel mUserViewModel;
+
+    private LiveData<List<User>> users;
+
     EditText edUserid,edPasswd;
     Button bt;
     @Override
@@ -20,9 +30,17 @@ public class MainActivity extends AppCompatActivity {
 
         edUserid = findViewById(R.id.ed_userid);
         edPasswd = findViewById(R.id.ed_passwd);
-        bt =findViewById(R.id.button);
+        bt = findViewById(R.id.button);
 
+        mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
 
+        mUserViewModel.insert(new User("A12345", "王主委", "1", Role.Manage));
+        mUserViewModel.insert(new User("B12345", "社工", "2", Role.SocialWorker));
+        mUserViewModel.insert(new User("C12345", "長輩", "3", Role.Elder));
+
+        users = mUserViewModel.getAllUsers();
+
+        Toast.makeText(this, users.getValue().get(0).toString(), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -57,6 +75,5 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         }
     }
-
 }
 

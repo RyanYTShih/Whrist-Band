@@ -42,4 +42,9 @@ public class User {
     public int getRole() {
         return role;
     }
+
+    @Override
+    public String toString() {
+        return "id: " + id + ", name: " + name + ", passwd: " + passwd + ", role: " + role;
+    }
 }
