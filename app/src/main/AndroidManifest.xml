@@ -26,7 +26,14 @@
         <activity android:name=".ELDER" />
         <activity android:name=".MANAGEMENT" />
         <activity android:name=".SOCAILWORKER" />
-        <activity android:name=".healthreport"></activity>
+        <activity android:name=".healthreport" />
+        <activity android:name=".addaccount" />
+        <activity android:name=".delaccount" />
+        <activity android:name=".doctorfun" />
+        <activity android:name=".resetPasswd" />
+        <activity android:name=".resetpw" />
+        <activity android:name=".reviseacc" />
+        <activity android:name=".reviseaccount"></activity>
     </application>
 
 </manifest>

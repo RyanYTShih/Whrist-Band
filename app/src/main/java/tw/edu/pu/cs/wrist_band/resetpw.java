@@ -6,23 +6,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ELDER extends AppCompatActivity {
+public class resetpw extends AppCompatActivity {
     Intent intent;
-    Button searchre;
+    Button back1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_elder);
-        searchre =findViewById(R.id.datasearch);
-        searchre.setOnClickListener(myListener);
+        setContentView(R.layout.activity_resetpw);
+        back1=findViewById(R.id.button10);
+        back1.setOnClickListener(myListener);
     }
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     switch (v.getId()) {
-                        case R.id.datasearch: {
-                            intent = new Intent(ELDER.this, healthreport.class);
+                        case R.id.button10: {
+                            intent = new Intent(resetpw.this, MANAGEMENT.class);
                             startActivity(intent);
                             finish();
                             break;

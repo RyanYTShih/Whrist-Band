@@ -49,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 //            finish();
         }
+        else if (uid.equals("doctor") && pw.equals("1")) { //登入成功
+            Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainActivity.this, MANAGEMENT.class);
+            startActivity(intent);
+//            finish();
+        }
         else {  //登入失敗
             new AlertDialog.Builder(this)
                     .setTitle("返老「環」童")
