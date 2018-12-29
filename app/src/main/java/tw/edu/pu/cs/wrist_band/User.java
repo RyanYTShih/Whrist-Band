@@ -17,24 +17,26 @@ public class User {
     @NonNull
     private String passwd;
 
-    @NonNull
     private int role;
 
-    public User(String id, String name, String passwd, int role) {
+    public User(@NonNull String id, @NonNull String name, @NonNull String passwd, int role) {
         this.id = id;
         this.name = name;
         this.passwd = passwd;
         this.role = role;
     }
 
+    @NonNull
     public String getId() {
         return id;
     }
 
+    @NonNull
     public String getName() {
         return name;
     }
 
+    @NonNull
     public String getPasswd() {
         return passwd;
     }
