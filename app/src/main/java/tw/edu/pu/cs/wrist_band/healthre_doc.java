@@ -3,11 +3,11 @@ package tw.edu.pu.cs.wrist_band;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SOCAILWORKER extends AppCompatActivity {
+public class healthre_doc extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_socailworker);
+        setContentView(R.layout.activity_healthre_doc);
     }
 }

@@ -25,7 +25,6 @@
         <activity android:name=".UPLOADDATA" />
         <activity android:name=".ELDER" />
         <activity android:name=".MANAGEMENT" />
-        <activity android:name=".SOCAILWORKER" />
         <activity android:name=".healthreport" />
         <activity android:name=".addaccount" />
         <activity android:name=".delaccount" />
@@ -33,7 +32,10 @@
         <activity android:name=".resetPasswd" />
         <activity android:name=".resetpw" />
         <activity android:name=".reviseacc" />
-        <activity android:name=".reviseaccount"></activity>
+        <activity android:name=".reviseaccount" />
+        <activity android:name=".getRawData" />
+        <activity android:name=".analyzeData" />
+        <activity android:name=".healthre_doc"></activity>
     </application>
 
 </manifest>
