@@ -36,8 +36,6 @@ public class resetPasswd extends AppCompatActivity {
                 public void onClick(View v) {
                     switch (v.getId()) {
                         case R.id.button8: {
-                            intent = new Intent(resetPasswd.this, resetpw.class);
-                            startActivity(intent);
                             finish();
                             break;
                         }

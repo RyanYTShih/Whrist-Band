@@ -37,8 +37,6 @@ public class reviseaccount extends AppCompatActivity {
                 public void onClick(View v) {
                     switch (v.getId()) {
                         case R.id.button8: {
-                            intent = new Intent(reviseaccount.this, reviseacc.class);
-                            startActivity(intent);
                             finish();
                             break;
                         }

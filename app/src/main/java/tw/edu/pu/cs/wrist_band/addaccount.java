@@ -30,8 +30,6 @@ public class addaccount extends AppCompatActivity {
                 public void onClick(View v) {
                     switch (v.getId()) {
                         case R.id.button9: {
-                            intent = new Intent(addaccount.this, MANAGEMENT.class);
-                            startActivity(intent);
                             finish();
                             break;
                         }

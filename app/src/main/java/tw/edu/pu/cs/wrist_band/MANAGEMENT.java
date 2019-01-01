@@ -30,25 +30,21 @@ public class MANAGEMENT extends AppCompatActivity {
                         case R.id.button2: {
                             intent = new Intent(MANAGEMENT.this, addaccount.class);
                             startActivity(intent);
-                            finish();
                             break;
                         }
                         case R.id.button3: {
                             intent = new Intent(MANAGEMENT.this, delaccount.class);
                             startActivity(intent);
-                            finish();
                             break;
                         }
                         case R.id.button4: {
                             intent = new Intent(MANAGEMENT.this, resetPasswd.class);
                             startActivity(intent);
-                            finish();
                             break;
                         }
                         case R.id.button5: {
                             intent = new Intent(MANAGEMENT.this, reviseaccount.class);
                             startActivity(intent);
-                            finish();
                             break;
                         }
                     }
