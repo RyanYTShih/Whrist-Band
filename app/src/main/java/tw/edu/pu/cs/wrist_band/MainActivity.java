@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case Role.Doctor:
                         Toast.makeText(this, "您好，" + selectedUser.getName() + "！", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(this, MANAGEMENT.class));
+                        startActivity(new Intent(this, doctorfun.class));
                         break;
                 }
             } else {

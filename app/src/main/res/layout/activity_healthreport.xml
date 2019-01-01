@@ -6,4 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".healthreport">
 
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="353dp"
+        android:layout_height="494dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/heal" />
 </android.support.constraint.ConstraintLayout>

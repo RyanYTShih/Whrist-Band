@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back1500"
-    tools:context=".analyzeData">
+    tools:context=".docgetrawdata">
 
     <Spinner
         android:id="@+id/spinner3"
@@ -39,10 +39,13 @@
         android:id="@+id/spinner7"
         android:layout_width="62dp"
         android:layout_height="35dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         app:layout_constraintEnd_toStartOf="@+id/spinner8"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner5"
         tools:ignore="MissingConstraints" />
 
@@ -60,14 +63,16 @@
         android:id="@+id/spinner10"
         android:layout_width="62dp"
         android:layout_height="35dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button12"
+        android:layout_marginBottom="170dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner11"
-        app:layout_constraintTop_toBottomOf="@+id/spinner7"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner7" />
 
     <Spinner
         android:id="@+id/spinner11"
@@ -89,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginLeft="148dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="148dp"
         android:layout_marginRight="148dp"
         android:layout_marginBottom="91dp"
@@ -97,6 +103,6 @@
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner11" />
 </android.support.constraint.ConstraintLayout>

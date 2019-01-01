@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back1500"
     tools:context=".resetpw">
 
     <EditText
@@ -15,8 +16,8 @@
         android:layout_marginEnd="85dp"
         android:layout_marginBottom="18dp"
         android:ems="10"
+        android:hint="輸入新密碼"
         android:inputType="textPersonName"
-        android:text="輸入新密碼"
         app:layout_constraintBottom_toTopOf="@+id/editText6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +32,8 @@
         android:layout_marginEnd="85dp"
         android:layout_marginBottom="49dp"
         android:ems="10"
+        android:hint="再次輸入"
         android:inputType="textPersonName"
-        android:text="再次輸入"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +41,7 @@
 
     <Button
         android:id="@+id/button10"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
@@ -47,6 +49,8 @@
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="114dp"
         android:text="完成"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -33,9 +33,10 @@
         <activity android:name=".resetpw" />
         <activity android:name=".reviseacc" />
         <activity android:name=".reviseaccount" />
-        <activity android:name=".getRawData" />
         <activity android:name=".analyzeData" />
-        <activity android:name=".healthre_doc"></activity>
+        <activity android:name=".healthre_doc" />
+        <activity android:name=".getRawDatainput" />
+        <activity android:name=".docgetrawdata"></activity>
     </application>
 
 </manifest>

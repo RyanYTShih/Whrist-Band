@@ -4,6 +4,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back1500"
     tools:context=".healthre_doc">
 
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="229dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginLeft="78dp"
+        android:layout_marginTop="93dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginRight="77dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner5"
+        android:layout_width="228dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginLeft="78dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginRight="78dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+
+    <Spinner
+        android:id="@+id/spinner6"
+        android:layout_width="62dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginLeft="78dp"
+        android:layout_marginTop="34dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+
+    <Spinner
+        android:id="@+id/spinner7"
+        android:layout_width="62dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner8"
+        app:layout_constraintStart_toEndOf="@+id/spinner6"
+        app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+
+    <Spinner
+        android:id="@+id/spinner8"
+        android:layout_width="62dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginRight="78dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+
+    <Spinner
+        android:id="@+id/spinner9"
+        android:layout_width="62dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginLeft="78dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="185dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner6" />
+
+    <Spinner
+        android:id="@+id/spinner10"
+        android:layout_width="62dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner11"
+        app:layout_constraintStart_toEndOf="@+id/spinner9"
+        app:layout_constraintTop_toBottomOf="@+id/spinner7" />
+
+    <Spinner
+        android:id="@+id/spinner11"
+        android:layout_width="62dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginRight="78dp"
+        android:layout_marginBottom="185dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner8" />
+
+    <Button
+        android:id="@+id/button12"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginRight="148dp"
+        android:layout_marginBottom="101dp"
+        android:text="查閱"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner10" />
 </android.support.constraint.ConstraintLayout>

@@ -26,21 +26,18 @@ public class doctorfun extends AppCompatActivity {
                 public void onClick(View v) {
                     switch (v.getId()) {
                         case R.id.button2: {
-                            intent = new Intent(doctorfun.this, getRawData.class);
+                            intent = new Intent(doctorfun.this, docgetrawdata.class);
                             startActivity(intent);
-                            finish();
                             break;
                         }
                         case R.id.button3: {
                             intent = new Intent(doctorfun.this, analyzeData.class);
                             startActivity(intent);
-                            finish();
                             break;
                         }
                         case R.id.button4: {
                             intent = new Intent(doctorfun.this, healthre_doc.class);
                             startActivity(intent);
-                            finish();
                             break;
                         }
                     }
