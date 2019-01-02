@@ -17,11 +17,12 @@ import com.epson.pulsenseapi.model.HardwareInformationModel;
 import com.epson.pulsenseapi.model.IBinaryModel;
 
 public class MenuActivity extends AppCompatActivity {
-    TextView txv,dt;
-    Button btn,request,mGetButton,mSetButton,btn2;
+    TextView txv, dt;
+    Button btn, request, mGetButton, mSetButton, btn2;
     WellnessCommunication mWellnessCommunication;
     EditText edt;
     BioInformationModel mModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +54,12 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
-    public void openActivity(){
-        Intent it = new Intent(MenuActivity.this,MainActivity.class);
-        startActivity(it);
+
+    public void openActivity() {
+        finish();
     }
-    private View.OnClickListener mrequestListener = new View.OnClickListener(){
+
+    private View.OnClickListener mrequestListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
@@ -122,8 +124,9 @@ public class MenuActivity extends AppCompatActivity {
 
         }
     };
-    public void openData(){
-        Intent its = new Intent(MenuActivity.this,DataInfo.class);
+
+    public void openData() {
+        Intent its = new Intent(MenuActivity.this, DataInfo.class);
         startActivity(its);
     }
 
