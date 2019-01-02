@@ -14,5 +14,6 @@
     <string name="label_ble_state_off">OFF</string>
     <string name="ble_disabled_message">Connection with the BLE equipment has been disconnected.</string>
     <string name="dialog_positive_button">OK</string>
-
+    <string name="alert">Alert</string>
+    <string name="need_permission">Please allow the permission that can scan devices.</string>
 </resources>

@@ -1,9 +1,15 @@
 package tw.edu.pu.cs.wrist_band;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,15 +36,19 @@ import com.epson.pulsenseview.wellnesscommunication.bluetooth.Peripheral;
 import java.util.ArrayList;
 
 public class BLECOLLECT extends AppCompatActivity {
+
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 10;
+
     private WellnessCommunication mWellnessCommunication;
-    private TextView name_text,uuid_text,name_,uuid_;
+    private TextView name_text, uuid_text, name_, uuid_;
     private Switch sw;
-    private ListView name_list,uuid_list;
-    private Button start_button,stop_button,register_button,unregister_button,connect_button;
+    private ListView name_list, uuid_list;
+    private Button start_button, stop_button, register_button, unregister_button, connect_button;
     private ArrayList<String> name = new ArrayList<>();
     private ArrayList<String> uuid = new ArrayList<>();
     private ArrayList<Peripheral> device = new ArrayList<>();
-    private ArrayAdapter name_adapter,uuid_adpater;
+    private ArrayAdapter name_adapter, uuid_adpater;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +66,10 @@ public class BLECOLLECT extends AppCompatActivity {
         unregister_button = findViewById(R.id.unregister_button);
         connect_button = findViewById(R.id.connect_button);
 
-        name_adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,name);
+        name_adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, name);
         name_list.setAdapter(name_adapter);
 
-        uuid_adpater = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,uuid);
+        uuid_adpater = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, uuid);
         uuid_list.setAdapter(uuid_adpater);
 
         sw.setOnCheckedChangeListener(swChancedChangeListener);
@@ -74,7 +84,7 @@ public class BLECOLLECT extends AppCompatActivity {
         mWellnessCommunication.setConnectPeripheralCallback(mConnectPheCallback);
 
         Peripheral peripheral = mWellnessCommunication.getRegisteredPeripheral();
-        if(peripheral!=null){
+        if (peripheral != null) {
             name_.setText(peripheral.getName());
             uuid_.setText(peripheral.getUuid());
 
@@ -92,10 +102,19 @@ public class BLECOLLECT extends AppCompatActivity {
     private View.OnClickListener startbuttonChangeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            if (ContextCompat.checkSelfPermission(BLECOLLECT.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(BLECOLLECT.this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        LOCATION_PERMISSION_REQUEST_CODE);
+            }
+
             mWellnessCommunication.scanPeripherals(new BleScanCallback() {
+
                 @Override
                 public void onScan(Peripheral peripheral) {
-                    if(name.size() > 0) {
+                    if (name.size() > 0) {
                         for (int i = 0; i < name.size(); i++) {
                             if (name.get(i).equals(peripheral.getName()))
                                 return;
@@ -103,20 +122,19 @@ public class BLECOLLECT extends AppCompatActivity {
                         name.add(peripheral.getName());
                         uuid.add(peripheral.getUuid());
                         device.add(peripheral);
-                    }
-                    else{
+                    } else {
                         name.add(peripheral.getName());
                         uuid.add(peripheral.getUuid());
                         device.add(peripheral);
                     }
                 }
+
                 @Override
                 public void onError(LocalError localError) {
                 }
             });
             name_adapter.notifyDataSetChanged();
             uuid_adpater.notifyDataSetChanged();
-
         }
     };
 
@@ -125,6 +143,7 @@ public class BLECOLLECT extends AppCompatActivity {
         super.onPostResume();
         mWellnessCommunication.setConnectPeripheralCallback(mConnectPheCallback);
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -133,9 +152,9 @@ public class BLECOLLECT extends AppCompatActivity {
 
     }
 
-    private View.OnClickListener stopbuttonChangeListener = new View.OnClickListener(){
+    private View.OnClickListener stopbuttonChangeListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             mWellnessCommunication.stopScan();
             name_adapter.clear();
             uuid_adpater.clear();
@@ -144,49 +163,48 @@ public class BLECOLLECT extends AppCompatActivity {
         }
     };
 
-    private  View.OnClickListener registerbuttonChangeListener = new View.OnClickListener(){
+    private View.OnClickListener registerbuttonChangeListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             mWellnessCommunication.stopScan();
             name_adapter.clear();
             uuid_adpater.clear();
             Peripheral peripheral = new Peripheral();
-            try{
-                for(int i=0;i<device.size();i++) {
-                    if (name_text.getText().equals(device.get(i).getName())){
-                        peripheral = peripheral.create(device.get(i).getName(), device.get(i).getUuid(),device.get(i).getRssi(), device.get(i).isBonded());
+            try {
+                for (int i = 0; i < device.size(); i++) {
+                    if (name_text.getText().equals(device.get(i).getName())) {
+                        peripheral = peripheral.create(device.get(i).getName(), device.get(i).getUuid(), device.get(i).getRssi(), device.get(i).isBonded());
                         break;
                     }
                 }
                 mWellnessCommunication.registerPeripheral(peripheral);
                 name_.setText(peripheral.getName());
                 uuid_.setText(peripheral.getUuid());
-                Toast.makeText(BLECOLLECT.this,"註冊成功",Toast.LENGTH_SHORT).show();
-            }
-            catch(WellnessCommunicationException e){
-                Toast.makeText(getApplicationContext(),e.getLocalError().toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(BLECOLLECT.this, "註冊成功", Toast.LENGTH_SHORT).show();
+            } catch (WellnessCommunicationException e) {
+                Toast.makeText(getApplicationContext(), e.getLocalError().toString(), Toast.LENGTH_SHORT).show();
             }
         }
     };
 
-    private View.OnClickListener unregisterbuttonChangeListener = new View.OnClickListener(){
+    private View.OnClickListener unregisterbuttonChangeListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             mWellnessCommunication.unregisterPeripheral();
             name_.setText(" ");
             uuid_.setText(" ");
-            Toast.makeText(BLECOLLECT.this,"取消註冊",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BLECOLLECT.this, "取消註冊", Toast.LENGTH_SHORT).show();
         }
     };
 
-    private  AdapterView.OnItemClickListener namelistOnItemClickListener = new AdapterView.OnItemClickListener() {
+    private AdapterView.OnItemClickListener namelistOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             name_text.setText(parent.getItemAtPosition(position).toString());
             uuid_text.setText(uuid_list.getItemAtPosition(position).toString());
         }
     };
-    private  View.OnClickListener connectbuttonChangeListner = new View.OnClickListener() {
+    private View.OnClickListener connectbuttonChangeListner = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             mWellnessCommunication.connectPeripheral(mConnectPheCallback);
@@ -224,4 +242,27 @@ public class BLECOLLECT extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case LOCATION_PERMISSION_REQUEST_CODE:
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    new AlertDialog.Builder(this)
+                            .setTitle(R.string.alert)
+                            .setMessage(R.string.need_permission)
+                            .setPositiveButton(R.string.dialog_positive_button, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    ActivityCompat.requestPermissions(BLECOLLECT.this,
+                                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                                            LOCATION_PERMISSION_REQUEST_CODE);
+                                }
+                            })
+                            .setCancelable(false)
+                            .show();
+                }
+        }
+    }
 }
