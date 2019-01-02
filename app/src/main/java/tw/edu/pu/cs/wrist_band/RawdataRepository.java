@@ -1,33 +1,43 @@
 package tw.edu.pu.cs.wrist_band;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
 
 import java.util.List;
 
 public class RawdataRepository {
 
-    private RawdataDao rawdao;
+    private RawdataDao mRawdao;
+    private LiveData<List<Rawdata>> mAllRawdata;
 
     RawdataRepository(Application application) {
         BandRoomDatabase db = BandRoomDatabase.getDatabase(application);
-        System.out.println(db);
-        rawdao = db.rawdataDao();
-        Rawdata data = Initializer();
-        addRawdata(rawdao,data);
-        getRawdata(rawdao);
+        mRawdao= db.rawdataDao();
+        mAllRawdata = mRawdao.getAllRawdata();
     }
 
-    public Rawdata Initializer(){
-        Rawdata rdata=new Rawdata("001","abcd1ed3","60","1000","123","100");
-        return rdata;
+    LiveData<List<Rawdata>> getAllRawdata(){
+        return mAllRawdata;
     }
 
-    public void addRawdata(RawdataDao rawdao,Rawdata data){
-        rawdao.insert(data);
+    public void insert(Rawdata data) {
+        new insertAsyncTask(mRawdao).execute(data);
     }
 
-    public void getRawdata(RawdataDao rawdao){
-        List<Rawdata> rawdataList = rawdao.getall();
+    private static class insertAsyncTask extends AsyncTask<Rawdata,Void ,Void>{
+
+        private RawdataDao mAsyncTaskDao;
+
+        insertAsyncTask(RawdataDao dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Rawdata... params){
+            mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
     }
 
 }

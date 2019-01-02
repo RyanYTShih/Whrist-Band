@@ -1,5 +1,6 @@
 package tw.edu.pu.cs.wrist_band;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
@@ -13,6 +14,6 @@ public interface RawdataDao {
     void insert(Rawdata data);
 
     @Query("SELECT * FROM Rawdata")
-    List<Rawdata> getall();
+    LiveData<List<Rawdata>> getAllRawdata();
 
 }
