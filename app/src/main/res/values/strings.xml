@@ -10,4 +10,9 @@
     <string name="login">登入</string>
     <string name="id">身分證字號</string>
     <string name="passwd">密碼</string>
+    <string name="label_ble_state_on">ON</string>
+    <string name="label_ble_state_off">OFF</string>
+    <string name="ble_disabled_message">Connection with the BLE equipment has been disconnected.</string>
+    <string name="dialog_positive_button">OK</string>
+
 </resources>

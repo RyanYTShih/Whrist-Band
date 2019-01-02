@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainback"
+    tools:context=".MenuActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/txv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="輸入你的身分證ID"
+            android:textColor="@color/colorAccent"
+            android:textSize="40sp"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/mSetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set"
+                tools:layout_editor_absoluteX="124dp"
+                tools:layout_editor_absoluteY="265dp" />
+
+            <EditText
+                android:id="@+id/edt"
+                android:layout_width="103dp"
+                android:layout_height="46dp"
+                android:ems="10"
+                android:inputType="number"
+                tools:layout_editor_absoluteX="112dp"
+                tools:layout_editor_absoluteY="119dp" />
+
+            <Button
+                android:id="@+id/mGetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取ID"
+                tools:layout_editor_absoluteX="30dp"
+                tools:layout_editor_absoluteY="185dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="395dp"
+            android:layout_height="51dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="-1dp"
+            tools:layout_editor_absoluteY="104dp">
+
+            <Button
+                android:id="@+id/request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取Number"
+                tools:layout_editor_absoluteX="242dp"
+                tools:layout_editor_absoluteY="240dp" />
+
+            <TextView
+                android:id="@+id/dt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="接收硬體資料"
+                tools:layout_editor_absoluteX="253dp"
+                tools:layout_editor_absoluteY="320dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="288dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="39dp"
+                android:layout_marginEnd="237dp"
+                android:text="返回註冊畫面"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="550dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="579dp"
+            tools:layout_editor_absoluteY="154dp">
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="255dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="查看資料" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
