@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tw.edu.pu.cs.wrist_band">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,7 +39,9 @@
         <activity android:name=".analyzeData" />
         <activity android:name=".healthre_doc" />
         <activity android:name=".getRawDatainput" />
-        <activity android:name=".docgetrawdata"></activity>
+        <activity android:name=".docgetrawdata" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".DataInfo"></activity>
     </application>
 
 </manifest>
