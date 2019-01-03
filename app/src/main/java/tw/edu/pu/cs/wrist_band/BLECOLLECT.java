@@ -238,7 +238,7 @@ public class BLECOLLECT extends AppCompatActivity {
 
         @Override
         public void onError(LocalError localError) {
-
+            Toast.makeText(BLECOLLECT.this,"請註冊",Toast.LENGTH_SHORT).show();
         }
     };
 
