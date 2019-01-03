@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,9 +23,14 @@ public class MainActivity extends AppCompatActivity {
     private UserViewModel mUserViewModel;
 
     private LiveData<List<User>> users;
+    private static final User[] sampleUsers = {
+            new User("A12345", "主委", "1", Role.Manager),
+            new User("B12345", "社工", "2", Role.SocialWorker),
+            new User("C12345", "長輩", "3", Role.Elder),
+            new User("D12345", "醫師", "4", Role.Doctor)
+    };
 
-    EditText edUserid, edPasswd;
-    Button bt;
+    private EditText edUserid, edPasswd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +39,27 @@ public class MainActivity extends AppCompatActivity {
 
         edUserid = findViewById(R.id.ed_userid);
         edPasswd = findViewById(R.id.ed_passwd);
-        bt = findViewById(R.id.button);
 
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
 
-        mUserViewModel.insert(new User("A12345", "王主委", "1", Role.Manage));
-        mUserViewModel.insert(new User("B12345", "社工", "2", Role.SocialWorker));
-        mUserViewModel.insert(new User("C12345", "長輩", "3", Role.Elder));
-        mUserViewModel.insert(new User("D12345", "醫師", "4", Role.Doctor));
+        for (User user: sampleUsers) {
+            mUserViewModel.insert(user);
+        }
+
 
         users = mUserViewModel.getAllUsers();
 
         users.observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable List<User> users) {
-
+                Log.d(TAG, "user list updated");
+                if (users == null)
+                    return;
+                try {
+                    MainActivity.this.users = mUserViewModel.getAllUsers();
+                } catch (Exception e) {
+                    Log.d(TAG, e.getMessage());
+                }
             }
         });
     }
@@ -86,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         if (selectedUser != null) {
             if (pw.equals(selectedUser.getPasswd())) {
                 switch (selectedUser.getRole()) {
-                    case Role.Manage:
+                    case Role.Manager:
                         Toast.makeText(this, "您好，" + selectedUser.getName() + "！", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(this, MANAGEMENT.class));
                         break;
@@ -107,14 +117,14 @@ public class MainActivity extends AppCompatActivity {
                 new AlertDialog.Builder(this)
                         .setTitle("登入失敗")
                         .setMessage("密碼錯誤")
-                        .setPositiveButton("OK", null)
+                        .setPositiveButton(R.string.dialog_positive_button, null)
                         .show();
             }
         } else {
             new AlertDialog.Builder(this)
                     .setTitle("登入失敗")
                     .setMessage("查無此帳號")
-                    .setPositiveButton("OK", null)
+                    .setPositiveButton(R.string.dialog_positive_button, null)
                     .show();
         }
     }
