@@ -49,6 +49,8 @@ public class Rawdata {
         return heart_rate;
     }
 
+    public void setHeart_rate(String rate){ heart_rate=rate;}
+
 
 
 }

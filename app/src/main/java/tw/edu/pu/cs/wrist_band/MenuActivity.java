@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epson.pulsenseapi.WellnessCommunication;
 import com.epson.pulsenseapi.ble.callback.RequestGetDataClassCallback;
@@ -121,12 +122,13 @@ public class MenuActivity extends AppCompatActivity {
         public void onClick(View v) {
             int Id = Integer.valueOf(edt.getText().toString());
             mModel.setWeight(Id);
-
         }
     };
 
     public void openData() {
         Intent its = new Intent(MenuActivity.this, DataInfo.class);
+        its.putExtra("edt",edt.getText().toString());
+        its.putExtra("dt",dt.getText().toString());
         startActivity(its);
     }
 

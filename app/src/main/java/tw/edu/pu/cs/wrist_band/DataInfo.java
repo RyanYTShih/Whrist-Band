@@ -1,11 +1,15 @@
 package tw.edu.pu.cs.wrist_band;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epson.pulsenseapi.WellnessCommunication;
 import com.epson.pulsenseapi.ble.callback.RequestGetDataClassCallback;
@@ -15,19 +19,32 @@ import com.epson.pulsenseapi.ble.constant.LocalError;
 import com.epson.pulsenseapi.model.IBinaryModel;
 import com.epson.pulsenseapi.model.PhysicalFitnessModel;
 
+import java.util.List;
+
 public class DataInfo extends AppCompatActivity {
+
+    private RawdataViewModel mRawdataViewModel;
+    private LiveData<List<Rawdata>> data;
     WellnessCommunication mWellnessCommunication;
     Button mGetButton;
     Button mSetButton;
+    Button mUpload;
     EditText mBaseEdit;
     EditText mMaxEdit;
     EditText mRestEdit;
     PhysicalFitnessModel mModel;
     TextView HeartRateBase, HeartRateMax, HeartRateRest;
+    String ID,HD_serial,Heartrate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_info);
+
+        Intent intent = getIntent();
+        ID = intent.getStringExtra("edt");
+        HD_serial = intent.getStringExtra("dt");
+
         HeartRateBase = findViewById(R.id.HeartRateBase);
         HeartRateMax =  findViewById(R.id.HeartRateMax);
         HeartRateRest =  findViewById(R.id.HeartRateRest);
@@ -40,8 +57,12 @@ public class DataInfo extends AppCompatActivity {
         mSetButton.setOnClickListener(mSetButtonClickListener);
         mSetButton.setEnabled(false);
 
+        mUpload = findViewById(R.id.upload_but);
+        mUpload.setOnClickListener(mUploadClickListener);
 
         mWellnessCommunication = WellnessCommunication.getInstance(getApplicationContext());
+
+       // Toast.makeText(this, HD_serial, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -61,6 +82,8 @@ public class DataInfo extends AppCompatActivity {
                             mMaxEdit.setText(String.valueOf(mModel.getHeartRateMax()));
                             mRestEdit.setText(String.valueOf(mModel.getHeartRateRest()));
 
+                            Heartrate = mBaseEdit.getText().toString();
+
                         }
                     });
                 }
@@ -76,6 +99,7 @@ public class DataInfo extends AppCompatActivity {
                 }
             });
         }
+
     };
     private View.OnClickListener mSetButtonClickListener = new View.OnClickListener() {
 
@@ -125,5 +149,18 @@ public class DataInfo extends AppCompatActivity {
             });
         }
     };
+
+    private View.OnClickListener mUploadClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            mRawdataViewModel = ViewModelProviders.of(DataInfo.this).get(RawdataViewModel.class);
+            ID="K123456789";
+            //String str = ID+" "+HD_serial+" "+Heartrate;
+            mRawdataViewModel.insert(new Rawdata(ID,HD_serial,null,null,null,Heartrate));
+           // Toast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }
 
