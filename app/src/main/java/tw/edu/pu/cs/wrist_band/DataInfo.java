@@ -1,10 +1,14 @@
 package tw.edu.pu.cs.wrist_band;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +27,7 @@ import java.util.List;
 
 public class DataInfo extends AppCompatActivity {
 
+    private static final String TAG = "DataInfo";
     private RawdataViewModel mRawdataViewModel;
     private LiveData<List<Rawdata>> data;
     WellnessCommunication mWellnessCommunication;
@@ -62,7 +67,22 @@ public class DataInfo extends AppCompatActivity {
 
         mWellnessCommunication = WellnessCommunication.getInstance(getApplicationContext());
 
-       // Toast.makeText(this, HD_serial, Toast.LENGTH_SHORT).show();
+        mRawdataViewModel = ViewModelProviders.of(DataInfo.this).get(RawdataViewModel.class);
+        data=mRawdataViewModel.getAllRawdata();
+        data.observe(DataInfo.this, new Observer<List<Rawdata>>(){
+            @Override
+            public void onChanged(@Nullable List<Rawdata> data) {
+                Log.d(TAG, "rawdata list updated");
+                if (data == null)
+                    return;
+                try {
+                    DataInfo.this.data = mRawdataViewModel.getAllRawdata();
+                } catch (Exception e) {
+                    Log.d(TAG, e.getMessage());
+                }
+
+            }
+        });
 
     }
 
@@ -154,13 +174,12 @@ public class DataInfo extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            mRawdataViewModel = ViewModelProviders.of(DataInfo.this).get(RawdataViewModel.class);
-            ID="K123456789";
-            //String str = ID+" "+HD_serial+" "+Heartrate;
-            mRawdataViewModel.insert(new Rawdata(ID,HD_serial,null,null,null,Heartrate));
-           // Toast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show();
+            mRawdataViewModel.insert(new Rawdata(ID,HD_serial,"8","10000","200",Heartrate));
+            Toast.makeText(getApplicationContext(),"上傳成功",Toast.LENGTH_SHORT).show();
+
         }
     };
+
 
 }
 
