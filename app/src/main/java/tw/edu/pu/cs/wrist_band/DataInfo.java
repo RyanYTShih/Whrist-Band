@@ -47,7 +47,7 @@ public class DataInfo extends AppCompatActivity {
         setContentView(R.layout.activity_data_info);
 
         Intent intent = getIntent();
-        ID = intent.getStringExtra("edt");
+        ID = intent.getStringExtra("ID");
         HD_serial = intent.getStringExtra("dt");
 
         HeartRateBase = findViewById(R.id.HeartRateBase);
@@ -174,7 +174,7 @@ public class DataInfo extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            mRawdataViewModel.insert(new Rawdata(ID,HD_serial,"8","10000","200",Heartrate));
+            mRawdataViewModel.insert(new Rawdata(ID,HD_serial,null,null,null,Heartrate));
             Toast.makeText(getApplicationContext(),"上傳成功",Toast.LENGTH_SHORT).show();
 
         }

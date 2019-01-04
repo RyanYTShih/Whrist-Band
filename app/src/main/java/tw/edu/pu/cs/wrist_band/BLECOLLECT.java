@@ -4,9 +4,6 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -18,10 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -217,6 +211,7 @@ public class BLECOLLECT extends AppCompatActivity {
 
             Intent intent = new Intent(BLECOLLECT.this, MenuActivity.class);
             intent.setAction(Intent.ACTION_VIEW);
+            intent.putExtra("name",name_.getText().toString());
             startActivity(intent);
 
         }
