@@ -25,6 +25,7 @@ import com.epson.pulsenseapi.model.BioInformationModel;
 import com.epson.pulsenseapi.model.HardwareInformationModel;
 import com.epson.pulsenseapi.model.IBinaryModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.String.valueOf;
@@ -34,13 +35,14 @@ public class MenuActivity extends AppCompatActivity {
     private String TAG="MenuActivity";
     private UserViewModel mUserViewModel;
     private LiveData<List<User>> users;
+    ArrayAdapter<String> UserList;
+    List<String> user = new ArrayList<String>();
     TextView txv,dt;
     Button btn,btn2;
     Spinner spinner;
     WellnessCommunication mWellnessCommunication;
     EditText edt;
-    String ID,band_serial;
-    String user[] = new String[100];
+    String ID,band_serial,name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class MenuActivity extends AppCompatActivity {
         dt = findViewById(R.id.dt);
         spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(spinnerItemSelLis);
+
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         users = mUserViewModel.getAllUsers();
         users.observe(MenuActivity.this, new Observer<List<User>>() {
@@ -71,17 +74,18 @@ public class MenuActivity extends AppCompatActivity {
                 int i=0;
                 for(User u : users){
                     if(u.getRole()==Role.Elder) {
-                        user[i] = u.getId();
+                        user.add(u.getName());
                         i++;
                     }
                 }
-                ArrayAdapter<String> UserList = new ArrayAdapter<>(MenuActivity.this, android.R.layout.simple_spinner_dropdown_item, user);
+                UserList = new ArrayAdapter<>(MenuActivity.this, android.R.layout.simple_spinner_dropdown_item, user);
                 spinner.setAdapter(UserList);
             }
         });
+
+
         dt.setText(band_serial);
 
-        //request.setOnClickListener(mrequestListener);
         mWellnessCommunication = WellnessCommunication.getInstance(getApplicationContext());
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,57 +95,22 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    /*private View.OnClickListener mrequestListener = new View.OnClickListener(){
-
-        @Override
-        public void onClick(View v) {
-            mWellnessCommunication.requestGetDataClass(DataClassId.HardwareInformation, new RequestGetDataClassCallback() {
-                @Override
-                public void onSuccess(final IBinaryModel model) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            HardwareInformationModel hardwareInformationModel = (HardwareInformationModel) model;
-                            dt.setText(hardwareInformationModel.getSerialNumber());
-                            Toast.makeText(MenuActivity.this,"正在讀取",Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
-
-                @Override
-                public void onError(LocalError localError) {
-
-                }
-
-                @Override
-                public void onCancel() {
-
-                }
-            });
-        }
-    };*/
-
     public void openData() {
-        /*if (edt.getText().toString().matches("")) {
-            Toast.makeText(MenuActivity.this,"請填入您的身分證ID",Toast.LENGTH_SHORT).show();
-        } else {*/
-        String str = "您的身分證字號為：" +ID+"\n手環名稱為："+band_serial;
+        String str = "您的姓名為：" +name+"\n手環名稱為："+band_serial;
         Toast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show();
         Intent its = new Intent(MenuActivity.this, DataInfo.class);
-        its.putExtra("ID",ID);
+        its.putExtra("name",name);
         its.putExtra("dt",dt.getText().toString());
         startActivity(its);
-       // }
     }
 
-    private Spinner.OnItemSelectedListener spinnerItemSelLis =
-            new Spinner.OnItemSelectedListener () {
-                public void onItemSelected(AdapterView parent, View v, int position, long id) {
-                    ID = parent.getSelectedItem().toString();
-                }
-                public void onNothingSelected(AdapterView parent) {
-                }
-            };
-
-
+    private Spinner.OnItemSelectedListener spinnerItemSelLis = new Spinner.OnItemSelectedListener () {
+        @Override
+        public void onItemSelected(AdapterView parent, View v, int position, long id) {
+            name = parent.getSelectedItem().toString();
+        }
+        @Override
+        public void onNothingSelected(AdapterView parent) {
+        }
+    };
 }
