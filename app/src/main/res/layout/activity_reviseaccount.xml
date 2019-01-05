@@ -4,32 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1500"
+    android:background="@drawable/back_chair"
     tools:context=".reviseaccount">
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="159dp"
+        android:layout_height="112dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginLeft="113dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginRight="112dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/edit_acc" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="202dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner2"
+        android:layout_width="200dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginRight="92dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="200dp"
         android:layout_height="51dp"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginRight="92dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
@@ -42,7 +53,7 @@
         android:layout_marginStart="148dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="148dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="85dp"
         android:text="更改"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColor="@color/colorPrimaryDark"
