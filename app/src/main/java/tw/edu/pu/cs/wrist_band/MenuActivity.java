@@ -53,7 +53,7 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = getIntent();
         band_serial=intent.getStringExtra("name");
 
-        txv = findViewById(R.id.txv);
+        //txv = findViewById(R.id.txv);
         btn2 = findViewById(R.id.btn2);
         dt = findViewById(R.id.dt);
         spinner = findViewById(R.id.spinner);
