@@ -9,10 +9,11 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="470dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,7 +52,7 @@
             <ListView
                 android:id="@+id/id_view"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content"
+                android:layout_height="400dp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="54dp">
 
@@ -60,7 +61,7 @@
             <ListView
                 android:id="@+id/bandid_view"
                 android:layout_width="140dp"
-                android:layout_height="wrap_content"
+                android:layout_height="400dp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="54dp">
 
@@ -69,7 +70,7 @@
             <ListView
                 android:id="@+id/heart_view"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="400dp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="54dp">
 
