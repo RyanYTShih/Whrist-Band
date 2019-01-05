@@ -11,6 +11,7 @@ public class resetpw extends AppCompatActivity {
     Button back1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("密碼重設");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpw);
         back1=findViewById(R.id.button10);

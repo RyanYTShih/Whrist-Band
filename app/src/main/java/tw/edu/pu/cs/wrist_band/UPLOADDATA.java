@@ -7,6 +7,7 @@ public class UPLOADDATA extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("上傳資料");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uploaddat);
     }

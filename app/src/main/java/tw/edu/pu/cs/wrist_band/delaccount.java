@@ -13,6 +13,7 @@ public class delaccount extends AppCompatActivity {
     Button back1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("刪除帳號");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delaccount);
         Spinner spinner = (Spinner)findViewById(R.id.spinner);

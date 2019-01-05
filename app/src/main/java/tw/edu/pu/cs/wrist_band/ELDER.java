@@ -11,6 +11,7 @@ public class ELDER extends AppCompatActivity {
     Button searchre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("功能選單");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elder);
         searchre =findViewById(R.id.datasearch);
@@ -24,7 +25,6 @@ public class ELDER extends AppCompatActivity {
                         case R.id.datasearch: {
                             intent = new Intent(ELDER.this, healthreport.class);
                             startActivity(intent);
-                            finish();
                             break;
                         }
 

@@ -46,6 +46,7 @@ public class DataInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("原始資料");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_info);
 

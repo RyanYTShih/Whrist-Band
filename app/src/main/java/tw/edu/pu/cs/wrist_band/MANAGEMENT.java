@@ -11,6 +11,7 @@ public class MANAGEMENT extends AppCompatActivity {
     Button addcount,delcount,reset,revise;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("功能選單");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management);
         addcount=findViewById(R.id.button2);
