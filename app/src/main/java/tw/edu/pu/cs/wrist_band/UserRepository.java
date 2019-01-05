@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class UserRepository {
 
@@ -36,6 +37,24 @@ public class UserRepository {
         protected Void doInBackground(final User... users) {
             mAsyncTaskDao.insert(users[0]);
             return null;
+        }
+    }
+
+    public String getUserID(String name) throws ExecutionException, InterruptedException {
+        return new selectIDAsyncTask(mUserDao).execute(name).get();
+    }
+
+    private static class selectIDAsyncTask extends AsyncTask<String,Void,String>{
+
+        private UserDao mAsyncTaskDao;
+
+        selectIDAsyncTask(UserDao dao) {
+            mAsyncTaskDao=dao;
+        }
+
+        @Override
+        protected String doInBackground(String ... s) {
+            return mAsyncTaskDao.getUserID(s[0]);
         }
     }
 }

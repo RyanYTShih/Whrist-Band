@@ -7,19 +7,22 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class getRawDatainput extends AppCompatActivity {
 
-
+    private static final String TAG = "getRawDatainput";
     private RawdataViewModel mRawdataViewModel;
     private LiveData<List<Rawdata>> data;
+    private UserViewModel mUserViewModel;
     private ArrayList<String> id = new ArrayList<>();
     private ArrayList<String> bandid = new ArrayList<>();
     private ArrayList<String> heart = new ArrayList<>();
@@ -27,7 +30,7 @@ public class getRawDatainput extends AppCompatActivity {
     ListView id_view,bandid_view,heart_view;
     Button input_ana;
     Intent intent;
-
+    String id_;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +50,20 @@ public class getRawDatainput extends AppCompatActivity {
         bandid_view.setAdapter(bandid_adapter);
         heart_view.setAdapter(heart_adapter);
 
+
         mRawdataViewModel = ViewModelProviders.of(getRawDatainput.this).get(RawdataViewModel.class);
         data = mRawdataViewModel.getAllRawdata();
         data.observe(getRawDatainput.this, new Observer<List<Rawdata>>() {
             @Override
             public void onChanged(@Nullable List<Rawdata> rawdata) {
-
+                Log.d(TAG, "rawdata list updated");
+                if (rawdata == null)
+                    return;
+                try {
+                    getRawDatainput.this.data = mRawdataViewModel.getAllRawdata();
+                } catch (Exception e) {
+                    Log.d(TAG, e.getMessage());
+                }
                 for(Rawdata r : rawdata){
                     id.add(r.getId());
                     bandid.add(r.getBand_id());

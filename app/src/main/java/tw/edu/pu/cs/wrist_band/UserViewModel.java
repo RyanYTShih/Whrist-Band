@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class UserViewModel extends AndroidViewModel {
 
@@ -20,6 +21,10 @@ public class UserViewModel extends AndroidViewModel {
 
     LiveData<List<User>> getAllUsers() {
         return mAllUsers;
+    }
+
+    public String getUserID(String name) throws ExecutionException, InterruptedException {
+        return mRepository.getUserID(name);
     }
 
     public void insert(User user) {

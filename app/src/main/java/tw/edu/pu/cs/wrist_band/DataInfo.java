@@ -31,8 +31,6 @@ public class DataInfo extends AppCompatActivity {
     private static final String TAG = "DataInfo";
     private RawdataViewModel mRawdataViewModel;
     private LiveData<List<Rawdata>> data;
-    private UserViewModel mUserViewModel;
-    private LiveData<List<User>> users;
     WellnessCommunication mWellnessCommunication;
     Button mGetButton;
     Button mSetButton;
@@ -51,9 +49,9 @@ public class DataInfo extends AppCompatActivity {
 
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
+        ID = intent.getStringExtra("ID");
         HD_serial = intent.getStringExtra("dt");
 
-        Toast.makeText(getApplicationContext(),name,Toast.LENGTH_SHORT).show();
         HeartRateBase = findViewById(R.id.HeartRateBase);
         HeartRateMax =  findViewById(R.id.HeartRateMax);
         HeartRateRest =  findViewById(R.id.HeartRateRest);
@@ -71,42 +69,7 @@ public class DataInfo extends AppCompatActivity {
 
         mWellnessCommunication = WellnessCommunication.getInstance(getApplicationContext());
 
-        mUserViewModel = ViewModelProviders.of(DataInfo.this).get(UserViewModel.class);
-        users=mUserViewModel.getAllUsers();
-        users.observe(DataInfo.this, new Observer<List<User>>() {
-            @Override
-            public void onChanged(@Nullable List<User> users) {
-                Log.d(TAG, "user list updated");
-                if (users == null)
-                    return;
-                try {
-                    DataInfo.this.users = mUserViewModel.getAllUsers();
-                } catch (Exception e) {
-                    Log.d(TAG, e.getMessage());
-                }
-                for(User u : users)
-                    if(u.getName()==name)
-                        ID=u.getId();
-            }
-        });
-
         mRawdataViewModel = ViewModelProviders.of(DataInfo.this).get(RawdataViewModel.class);
-        data=mRawdataViewModel.getAllRawdata();
-        data.observe(DataInfo.this, new Observer<List<Rawdata>>(){
-            @Override
-            public void onChanged(@Nullable List<Rawdata> data) {
-                Log.d(TAG, "rawdata list updated");
-                if (data == null)
-                    return;
-                try {
-                    DataInfo.this.data = mRawdataViewModel.getAllRawdata();
-                } catch (Exception e) {
-                    Log.d(TAG, e.getMessage());
-                }
-                for(Rawdata d : data)
-                    Toast.makeText(getApplication(),d.getId(),Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
@@ -197,10 +160,8 @@ public class DataInfo extends AppCompatActivity {
     private View.OnClickListener mUploadClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             mRawdataViewModel.insert(new Rawdata(ID,HD_serial,null,null,null,Heartrate));
             Toast.makeText(getApplicationContext(),"上傳成功",Toast.LENGTH_SHORT).show();
-
         }
     };
 

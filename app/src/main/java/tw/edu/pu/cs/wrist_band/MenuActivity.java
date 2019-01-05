@@ -36,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
     private UserViewModel mUserViewModel;
     private LiveData<List<User>> users;
     ArrayAdapter<String> UserList;
-    List<String> user = new ArrayList<String>();
+    List<String> user = new ArrayList<>();
     TextView txv,dt;
     Button btn,btn2;
     Spinner spinner;
@@ -62,7 +62,7 @@ public class MenuActivity extends AppCompatActivity {
         users = mUserViewModel.getAllUsers();
         users.observe(MenuActivity.this, new Observer<List<User>>() {
             @Override
-            public void onChanged(@Nullable List<User> users) {
+            public void onChanged(@Nullable List<User>users) {
                 Log.d(TAG, "user list updated");
                 if (users == null)
                     return;
@@ -97,10 +97,14 @@ public class MenuActivity extends AppCompatActivity {
 
 
     public void openData() {
-        String str = "您的姓名為：" +name+"\n手環名稱為："+band_serial;
-        Toast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show();
+        String show_data = "您的姓名為：" +name+"\n手環名稱為："+band_serial;
+        String str_name = "您的身分證字號為："+ID;
+        Toast.makeText(getApplicationContext(),show_data,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),str_name,Toast.LENGTH_SHORT).show();
+
         Intent its = new Intent(MenuActivity.this, DataInfo.class);
         its.putExtra("name",name);
+        its.putExtra("ID",ID);
         its.putExtra("dt",dt.getText().toString());
         startActivity(its);
     }
@@ -109,6 +113,12 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         public void onItemSelected(AdapterView parent, View v, int position, long id) {
             name = parent.getSelectedItem().toString();
+            try{
+                ID = mUserViewModel.getUserID(name);
+            }
+            catch (Exception e){
+                Log.d(TAG, e.getMessage());
+            }
         }
         @Override
         public void onNothingSelected(AdapterView parent) {
