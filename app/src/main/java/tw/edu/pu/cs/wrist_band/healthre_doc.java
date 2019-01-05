@@ -14,6 +14,7 @@ public class healthre_doc extends AppCompatActivity {
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("健康報告");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_healthre_doc);
         Spinner spinner3 = (Spinner)findViewById(R.id.spinner3);
@@ -28,14 +29,12 @@ public class healthre_doc extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item,
                 people);
         spinner5.setAdapter(peopleList);
-        Spinner spinner6 = (Spinner)findViewById(R.id.spinner6);
-        Spinner spinner9 = (Spinner)findViewById(R.id.spinner9);
+
         final String[] year = {"年","2019"};
         ArrayAdapter<String> yearList = new ArrayAdapter<>(healthre_doc.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 year);
-        spinner6.setAdapter(yearList);
-        spinner9.setAdapter(yearList);
+
         Spinner spinner7 = (Spinner)findViewById(R.id.spinner7);
         Spinner spinner10 = (Spinner)findViewById(R.id.spinner10);
         final String[] month = {"月","1","2","3","4","5","6","7","8","9","10","11","12"};

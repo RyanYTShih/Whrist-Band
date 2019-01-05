@@ -46,13 +46,14 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("帳號選擇");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
         Intent intent = getIntent();
         band_serial=intent.getStringExtra("name");
 
-        txv = findViewById(R.id.txv);
+        //txv = findViewById(R.id.txv);
         btn2 = findViewById(R.id.btn2);
         dt = findViewById(R.id.dt);
         spinner = findViewById(R.id.spinner);

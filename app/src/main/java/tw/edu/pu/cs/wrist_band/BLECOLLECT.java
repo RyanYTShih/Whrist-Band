@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -43,9 +45,11 @@ public class BLECOLLECT extends AppCompatActivity {
     private ArrayList<String> uuid = new ArrayList<>();
     private ArrayList<Peripheral> device = new ArrayList<>();
     private ArrayAdapter name_adapter, uuid_adpater;
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("手環配對");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blecollect);
         name_text = findViewById(R.id.name_text);
@@ -61,6 +65,7 @@ public class BLECOLLECT extends AppCompatActivity {
         unregister_button = findViewById(R.id.unregister_button);
         connect_button = findViewById(R.id.connect_button);
         mBleStateTextView= findViewById(R.id.mBleStateTextView);
+        image=findViewById(R.id.imageView8);
 
         name_adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, name);
         name_list.setAdapter(name_adapter);
@@ -104,8 +109,10 @@ public class BLECOLLECT extends AppCompatActivity {
     private void changeBleStateText(boolean isBleEnabled) {
         if(isBleEnabled){
             mBleStateTextView.setText(R.string.label_ble_state_on);
+            image.setColorFilter(Color.BLUE);
         }else {
             mBleStateTextView.setText(R.string.label_ble_state_off);
+            image.setColorFilter(Color.BLACK);
             sw.setOnCheckedChangeListener(null);
             sw.setChecked(isBleEnabled);
             sw.setOnCheckedChangeListener(swChancedChangeListener);

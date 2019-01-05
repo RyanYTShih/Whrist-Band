@@ -11,6 +11,7 @@ public class doctorfun extends AppCompatActivity {
     Button rawdata,analyze,healthre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("功能選單");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctorfun);
         rawdata=findViewById(R.id.button2);
@@ -26,7 +27,7 @@ public class doctorfun extends AppCompatActivity {
                 public void onClick(View v) {
                     switch (v.getId()) {
                         case R.id.button2: {
-                            intent = new Intent(doctorfun.this, docgetrawdata.class);
+                            intent = new Intent(doctorfun.this, getRawDatainput.class);
                             startActivity(intent);
                             break;
                         }

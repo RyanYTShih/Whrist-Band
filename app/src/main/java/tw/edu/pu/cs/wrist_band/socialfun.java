@@ -11,6 +11,7 @@ public class socialfun extends AppCompatActivity {
     Button coll,upload;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("功能選單");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_socialfun);
         coll=findViewById(R.id.blecoll);

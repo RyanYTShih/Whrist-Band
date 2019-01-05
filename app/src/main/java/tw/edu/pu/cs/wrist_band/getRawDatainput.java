@@ -33,6 +33,7 @@ public class getRawDatainput extends AppCompatActivity {
     String id_;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("原始資料");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_raw_datainput);
         input_ana=findViewById(R.id.button13);

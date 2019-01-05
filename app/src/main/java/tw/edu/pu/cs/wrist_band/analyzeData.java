@@ -14,6 +14,7 @@ public class analyzeData extends AppCompatActivity {
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("資料分析");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analyze_data);
         Spinner spinner3 = (Spinner)findViewById(R.id.spinner3);

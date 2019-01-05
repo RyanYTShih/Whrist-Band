@@ -120,7 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.8"
-                        android:text="重設密碼"
+                        android:text="密碼重設"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
 
                     <ImageView

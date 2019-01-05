@@ -14,6 +14,7 @@ public class reviseaccount extends AppCompatActivity {
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("修改帳號");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviseaccount);
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
