@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.epson.pulsenseapi.WellnessCommunication;
 import com.epson.pulsenseapi.ble.callback.BleScanCallback;
+import com.epson.pulsenseapi.ble.callback.BleStateChangedCallback;
 import com.epson.pulsenseapi.ble.callback.ConnectPeripheralCallback;
 import com.epson.pulsenseapi.ble.constant.LocalError;
 import com.epson.pulsenseapi.exception.WellnessCommunicationException;
@@ -34,7 +35,7 @@ public class BLECOLLECT extends AppCompatActivity {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 10;
 
     private WellnessCommunication mWellnessCommunication;
-    private TextView name_text, uuid_text, name_, uuid_;
+    private TextView name_text, uuid_text, name_, uuid_,mBleStateTextView;
     private Switch sw;
     private ListView name_list, uuid_list;
     private Button start_button, stop_button, register_button, unregister_button, connect_button;
@@ -59,6 +60,7 @@ public class BLECOLLECT extends AppCompatActivity {
         register_button = findViewById(R.id.register_button);
         unregister_button = findViewById(R.id.unregister_button);
         connect_button = findViewById(R.id.connect_button);
+        mBleStateTextView= findViewById(R.id.mBleStateTextView);
 
         name_adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, name);
         name_list.setAdapter(name_adapter);
@@ -84,6 +86,30 @@ public class BLECOLLECT extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mWellnessCommunication.setBleStateChangedCallback(mBleStateChangedCallback);
+
+        initBleSwitchValue();
+    }
+
+    private void initBleSwitchValue() {
+        boolean isBleEnabled = mWellnessCommunication.isBleEnabled();
+        this.changeBleStateText(isBleEnabled);
+    }
+
+    private void changeBleStateText(boolean isBleEnabled) {
+        if(isBleEnabled){
+            mBleStateTextView.setText(R.string.label_ble_state_on);
+        }else {
+            mBleStateTextView.setText(R.string.label_ble_state_off);
+            sw.setOnCheckedChangeListener(null);
+            sw.setChecked(isBleEnabled);
+            sw.setOnCheckedChangeListener(swChancedChangeListener);
+        }
     }
 
     private CompoundButton.OnCheckedChangeListener swChancedChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -196,6 +222,32 @@ public class BLECOLLECT extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             name_text.setText(parent.getItemAtPosition(position).toString());
             uuid_text.setText(uuid_list.getItemAtPosition(position).toString());
+        }
+    };
+    private BleStateChangedCallback mBleStateChangedCallback = new BleStateChangedCallback() {
+        @Override
+        public void onEnabled() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    changeBleStateText(true);
+                }
+            });
+        }
+
+        @Override
+        public void onDisabled() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    changeBleStateText(false);
+                }
+            });
+        }
+
+        @Override
+        public void onError(LocalError localError) {
+
         }
     };
     private View.OnClickListener connectbuttonChangeListner = new View.OnClickListener() {
