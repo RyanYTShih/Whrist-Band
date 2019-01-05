@@ -113,8 +113,13 @@
         android:id="@+id/upload_but"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="21dp"
         android:text="UPLOAD"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="69dp" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/mSetButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -91,35 +91,6 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    /*private View.OnClickListener mrequestListener = new View.OnClickListener(){
-
-        @Override
-        public void onClick(View v) {
-            mWellnessCommunication.requestGetDataClass(DataClassId.HardwareInformation, new RequestGetDataClassCallback() {
-                @Override
-                public void onSuccess(final IBinaryModel model) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            HardwareInformationModel hardwareInformationModel = (HardwareInformationModel) model;
-                            dt.setText(hardwareInformationModel.getSerialNumber());
-                            Toast.makeText(MenuActivity.this,"正在讀取",Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
-
-                @Override
-                public void onError(LocalError localError) {
-
-                }
-
-                @Override
-                public void onCancel() {
-
-                }
-            });
-        }
-    };*/
 
     public void openData() {
         /*if (edt.getText().toString().matches("")) {
