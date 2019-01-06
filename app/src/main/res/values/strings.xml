@@ -13,7 +13,10 @@
     <string name="label_ble_state_on">ON</string>
     <string name="label_ble_state_off">OFF</string>
     <string name="ble_disabled_message">Connection with the BLE equipment has been disconnected.</string>
-    <string name="dialog_positive_button">OK</string>
-    <string name="alert">Alert</string>
-    <string name="need_permission">Please allow the permission that can scan devices.</string>
+    <string name="dialog_positive_button">確定</string>
+    <string name="dialog_negative_button">取消</string>
+    <string name="alert">警告</string>
+    <string name="need_permission">請允許存取權限以掃描附近手環</string>
+    <string name="message">訊息</string>
+    <string name="logout_msg">確定要登出嗎?</string>
 </resources>

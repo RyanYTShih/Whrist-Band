@@ -1,8 +1,11 @@
 package tw.edu.pu.cs.wrist_band;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -44,4 +47,22 @@ public class doctorfun extends AppCompatActivity {
                     }
                 }
             };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.message)
+                    .setMessage(R.string.logout_msg)
+                    .setPositiveButton(R.string.dialog_positive_button, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton(R.string.dialog_negative_button, null)
+                    .show();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
