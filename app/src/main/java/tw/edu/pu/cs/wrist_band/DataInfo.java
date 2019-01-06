@@ -44,8 +44,8 @@ public class DataInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("原始資料");
         super.onCreate(savedInstanceState);
+        setTitle("原始資料");
         setContentView(R.layout.activity_data_info);
 
         Intent intent = getIntent();
@@ -162,7 +162,7 @@ public class DataInfo extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             mRawdataViewModel.insert(new Rawdata(ID,HD_serial,null,null,null,Heartrate));
-            Toast.makeText(getApplicationContext(),"上傳成功",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"儲存成功",Toast.LENGTH_SHORT).show();
         }
     };
 

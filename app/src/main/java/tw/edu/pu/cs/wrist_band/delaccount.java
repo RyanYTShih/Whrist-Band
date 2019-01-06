@@ -13,8 +13,8 @@ public class delaccount extends AppCompatActivity {
     Button back1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("刪除帳號");
         super.onCreate(savedInstanceState);
+        setTitle("刪除帳號");
         setContentView(R.layout.activity_delaccount);
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
         final String[] where = {"靜宜社區", "宜靜社區", "靜宜一街", "宜靜一街", "靜宜街坊"};

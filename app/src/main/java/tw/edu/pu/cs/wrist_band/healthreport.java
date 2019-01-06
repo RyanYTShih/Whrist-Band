@@ -7,8 +7,8 @@ public class healthreport extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("健康報告");
         super.onCreate(savedInstanceState);
+        setTitle("健康報告");
         setContentView(R.layout.activity_healthreport);
     }
 }

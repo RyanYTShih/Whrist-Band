@@ -49,8 +49,8 @@ public class BLECOLLECT extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("手環配對");
         super.onCreate(savedInstanceState);
+        setTitle("手環配對");
         setContentView(R.layout.activity_blecollect);
         name_text = findViewById(R.id.name_text);
         uuid_text = findViewById(R.id.uuid_text);

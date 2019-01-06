@@ -13,8 +13,8 @@ public class resetPasswd extends AppCompatActivity {
     Button reset;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("密碼重設");
         super.onCreate(savedInstanceState);
+        setTitle("密碼重設");
         setContentView(R.layout.activity_reset_passwd);
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
         final String[] where = {"社區選擇","靜宜社區", "宜靜社區", "靜宜一街", "宜靜一街", "靜宜街坊"};

@@ -14,8 +14,8 @@ public class doctorfun extends AppCompatActivity {
     Button rawdata,analyze,healthre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("功能選單");
         super.onCreate(savedInstanceState);
+        setTitle("功能選單");
         setContentView(R.layout.activity_doctorfun);
         rawdata=findViewById(R.id.button2);
         analyze=findViewById(R.id.button3);
