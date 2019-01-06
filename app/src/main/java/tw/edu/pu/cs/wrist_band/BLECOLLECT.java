@@ -107,6 +107,7 @@ public class BLECOLLECT extends AppCompatActivity {
     }
 
     private void changeBleStateText(boolean isBleEnabled) {
+        sw.setChecked(isBleEnabled);
         if(isBleEnabled){
             mBleStateTextView.setText(R.string.label_ble_state_on);
             image.setColorFilter(Color.BLUE);
@@ -114,7 +115,6 @@ public class BLECOLLECT extends AppCompatActivity {
             mBleStateTextView.setText(R.string.label_ble_state_off);
             image.setColorFilter(Color.BLACK);
             sw.setOnCheckedChangeListener(null);
-            sw.setChecked(isBleEnabled);
             sw.setOnCheckedChangeListener(swChancedChangeListener);
         }
     }
