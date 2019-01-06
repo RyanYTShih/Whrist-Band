@@ -57,4 +57,18 @@ public class UserRepository {
             return mAsyncTaskDao.getUserID(s[0]);
         }
     }
+
+    public String getUserNAME(String id) throws ExecutionException, InterruptedException{
+        return new selectNAMEAsyncTask(mUserDao).execute(id).get();
+    }
+
+    private static class selectNAMEAsyncTask extends AsyncTask<String,Void,String>{
+
+        private UserDao mAsyncTaskDao;
+
+        selectNAMEAsyncTask(UserDao dao) {mAsyncTaskDao=dao; }
+
+        @Override
+        protected String doInBackground(String ... s) { return mAsyncTaskDao.getUserNAME(s[0]); }
+    }
 }

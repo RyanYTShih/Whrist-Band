@@ -27,6 +27,10 @@ public class UserViewModel extends AndroidViewModel {
         return mRepository.getUserID(name);
     }
 
+    public String getUserNAME(String id) throws ExecutionException, InterruptedException {
+        return mRepository.getUserNAME(id);
+    }
+
     public void insert(User user) {
         mRepository.insert(user);
     }

@@ -20,17 +20,22 @@ import java.util.List;
 public class getRawDatainput extends AppCompatActivity {
 
     private static final String TAG = "getRawDatainput";
+
     private RawdataViewModel mRawdataViewModel;
-    private LiveData<List<Rawdata>> data;
     private UserViewModel mUserViewModel;
+    private LiveData<List<Rawdata>> data;
+
+    private ArrayList<String> name = new ArrayList<>();
     private ArrayList<String> id = new ArrayList<>();
     private ArrayList<String> bandid = new ArrayList<>();
     private ArrayList<String> heart = new ArrayList<>();
-    private ArrayAdapter id_adapter,bandid_adapter,heart_adapter;
-    ListView id_view,bandid_view,heart_view;
+    private ArrayAdapter name_adapter,id_adapter,bandid_adapter,heart_adapter;
+
+    ListView name_view,id_view,bandid_view,heart_view;
     Button input_ana;
     Intent intent;
     String id_;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,19 +44,22 @@ public class getRawDatainput extends AppCompatActivity {
         input_ana=findViewById(R.id.button13);
         input_ana.setOnClickListener(myListener);
 
+        name_view=findViewById(R.id.NAME_view);
         id_view=findViewById(R.id.id_view);
         bandid_view=findViewById(R.id.bandid_view);
         heart_view=findViewById(R.id.heart_view);
 
+        name_adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,name);
         id_adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,id);
         bandid_adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,bandid);
         heart_adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,heart);
 
+        name_view.setAdapter(name_adapter);
         id_view.setAdapter(id_adapter);
         bandid_view.setAdapter(bandid_adapter);
         heart_view.setAdapter(heart_adapter);
 
-
+        mUserViewModel = ViewModelProviders.of(getRawDatainput.this).get(UserViewModel.class);
         mRawdataViewModel = ViewModelProviders.of(getRawDatainput.this).get(RawdataViewModel.class);
         data = mRawdataViewModel.getAllRawdata();
         data.observe(getRawDatainput.this, new Observer<List<Rawdata>>() {
@@ -66,10 +74,20 @@ public class getRawDatainput extends AppCompatActivity {
                     Log.d(TAG, e.getMessage());
                 }
                 for(Rawdata r : rawdata){
+
+                    try{
+                        name.add(mUserViewModel.getUserNAME(r.getId()));
+                    }
+                    catch (Exception e){
+                        Log.d(TAG, e.getMessage());
+                    }
+
                     id.add(r.getId());
                     bandid.add(r.getBand_id());
                     heart.add(r.getHeart_rate());
                 }
+
+                name_adapter.notifyDataSetChanged();
                 id_adapter.notifyDataSetChanged();
                 bandid_adapter.notifyDataSetChanged();
                 heart_adapter.notifyDataSetChanged();
