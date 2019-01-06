@@ -46,8 +46,8 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("帳號選擇");
         super.onCreate(savedInstanceState);
+        setTitle("帳號選擇");
         setContentView(R.layout.activity_menu);
 
         Intent intent = getIntent();

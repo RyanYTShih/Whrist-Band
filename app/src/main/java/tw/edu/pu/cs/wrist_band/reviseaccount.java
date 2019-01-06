@@ -14,8 +14,8 @@ public class reviseaccount extends AppCompatActivity {
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("修改帳號");
         super.onCreate(savedInstanceState);
+        setTitle("修改帳號");
         setContentView(R.layout.activity_reviseaccount);
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
         final String[] where = {"社區選擇","靜宜社區", "宜靜社區", "靜宜一街", "宜靜一街", "靜宜街坊"};

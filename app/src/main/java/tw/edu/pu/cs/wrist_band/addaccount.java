@@ -29,8 +29,8 @@ public class addaccount extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("新增帳號");
         super.onCreate(savedInstanceState);
+        setTitle("新增帳號");
         setContentView(R.layout.activity_addaccount);
 
         edName = findViewById(R.id.editText3);

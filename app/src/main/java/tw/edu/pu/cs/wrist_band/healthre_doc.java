@@ -14,8 +14,8 @@ public class healthre_doc extends AppCompatActivity {
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("健康報告");
         super.onCreate(savedInstanceState);
+        setTitle("健康報告");
         setContentView(R.layout.activity_healthre_doc);
         Spinner spinner3 = (Spinner)findViewById(R.id.spinner3);
         final String[] where = {"社區選擇","靜宜社區", "宜靜社區", "靜宜一街", "宜靜一街", "靜宜街坊"};

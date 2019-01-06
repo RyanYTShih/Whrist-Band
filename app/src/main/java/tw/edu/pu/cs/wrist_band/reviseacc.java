@@ -14,8 +14,8 @@ public class reviseacc extends AppCompatActivity {
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("修改帳號");
         super.onCreate(savedInstanceState);
+        setTitle("修改帳號");
         setContentView(R.layout.activity_reviseacc);
         Spinner spinner3 = (Spinner)findViewById(R.id.spinner4);
         final String[] acter = {"角色選擇", "長輩", "醫生", "社工", "社區主委"};
