@@ -80,7 +80,13 @@ public class addaccount extends AppCompatActivity {
                     } else {
                         User user = new User(id, name, passwd, selectedRole);
                         mUserViewModel.insert(user);
-                        Toast.makeText(addaccount.this, "已為" + user.getName() + "建立新" + actor[user.getRole()] + "帳號", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(addaccount.this, "已為" + user.getName() + "建立新" + actor[user.getRole()] + "帳號", Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(addaccount.this)
+                                .setTitle(R.string.message)
+                                .setMessage("已為" + user.getName() + "建立新" + actor[user.getRole()] + "帳號")
+                                .setPositiveButton(R.string.dialog_positive_button, null)
+                                .show();
+
                         edName.setText("");
                         edId.setText("");
                         edPasswd.setText("");
