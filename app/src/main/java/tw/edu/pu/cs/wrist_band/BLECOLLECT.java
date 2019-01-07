@@ -276,7 +276,7 @@ public class BLECOLLECT extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(300);
                     }
                     catch (Exception e){
                         e.printStackTrace();
@@ -311,6 +311,20 @@ public class BLECOLLECT extends AppCompatActivity {
         @Override
         public void onError(LocalError localError) {
             Toast.makeText(BLECOLLECT.this,"請註冊",Toast.LENGTH_SHORT).show();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(300);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    finally {
+                        dialog.dismiss();
+                    }
+                }
+            }).start();
         }
     };
 
