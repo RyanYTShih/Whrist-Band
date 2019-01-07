@@ -264,13 +264,14 @@ public class BLECOLLECT extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             mWellnessCommunication.connectPeripheral(mConnectPheCallback);
+            dialog = ProgressDialog.show(BLECOLLECT.this,"連接中","請等待...",true);
         }
     };
 
     private ConnectPeripheralCallback mConnectPheCallback = new ConnectPeripheralCallback() {
         @Override
         public void onConnected() {
-            dialog = ProgressDialog.show(BLECOLLECT.this,"連接中","請等待...",true);
+
             new Thread(new Runnable() {
                 @Override
                 public void run() {
