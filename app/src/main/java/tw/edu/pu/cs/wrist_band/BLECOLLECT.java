@@ -1,6 +1,8 @@
 package tw.edu.pu.cs.wrist_band;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -45,6 +47,7 @@ public class BLECOLLECT extends AppCompatActivity {
     private ArrayList<String> uuid = new ArrayList<>();
     private ArrayList<Peripheral> device = new ArrayList<>();
     private ArrayAdapter name_adapter, uuid_adpater;
+    private Dialog dialog;
     ImageView image;
 
     @Override
@@ -267,7 +270,21 @@ public class BLECOLLECT extends AppCompatActivity {
     private ConnectPeripheralCallback mConnectPheCallback = new ConnectPeripheralCallback() {
         @Override
         public void onConnected() {
-
+            dialog = ProgressDialog.show(BLECOLLECT.this,"連接中","請等待...",true);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(3000);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    finally {
+                        dialog.dismiss();
+                    }
+                }
+            }).start();
             Intent intent = new Intent(BLECOLLECT.this, MenuActivity.class);
             intent.setAction(Intent.ACTION_VIEW);
             intent.putExtra("name",name_.getText().toString());
