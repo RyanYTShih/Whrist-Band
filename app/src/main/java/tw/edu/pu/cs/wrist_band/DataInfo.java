@@ -165,8 +165,8 @@ public class DataInfo extends AppCompatActivity {
     private View.OnClickListener mUploadClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            mRawdataViewModel.insert(new Rawdata(ID,HD_serial,null,null,null,Heartrate));
-            Toast.makeText(getApplicationContext(),"儲存成功",Toast.LENGTH_SHORT).show();
+//            mRawdataViewModel.insert(new Rawdata(ID,HD_serial,null,null,null,Heartrate));
+//            Toast.makeText(getApplicationContext(),"儲存成功",Toast.LENGTH_SHORT).show();
         }
     };
 

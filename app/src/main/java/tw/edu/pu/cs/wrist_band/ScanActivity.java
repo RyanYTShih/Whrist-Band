@@ -2,20 +2,29 @@ package tw.edu.pu.cs.wrist_band;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,16 +39,27 @@ import com.epson.pulsenseapi.model.IBinaryModel;
 import com.epson.pulsenseapi.model.MeasureLogModel;
 import com.epson.pulsenseview.wellnesscommunication.bluetooth.Peripheral;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ScanActivity extends AppCompatActivity {
 
+    private static final String TAG = "ScanActivity";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 10;
 
     private WellnessCommunication instance;
 
     private MeasureLogModel measureLogModel;
 
+    private UserViewModel mUserViewModel;
+    private RawdataViewModel mRawDataViewModel;
+    private LiveData<List<User>> users;
+    ArrayAdapter<String> UserList;
+    List<String> user = new ArrayList<>();
+
     private TextView textDeviceName, textUUID, textMeasureLog;
     private String strMeasureLog = "";
+    private String name, ID;
 
     private Button unregisterButton;
     private Button connectButton;
@@ -52,6 +72,8 @@ public class ScanActivity extends AppCompatActivity {
     private Switch scanSwitch;
 
     private ListView deviceList;
+
+    private Spinner spinner;
 
     private DeviceAdapter peripheralAdapter;
 
@@ -80,9 +102,16 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        instance.disconnectPeripheral();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
+        setTitle("手環連線 - 工程模式");
 
         instance = WellnessCommunication.getInstance(this);
 
@@ -102,8 +131,38 @@ public class ScanActivity extends AppCompatActivity {
 
         deviceList = findViewById(R.id.deviceList);
 
+        spinner = findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(spinnerItemSelLis);
+
         peripheralAdapter = new DeviceAdapter(this, R.layout.device_adapter);
         deviceList.setAdapter(peripheralAdapter);
+
+        mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        users = mUserViewModel.getAllUsers();
+        users.observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(@Nullable List<User>users) {
+                Log.d(TAG, "user list updated");
+                if (users == null)
+                    return;
+                try {
+                    ScanActivity.this.users = mUserViewModel.getAllUsers();
+                } catch (Exception e) {
+                    Log.d(TAG, e.getMessage());
+                }
+                int i=0;
+                for(User u : users){
+                    if(u.getRole()==Role.Elder) {
+                        user.add(u.getName());
+                        i++;
+                    }
+                }
+                UserList = new ArrayAdapter<>(ScanActivity.this, android.R.layout.simple_spinner_dropdown_item, user);
+                spinner.setAdapter(UserList);
+            }
+        });
+
+        mRawDataViewModel = ViewModelProviders.of(this).get(RawdataViewModel.class);
 
         if (instance.isBleEnabled()) {
             bluetoothSwitch.setChecked(true);
@@ -165,7 +224,7 @@ public class ScanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (instance.getRegisteredPeripheral() != null) {
-                    final ProgressDialog connectProgress = ProgressDialog.show(ScanActivity.this, "Connecting", "", true);
+                    final ProgressDialog connectProgress = ProgressDialog.show(ScanActivity.this, "Connecting", "", true, true);
                     instance.connectPeripheral(new ConnectPeripheralCallback() {
                         @Override
                         public void onConnected() {
@@ -199,6 +258,7 @@ public class ScanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 instance.requestEnumerateDataClass(DataClassId.MeasurementLog, new RequestEnumerateDataClassCallback() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onProgress(int i, int i1) {
                         strMeasureLog += i + "/" + i1 + ". ";
@@ -215,6 +275,19 @@ public class ScanActivity extends AppCompatActivity {
                     @Override
                     public void onEnumerate(IBinaryModel iBinaryModel) {
                         measureLogModel = (MeasureLogModel) iBinaryModel;
+
+                        Rawdata rawdata = new Rawdata(
+                                ID,
+                                textUUID.getText().toString(),
+//                                measureLogModel.getMeasureStartDate(),
+//                                measureLogModel.getMeasureStartTime(),
+//                                measureLogModel.getMeasureStopDate(),
+//                                measureLogModel.getMeasureStopTime(),
+                                measureLogModel
+                        );
+
+                        mRawDataViewModel.insert(rawdata);
+
                         String s = measureLogModel.getMeasureStartDate().getYear() + "/"
                                 + measureLogModel.getMeasureStartDate().getMonth() + "/"
                                 + measureLogModel.getMeasureStartDate().getDay() + " "
@@ -262,6 +335,22 @@ public class ScanActivity extends AppCompatActivity {
         });
     }
 
+    private Spinner.OnItemSelectedListener spinnerItemSelLis = new Spinner.OnItemSelectedListener () {
+        @Override
+        public void onItemSelected(AdapterView parent, View v, int position, long id) {
+            name = parent.getSelectedItem().toString();
+            try{
+                ID = mUserViewModel.getUserID(name);
+            }
+            catch (Exception e){
+                Log.d(TAG, e.getMessage());
+            }
+        }
+        @Override
+        public void onNothingSelected(AdapterView parent) {
+        }
+    };
+
     private void startScan() {
         instance.scanPeripherals(new BleScanCallback() {
             @Override
@@ -300,7 +389,7 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     public void registerDevice(Peripheral peripheral) {
-        Log.d("p", peripheral.getName() + ", " + peripheral.getUuid());
+        Log.d(TAG, peripheral.getName() + ", " + peripheral.getUuid());
         try {
             scanSwitch.setChecked(false);
             instance.registerPeripheral(peripheral);

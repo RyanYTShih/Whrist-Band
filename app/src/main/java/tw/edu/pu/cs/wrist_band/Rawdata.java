@@ -4,53 +4,88 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.epson.pulsenseapi.model.MeasureLogModel;
+import com.epson.pulsenseapi.model.SimpleDate;
+import com.epson.pulsenseapi.model.SimpleTime;
+
 @Entity
 public class Rawdata {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
-    private String id;
-    private String band_id;
-    private String sleep_time;
-    private String step_num;
-    private String calories;
-    private String heart_rate;
+    private long serial_id;
 
-    public Rawdata(String id,String band_id, String sleep_time, String step_num, String calories, String heart_rate) {
-        this.id = id;
-        this.band_id=band_id;
-        this.sleep_time=sleep_time;
-        this.step_num=step_num;
-        this.calories=calories;
-        this.heart_rate=heart_rate;
+    @NonNull
+    private String personal_id;
+
+    @NonNull
+    private String band_id;
+
+//    @NonNull
+//    private SimpleDate start_date;
+//
+//    @NonNull
+//    private SimpleTime start_time;
+//
+//    @NonNull
+//    private SimpleDate stop_date;
+//
+//    @NonNull
+//    private SimpleTime stop_time;
+
+    @NonNull
+    private MeasureLogModel measureLogModel;
+
+    public Rawdata(String personal_id,
+                   String band_id,
+//                   SimpleDate start_date,
+//                   SimpleTime start_time,
+//                   SimpleDate stop_date,
+//                   SimpleTime stop_time,
+                   MeasureLogModel measureLogModel) {
+        this.personal_id = personal_id;
+        this.band_id = band_id;
+//        this.start_date = start_date;
+//        this.start_time = start_time;
+//        this.stop_date = stop_date;
+//        this.stop_time = stop_time;
+        this.measureLogModel = measureLogModel;
     }
 
-    public String getId() {
-        return id;
+    public long getSerial_id() {
+        return serial_id;
+    }
+
+    public void setSerial_id(long serial_id) {
+        this.serial_id = serial_id;
+    }
+
+    public String getPersonal_id() {
+        return personal_id;
     }
 
     public String getBand_id() {
         return band_id;
     }
 
-    public String getSleep_time() {
-        return sleep_time;
+//    public SimpleDate getStart_date() {
+//        return start_date;
+//    }
+//
+//    public SimpleTime getStart_time() {
+//        return start_time;
+//    }
+//
+//    public SimpleDate getStop_date() {
+//        return stop_date;
+//    }
+//
+//    public SimpleTime getStop_time() {
+//        return stop_time;
+//    }
+
+    public MeasureLogModel getMeasureLogModel() {
+        return measureLogModel;
     }
-
-    public String getStep_num() {
-        return step_num;
-    }
-
-    public String getCalories() {
-        return calories;
-    }
-
-    public String getHeart_rate() {
-        return heart_rate;
-    }
-
-    public void setHeart_rate(String rate){ heart_rate=rate;}
-
-
 
 }

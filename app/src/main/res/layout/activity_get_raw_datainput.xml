@@ -51,7 +51,7 @@
                 android:id="@+id/Heart"
                 android:layout_width="67dp"
                 android:layout_height="wrap_content"
-                android:text="心率"
+                android:text="步數"
                 android:textSize="20sp" />
 
         </LinearLayout>

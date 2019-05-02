@@ -76,15 +76,15 @@ public class getRawDatainput extends AppCompatActivity {
                 for(Rawdata r : rawdata){
 
                     try{
-                        name.add(mUserViewModel.getUserNAME(r.getId()));
+                        name.add(mUserViewModel.getUserNAME(r.getPersonal_id()));
                     }
                     catch (Exception e){
                         Log.d(TAG, e.getMessage());
                     }
 
-                    id.add(r.getId());
+                    id.add(r.getPersonal_id());
                     bandid.add(r.getBand_id());
-                    heart.add(r.getHeart_rate());
+                    heart.add(r.getMeasureLogModel().getSteps() + "");
                 }
 
                 name_adapter.notifyDataSetChanged();

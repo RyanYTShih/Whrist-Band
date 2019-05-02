@@ -3,9 +3,11 @@ package tw.edu.pu.cs.wrist_band;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-@Database(entities = {User.class, Rawdata.class}, version = 1)
+@Database(entities = {User.class, Rawdata.class}, version = 2)
+@TypeConverters(RawDataConverter.class)
 public abstract class BandRoomDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
