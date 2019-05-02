@@ -38,7 +38,8 @@
         <activity android:name=".getRawDatainput" />
         <activity android:name=".docgetrawdata" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".DataInfo"></activity>
+        <activity android:name=".DataInfo" />
+        <activity android:name=".ScanActivity" />
     </application>
 
 </manifest>

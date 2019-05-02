@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
     private LiveData<List<User>> users;
     private static final User[] sampleUsers = {
-            new User("A12345", "主委", "1", Role.Manager),
-            new User("B12345", "社工", "2", Role.SocialWorker),
-            new User("C12345", "長輩", "3", Role.Elder),
-            new User("D12345", "醫師", "4", Role.Doctor)
+            new User("A123456789", "張小心", "1", Role.Manager),
+            new User("B123456789", "時小唐", "2", Role.SocialWorker),
+            new User("C123456789", "廖小勛", "3", Role.Elder),
+            new User("D123456789", "林小宏", "4", Role.Doctor)
     };
 
     private EditText edUserid, edPasswd;

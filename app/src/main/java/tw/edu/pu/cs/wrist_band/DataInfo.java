@@ -22,7 +22,9 @@ import com.epson.pulsenseapi.ble.callback.RequestSetDataClassCallback;
 import com.epson.pulsenseapi.ble.constant.DataClassId;
 import com.epson.pulsenseapi.ble.constant.LocalError;
 import com.epson.pulsenseapi.model.IBinaryModel;
+import com.epson.pulsenseapi.model.LightMeasureLogModel;
 import com.epson.pulsenseapi.model.PhysicalFitnessModel;
+import com.epson.pulsenseapi.model.WorkoutSummaryModel;
 
 import java.util.List;
 
@@ -61,6 +63,8 @@ public class DataInfo extends AppCompatActivity {
         mBaseEdit =  findViewById(R.id.mBaseEdit);
         mMaxEdit =  findViewById(R.id.mMaxEdit);
         mRestEdit = findViewById(R.id.mRestEdit);
+
+
         mGetButton.setOnClickListener(mGetButtonClickListener);
         mSetButton.setOnClickListener(mSetButtonClickListener);
         mSetButton.setEnabled(false);
@@ -165,7 +169,6 @@ public class DataInfo extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"儲存成功",Toast.LENGTH_SHORT).show();
         }
     };
-
 
 }
 
