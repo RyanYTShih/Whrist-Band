@@ -29,7 +29,7 @@ public class socialfun extends AppCompatActivity {
                 public void onClick(View v) {
                     switch (v.getId()) {
                         case R.id.blecoll: {
-                            intent = new Intent(socialfun.this, BLECOLLECT.class);
+                            intent = new Intent(socialfun.this, ScanActivity.class);
                             startActivity(intent);
 //                            finish();
                             break;
