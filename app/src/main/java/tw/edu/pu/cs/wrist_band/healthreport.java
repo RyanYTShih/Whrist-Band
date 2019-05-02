@@ -31,7 +31,7 @@ public class healthreport extends AppCompatActivity {
         PieDataSet dataSet = new PieDataSet(calorie, "今日攝取總熱量");
         PieData piedata = new PieData(dataSet);
         pie.setData(piedata);
-        pie.animateXY(5000, 5000);
+        pie.animateXY(1000, 1000);
 
         ArrayList<BarEntry> step = new ArrayList();
         step.add(new BarEntry(1f,5000f));
@@ -49,7 +49,7 @@ public class healthreport extends AppCompatActivity {
         bar.setFitBars(true); // make the x-axis fit exactly all bars
         bar.invalidate(); // refresh
         bar.setData(bardata);
-        bar.animateXY(5000, 5000);
+        bar.animateXY(1000, 1000);
         XAxis xAxis = bar.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);

@@ -143,10 +143,12 @@ public class ScanActivity extends AppCompatActivity {
                                 new String[] { Manifest.permission.ACCESS_COARSE_LOCATION },
                                 LOCATION_PERMISSION_REQUEST_CODE);
                     }
+                    unregisterDevice();
 
                     startScan();
                 } else {
                     instance.stopScan();
+                    peripheralAdapter.clear();
                     Toast.makeText(ScanActivity.this, "stopScan", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -155,10 +157,7 @@ public class ScanActivity extends AppCompatActivity {
         unregisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                instance.unregisterPeripheral();
-                textDeviceName.setText("");
-                textUUID.setText("");
-                unregisterButton.setEnabled(false);
+                unregisterDevice();
             }
         });
 
@@ -288,9 +287,22 @@ public class ScanActivity extends AppCompatActivity {
         peripheralAdapter.add(peripheral);
     }
 
+    private void unregisterDevice() {
+        try {
+            instance.unregisterPeripheral();
+            textDeviceName.setText("");
+            textUUID.setText("");
+            unregisterButton.setEnabled(false);
+        } catch (Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     public void registerDevice(Peripheral peripheral) {
         Log.d("p", peripheral.getName() + ", " + peripheral.getUuid());
         try {
+            scanSwitch.setChecked(false);
             instance.registerPeripheral(peripheral);
             unregisterButton.setEnabled(true);
             Peripheral registeredPeripheral = instance.getRegisteredPeripheral();
