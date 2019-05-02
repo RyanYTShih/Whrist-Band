@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class ELDER extends AppCompatActivity {
     Intent intent;
-    Button searchre;
+    Button searchre,motion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,8 @@ public class ELDER extends AppCompatActivity {
         setContentView(R.layout.activity_elder);
         searchre =findViewById(R.id.datasearch);
         searchre.setOnClickListener(myListener);
+        motion = findViewById(R.id.motion);
+        motion.setOnClickListener(moListener);
     }
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
@@ -32,6 +34,15 @@ public class ELDER extends AppCompatActivity {
                         }
 
                     }
+                }
+            };
+    private Button.OnClickListener moListener = new
+            Button.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    intent = new Intent(ELDER.this, Level.class);
+                    startActivity(intent);
                 }
             };
 
