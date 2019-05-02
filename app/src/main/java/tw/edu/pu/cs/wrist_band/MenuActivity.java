@@ -48,7 +48,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("帳號選擇");
-        setContentView(R.layout.activity_healthreport);
+        setContentView(R.layout.activity_menu);
 
         Intent intent = getIntent();
         band_serial=intent.getStringExtra("name");
