@@ -8,20 +8,17 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -107,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //Response.ErrorListener 監聽錯誤
-                        Log.e("回傳結果", "錯誤訊息：" + error.toString());
-                    }
-                });
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //Response.ErrorListener 監聽錯誤
+                                Log.e("回傳結果", "錯誤訊息：" + error.toString());
+                            }
+                        });
         Volley.newRequestQueue(this).add(jsonObjectRequest);
         return result;
     }
