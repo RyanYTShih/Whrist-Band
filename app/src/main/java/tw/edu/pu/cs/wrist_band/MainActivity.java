@@ -6,8 +6,10 @@ import android.app.AlertDialog;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private UserViewModel mUserViewModel;
 
     private LiveData<List<User>> users;
+
+    private SharedPreferences aqiValue;
     private static final User[] sampleUsers = {
             new User("A123456789", "張小心", "1", Role.Manager),
             new User("B123456789", "時小唐", "2", Role.SocialWorker),
@@ -48,20 +52,23 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private EditText edUserid, edPasswd;
-    public static ConstraintLayout bg;
-    public static ListView lv;
-    public static ImageButton imgbt;
+    private ConstraintLayout bg;
+    private ListView lv;
+    private ImageButton imgbt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide(); //隱藏標題
+
         edUserid = findViewById(R.id.ed_userid);
         edPasswd = findViewById(R.id.ed_passwd);
         bg=findViewById(R.id.back);
         lv=findViewById(R.id.pm25);
         imgbt=findViewById(R.id.imageButton);
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
+        aqiValue = getSharedPreferences("AQI_Value", Context.MODE_PRIVATE);
 
         for (User user: sampleUsers) {
             mUserViewModel.insert(user);
@@ -89,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
     }
     private String getData(String urlString) {
         String result = "";
+
+        final String siteName = aqiValue.getString("SiteName", "Null");
+        final int aqi = aqiValue.getInt("AQI", -1);
+        Log.d(TAG, "Get SharedPreference: SiteName = " + siteName + ", AQI = " + aqi);
+        setBackgroundByAQI(siteName, aqi);
+
         //使用JsonObjectRequest類別要求JSON資料。
         JsonObjectRequest jsonObjectRequest =
                 new JsonObjectRequest(urlString, null,
@@ -96,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             //Velloy採非同步作業，Response.Listener  監聽回應
                             public void onResponse(JSONObject response) {
-                                Log.d("回傳結果", "結果=" + response.toString());
+                                Log.d(TAG, "回傳結果=" + response.toString());
                                 try {
                                     parseJSON(response);
                                 } catch (JSONException e) {
@@ -107,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 //Response.ErrorListener 監聽錯誤
-                                Log.e("回傳結果", "錯誤訊息：" + error.toString());
+                                Log.e(TAG, "回傳結果 錯誤訊息：" + error.toString());
                             }
                         });
         Volley.newRequestQueue(this).add(jsonObjectRequest);
@@ -115,32 +128,41 @@ public class MainActivity extends AppCompatActivity {
     }
     @SuppressLint("ShowToast")
     private void parseJSON(JSONObject jsonObject) throws JSONException{
-        ArrayList<String> list = new ArrayList();
         JSONArray data = jsonObject.getJSONObject("result").getJSONArray("records");
         for  (int i = 0 ; i < data.length(); i++){
             JSONObject o = data.getJSONObject(i);
             if(o.getString("SiteName").equals("沙鹿")) {
                 int aqi=o.getInt("AQI");
-                if(aqi<50) {
-                    bg.setBackgroundColor(Color.GREEN);
-                }else if(aqi<101){
-                    bg.setBackgroundColor(Color.YELLOW);
-                }else if(aqi<151){
-                    bg.setBackgroundColor(Color.parseColor("#FFBB66"));
-                }else if(aqi<201){
-                    bg.setBackgroundColor(Color.parseColor(	"#FF0000"));
-                }else if(aqi<301){
-                    bg.setBackgroundColor(Color.parseColor(	"#FF0000"));
-                }else{
-                    bg.setBackgroundColor(Color.parseColor(	"#FF0000"));
-                }
-                String str =  o.getString("SiteName")+"   AQI:"
-                        + o.getString("AQI") + "\n";
-                list.add(str);
-
+                setBackgroundByAQI(o.getString("SiteName"), aqi);
             }
         }
-        lv.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list));
+    }
+
+    private void setBackgroundByAQI(String siteName, int aqi) {
+
+        SharedPreferences.Editor editor = aqiValue.edit();
+        editor.putString("SiteName", siteName);
+        editor.putInt("AQI", aqi);
+        editor.apply();
+
+        if(aqi<50) {
+            bg.setBackgroundColor(Color.GREEN);
+        }else if(aqi<101){
+            bg.setBackgroundColor(Color.YELLOW);
+        }else if(aqi<151){
+            bg.setBackgroundColor(Color.parseColor("#FFBB66"));
+        }else if(aqi<201){
+            bg.setBackgroundColor(Color.parseColor(	"#FF0000"));
+        }else if(aqi<301){
+            bg.setBackgroundColor(Color.parseColor(	"#FF0000"));
+        }else{
+            bg.setBackgroundColor(Color.parseColor(	"#FF0000"));
+        }
+        String str =  siteName +"   AQI: "
+                + aqi;
+        ArrayList<String> list = new ArrayList<>();
+        list.add(str);
+        lv.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, list));
     }
     public void login(View v) {
 
