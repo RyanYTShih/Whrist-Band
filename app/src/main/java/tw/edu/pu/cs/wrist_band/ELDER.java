@@ -2,26 +2,16 @@ package tw.edu.pu.cs.wrist_band;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
 public class ELDER extends AppCompatActivity {
     Intent intent;
-    Button searchre,motion;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle("功能選單");
-        setContentView(R.layout.activity_elder);
-        searchre =findViewById(R.id.datasearch);
-        searchre.setOnClickListener(myListener);
-        motion = findViewById(R.id.motion);
-        motion.setOnClickListener(moListener);
-    }
+    Button searchre, motion;
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
                 @Override
@@ -37,7 +27,7 @@ public class ELDER extends AppCompatActivity {
                 }
             };
     private Button.OnClickListener moListener = new
-            Button.OnClickListener(){
+            Button.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -45,6 +35,17 @@ public class ELDER extends AppCompatActivity {
                     startActivity(intent);
                 }
             };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle("功能選單");
+        setContentView(R.layout.activity_elder);
+        searchre = findViewById(R.id.datasearch);
+        searchre.setOnClickListener(myListener);
+        motion = findViewById(R.id.motion);
+        motion.setOnClickListener(moListener);
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -46,17 +46,13 @@ public class ScanActivity extends AppCompatActivity {
 
     private static final String TAG = "ScanActivity";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 10;
-
+    ArrayAdapter<String> UserList;
+    List<String> user = new ArrayList<>();
     private WellnessCommunication instance;
-
     private MeasureLogModel measureLogModel;
-
     private UserViewModel mUserViewModel;
     private RawdataViewModel mRawDataViewModel;
     private LiveData<List<User>> users;
-    ArrayAdapter<String> UserList;
-    List<String> user = new ArrayList<>();
-
     private TextView textDeviceName, textUUID, textMeasureLog;
     private String strMeasureLog = "";
     private String name, ID;
@@ -76,6 +72,21 @@ public class ScanActivity extends AppCompatActivity {
     private Spinner spinner;
 
     private DeviceAdapter peripheralAdapter;
+    private Spinner.OnItemSelectedListener spinnerItemSelLis = new Spinner.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView parent, View v, int position, long id) {
+            name = parent.getSelectedItem().toString();
+            try {
+                ID = mUserViewModel.getUserID(name);
+            } catch (Exception e) {
+                Log.d(TAG, e.getMessage());
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView parent) {
+        }
+    };
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -91,7 +102,7 @@ public class ScanActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     ActivityCompat.requestPermissions(ScanActivity.this,
-                                            new String[] { Manifest.permission.ACCESS_COARSE_LOCATION },
+                                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                                             LOCATION_PERMISSION_REQUEST_CODE);
                                 }
                             })
@@ -141,7 +152,7 @@ public class ScanActivity extends AppCompatActivity {
         users = mUserViewModel.getAllUsers();
         users.observe(this, new Observer<List<User>>() {
             @Override
-            public void onChanged(@Nullable List<User>users) {
+            public void onChanged(@Nullable List<User> users) {
                 Log.d(TAG, "user list updated");
                 if (users == null)
                     return;
@@ -150,9 +161,9 @@ public class ScanActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.d(TAG, e.getMessage());
                 }
-                int i=0;
-                for(User u : users){
-                    if(u.getRole()==Role.Elder) {
+                int i = 0;
+                for (User u : users) {
+                    if (u.getRole() == Role.Elder) {
                         user.add(u.getName());
                         i++;
                     }
@@ -199,7 +210,7 @@ public class ScanActivity extends AppCompatActivity {
                     if (ContextCompat.checkSelfPermission(ScanActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
                             != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(ScanActivity.this,
-                                new String[] { Manifest.permission.ACCESS_COARSE_LOCATION },
+                                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                                 LOCATION_PERMISSION_REQUEST_CODE);
                     }
                     unregisterDevice();
@@ -298,7 +309,7 @@ public class ScanActivity extends AppCompatActivity {
                                 + measureLogModel.getDistance() + " exerciseCalories:"
                                 + measureLogModel.getExerciseCalories() + " heartRate:";
                         int heartRate[] = measureLogModel.getHeartrate();
-                        for (int r: heartRate) {
+                        for (int r : heartRate) {
                             s += r + ",";
                         }
                         s += measureLogModel.getMeasureStopDate().getYear() + "/"
@@ -334,22 +345,6 @@ public class ScanActivity extends AppCompatActivity {
             }
         });
     }
-
-    private Spinner.OnItemSelectedListener spinnerItemSelLis = new Spinner.OnItemSelectedListener () {
-        @Override
-        public void onItemSelected(AdapterView parent, View v, int position, long id) {
-            name = parent.getSelectedItem().toString();
-            try{
-                ID = mUserViewModel.getUserID(name);
-            }
-            catch (Exception e){
-                Log.d(TAG, e.getMessage());
-            }
-        }
-        @Override
-        public void onNothingSelected(AdapterView parent) {
-        }
-    };
 
     private void startScan() {
         instance.scanPeripherals(new BleScanCallback() {

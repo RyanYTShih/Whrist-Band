@@ -1,7 +1,7 @@
 package tw.edu.pu.cs.wrist_band;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -34,14 +34,14 @@ public class healthreport extends AppCompatActivity {
         pie.animateXY(1000, 1000);
 
         ArrayList<BarEntry> step = new ArrayList();
-        step.add(new BarEntry(1f,5000f));
-        step.add(new BarEntry(2f,3200f));
-        step.add(new BarEntry(3f,1500f));
-        step.add(new BarEntry(4f,2900f));
-        step.add(new BarEntry(5f,250f));
-        step.add(new BarEntry(6f,4230f));
-        step.add(new BarEntry(7f,2900f));
-        BarDataSet set = new BarDataSet(step,"過去七天的步數");
+        step.add(new BarEntry(1f, 5000f));
+        step.add(new BarEntry(2f, 3200f));
+        step.add(new BarEntry(3f, 1500f));
+        step.add(new BarEntry(4f, 2900f));
+        step.add(new BarEntry(5f, 250f));
+        step.add(new BarEntry(6f, 4230f));
+        step.add(new BarEntry(7f, 2900f));
+        BarDataSet set = new BarDataSet(step, "過去七天的步數");
         BarData bardata = new BarData(set);
         bardata.setBarWidth(0.9f); // set custom bar width
 

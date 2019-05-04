@@ -4,18 +4,16 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.AudioManager;
 import android.media.SoundPool;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class ExerLevel extends AppCompatActivity implements SensorEventListener {
+    SoundPool soundPool;
     private SensorManager sensorManager;
     private Sensor acc_sensor;
     private Sensor mag_sensor;
-    SoundPool soundPool;
-
     private float[] accValues = new float[3];
     private float[] magValues = new float[3];
     private float r[] = new float[9];
@@ -24,16 +22,18 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
     private LevelView levelView;
     private TextView tvHorz;
     private TextView tvVert;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exer_level);
-        levelView = (LevelView)findViewById(R.id.gv_hv);
-        tvVert = (TextView)findViewById(R.id.tvv_vertical);
-        tvHorz = (TextView)findViewById(R.id.tvv_horz);
+        levelView = (LevelView) findViewById(R.id.gv_hv);
+        tvVert = (TextView) findViewById(R.id.tvv_vertical);
+        tvHorz = (TextView) findViewById(R.id.tvv_horz);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -43,12 +43,14 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         sensorManager.registerListener(this, acc_sensor, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(this, mag_sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
+
     @Override
     protected void onPause() {
 
         sensorManager.unregisterListener(this);
         super.onPause();
     }
+
     @Override
     protected void onStop() {
 
@@ -74,7 +76,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
 
         float azimuth = values[0];
         float pitchAngle = values[1];
-        float rollAngle = - values[2];
+        float rollAngle = -values[2];
 
         onAngleChanged(rollAngle, pitchAngle, azimuth);
     }
@@ -83,6 +85,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
     private void onAngleChanged(float rollAngle, float pitchAngle, float azimuth) {
 
         levelView.setAngle(rollAngle, pitchAngle);

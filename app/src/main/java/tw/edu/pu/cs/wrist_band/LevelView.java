@@ -32,11 +32,13 @@ public class LevelView extends View {
         super(context);
         init(null, 0);
     }
-    public LevelView(Context context,  AttributeSet attrs) {
+
+    public LevelView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs, 0);
     }
-    public LevelView(Context context,  AttributeSet attrs,int defStyle) {
+
+    public LevelView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs, defStyle);
     }
@@ -116,7 +118,7 @@ public class LevelView extends View {
         int bubbleColor = isCenter ? mHorizontalColor : mBubbleColor;
 
         //水平时振动
-        if(isCenter){
+        if (isCenter) {
             vibrator.vibrate(10);
         }
 
@@ -130,9 +132,9 @@ public class LevelView extends View {
 
     }
 
-    private boolean isCenter(PointF bubblePoint){
+    private boolean isCenter(PointF bubblePoint) {
 
-        if(bubblePoint == null){
+        if (bubblePoint == null) {
             return false;
         }
 
@@ -140,11 +142,12 @@ public class LevelView extends View {
     }
 
     private void drawBubble(Canvas canvas) {
-        if(bubblePoint != null){
+        if (bubblePoint != null) {
             canvas.drawCircle(bubblePoint.x, bubblePoint.y, mBubbleRadius, mBubblePaint);
         }
     }
-    private PointF convertCoordinate(double rollAngle, double pitchAngle, double radius){
+
+    private PointF convertCoordinate(double rollAngle, double pitchAngle, double radius) {
         double scale = radius / Math.toRadians(90);
 
         double x0 = -(rollAngle * scale);
@@ -154,8 +157,9 @@ public class LevelView extends View {
         double x = centerPnt.x - x0;
         double y = centerPnt.y - y0;
 
-        return new PointF((float)x, (float)y);
+        return new PointF((float) x, (float) y);
     }
+
     public void setAngle(double rollAngle, double pitchAngle) {
 
         this.pitchAngle = pitchAngle;
@@ -167,23 +171,25 @@ public class LevelView extends View {
         bubblePoint = convertCoordinate(rollAngle, pitchAngle, mLimitRadius);
         outLimit(bubblePoint, limitRadius);
 
-        if(outLimit(bubblePoint, limitRadius)){
+        if (outLimit(bubblePoint, limitRadius)) {
             onCirclePoint(bubblePoint, limitRadius);
         }
 
         invalidate();
     }
-    private boolean outLimit(PointF bubblePnt, float limitRadius){
 
-        float cSqrt = (bubblePnt.x - centerPnt.x)*(bubblePnt.x - centerPnt.x)
-                + (centerPnt.y - bubblePnt.y) * + (centerPnt.y - bubblePnt.y);
+    private boolean outLimit(PointF bubblePnt, float limitRadius) {
+
+        float cSqrt = (bubblePnt.x - centerPnt.x) * (bubblePnt.x - centerPnt.x)
+                + (centerPnt.y - bubblePnt.y) * +(centerPnt.y - bubblePnt.y);
 
 
-        if(cSqrt - limitRadius * limitRadius > 0){
+        if (cSqrt - limitRadius * limitRadius > 0) {
             return true;
         }
         return false;
     }
+
     private PointF onCirclePoint(PointF bubblePnt, double limitRadius) {
         double azimuth = Math.atan2((bubblePnt.y - centerPnt.y), (bubblePnt.x - centerPnt.x));
         azimuth = azimuth < 0 ? 2 * Math.PI + azimuth : azimuth;
@@ -196,14 +202,13 @@ public class LevelView extends View {
         return bubblePnt;
     }
 
-    public double getPitchAngle(){
+    public double getPitchAngle() {
         return this.pitchAngle;
     }
 
-    public double getRollAngle(){
+    public double getRollAngle() {
         return this.rollAngle;
     }
-
 
 
 }

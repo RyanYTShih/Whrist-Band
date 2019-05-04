@@ -1,8 +1,8 @@
 package tw.edu.pu.cs.wrist_band;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,20 +12,6 @@ public class reviseacc extends AppCompatActivity {
 
     Button back1;
     Intent intent;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle("修改帳號");
-        setContentView(R.layout.activity_reviseacc);
-        Spinner spinner3 = (Spinner)findViewById(R.id.spinner4);
-        final String[] acter = {"角色選擇", "長輩", "醫生", "社工", "社區主委"};
-        ArrayAdapter<String> peopleList = new ArrayAdapter<>(reviseacc.this,
-                android.R.layout.simple_spinner_dropdown_item,
-                acter);
-        spinner3.setAdapter(peopleList);
-        back1=findViewById(R.id.button11);
-        back1.setOnClickListener(myListener);
-    }
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
                 @Override
@@ -41,4 +27,19 @@ public class reviseacc extends AppCompatActivity {
                     }
                 }
             };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle("修改帳號");
+        setContentView(R.layout.activity_reviseacc);
+        Spinner spinner3 = (Spinner) findViewById(R.id.spinner4);
+        final String[] acter = {"角色選擇", "長輩", "醫生", "社工", "社區主委"};
+        ArrayAdapter<String> peopleList = new ArrayAdapter<>(reviseacc.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                acter);
+        spinner3.setAdapter(peopleList);
+        back1 = findViewById(R.id.button11);
+        back1.setOnClickListener(myListener);
+    }
 }

@@ -5,8 +5,6 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import com.epson.pulsenseapi.model.MeasureLogModel;
-import com.epson.pulsenseapi.model.SimpleDate;
-import com.epson.pulsenseapi.model.SimpleTime;
 
 @Entity
 public class Rawdata {

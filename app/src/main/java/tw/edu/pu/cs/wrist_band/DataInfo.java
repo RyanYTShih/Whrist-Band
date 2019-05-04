@@ -1,20 +1,14 @@
 package tw.edu.pu.cs.wrist_band;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.epson.pulsenseapi.WellnessCommunication;
 import com.epson.pulsenseapi.ble.callback.RequestGetDataClassCallback;
@@ -22,17 +16,13 @@ import com.epson.pulsenseapi.ble.callback.RequestSetDataClassCallback;
 import com.epson.pulsenseapi.ble.constant.DataClassId;
 import com.epson.pulsenseapi.ble.constant.LocalError;
 import com.epson.pulsenseapi.model.IBinaryModel;
-import com.epson.pulsenseapi.model.LightMeasureLogModel;
 import com.epson.pulsenseapi.model.PhysicalFitnessModel;
-import com.epson.pulsenseapi.model.WorkoutSummaryModel;
 
 import java.util.List;
 
 public class DataInfo extends AppCompatActivity {
 
     private static final String TAG = "DataInfo";
-    private RawdataViewModel mRawdataViewModel;
-    private LiveData<List<Rawdata>> data;
     WellnessCommunication mWellnessCommunication;
     Button mGetButton;
     Button mSetButton;
@@ -42,42 +32,9 @@ public class DataInfo extends AppCompatActivity {
     EditText mRestEdit;
     PhysicalFitnessModel mModel;
     TextView HeartRateBase, HeartRateMax, HeartRateRest;
-    String ID,HD_serial,Heartrate,name;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle("原始資料");
-        setContentView(R.layout.activity_data_info);
-
-        Intent intent = getIntent();
-        name = intent.getStringExtra("name");
-        ID = intent.getStringExtra("ID");
-        HD_serial = intent.getStringExtra("dt");
-
-        HeartRateBase = findViewById(R.id.HeartRateBase);
-        HeartRateMax =  findViewById(R.id.HeartRateMax);
-        HeartRateRest =  findViewById(R.id.HeartRateRest);
-        mSetButton =  findViewById(R.id.mSetButton);
-        mGetButton = findViewById(R.id.mGetButton);
-        mBaseEdit =  findViewById(R.id.mBaseEdit);
-        mMaxEdit =  findViewById(R.id.mMaxEdit);
-        mRestEdit = findViewById(R.id.mRestEdit);
-
-
-        mGetButton.setOnClickListener(mGetButtonClickListener);
-        mSetButton.setOnClickListener(mSetButtonClickListener);
-        mSetButton.setEnabled(false);
-
-        mUpload = findViewById(R.id.upload_but);
-        mUpload.setOnClickListener(mUploadClickListener);
-
-        mWellnessCommunication = WellnessCommunication.getInstance(getApplicationContext());
-
-        mRawdataViewModel = ViewModelProviders.of(DataInfo.this).get(RawdataViewModel.class);
-
-    }
-
+    String ID, HD_serial, Heartrate, name;
+    private RawdataViewModel mRawdataViewModel;
+    private LiveData<List<Rawdata>> data;
     private View.OnClickListener mGetButtonClickListener = new View.OnClickListener() {
 
         @Override
@@ -161,7 +118,6 @@ public class DataInfo extends AppCompatActivity {
             });
         }
     };
-
     private View.OnClickListener mUploadClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -169,6 +125,40 @@ public class DataInfo extends AppCompatActivity {
 //            Toast.makeText(getApplicationContext(),"儲存成功",Toast.LENGTH_SHORT).show();
         }
     };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle("原始資料");
+        setContentView(R.layout.activity_data_info);
+
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        ID = intent.getStringExtra("ID");
+        HD_serial = intent.getStringExtra("dt");
+
+        HeartRateBase = findViewById(R.id.HeartRateBase);
+        HeartRateMax = findViewById(R.id.HeartRateMax);
+        HeartRateRest = findViewById(R.id.HeartRateRest);
+        mSetButton = findViewById(R.id.mSetButton);
+        mGetButton = findViewById(R.id.mGetButton);
+        mBaseEdit = findViewById(R.id.mBaseEdit);
+        mMaxEdit = findViewById(R.id.mMaxEdit);
+        mRestEdit = findViewById(R.id.mRestEdit);
+
+
+        mGetButton.setOnClickListener(mGetButtonClickListener);
+        mSetButton.setOnClickListener(mSetButtonClickListener);
+        mSetButton.setEnabled(false);
+
+        mUpload = findViewById(R.id.upload_but);
+        mUpload.setOnClickListener(mUploadClickListener);
+
+        mWellnessCommunication = WellnessCommunication.getInstance(getApplicationContext());
+
+        mRawdataViewModel = ViewModelProviders.of(DataInfo.this).get(RawdataViewModel.class);
+
+    }
 
 }
 

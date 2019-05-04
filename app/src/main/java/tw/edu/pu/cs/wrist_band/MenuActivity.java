@@ -4,9 +4,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,31 +18,38 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epson.pulsenseapi.WellnessCommunication;
-import com.epson.pulsenseapi.ble.callback.RequestGetDataClassCallback;
-import com.epson.pulsenseapi.ble.constant.DataClassId;
-import com.epson.pulsenseapi.ble.constant.LocalError;
-import com.epson.pulsenseapi.model.BioInformationModel;
-import com.epson.pulsenseapi.model.HardwareInformationModel;
-import com.epson.pulsenseapi.model.IBinaryModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.String.valueOf;
-
 public class MenuActivity extends AppCompatActivity {
 
-    private String TAG="MenuActivity";
-    private UserViewModel mUserViewModel;
-    private LiveData<List<User>> users;
     ArrayAdapter<String> UserList;
     List<String> user = new ArrayList<>();
-    TextView txv,dt;
-    Button btn,btn2;
+    TextView txv, dt;
+    Button btn, btn2;
     Spinner spinner;
     WellnessCommunication mWellnessCommunication;
     EditText edt;
-    String ID,band_serial,name;
+    String ID, band_serial, name;
+    private String TAG = "MenuActivity";
+    private UserViewModel mUserViewModel;
+    private LiveData<List<User>> users;
+    private Spinner.OnItemSelectedListener spinnerItemSelLis = new Spinner.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView parent, View v, int position, long id) {
+            name = parent.getSelectedItem().toString();
+            try {
+                ID = mUserViewModel.getUserID(name);
+            } catch (Exception e) {
+                Log.d(TAG, e.getMessage());
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView parent) {
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +58,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         Intent intent = getIntent();
-        band_serial=intent.getStringExtra("name");
+        band_serial = intent.getStringExtra("name");
 
         //txv = findViewById(R.id.txv);
         btn2 = findViewById(R.id.btn2);
@@ -63,7 +70,7 @@ public class MenuActivity extends AppCompatActivity {
         users = mUserViewModel.getAllUsers();
         users.observe(MenuActivity.this, new Observer<List<User>>() {
             @Override
-            public void onChanged(@Nullable List<User>users) {
+            public void onChanged(@Nullable List<User> users) {
                 Log.d(TAG, "user list updated");
                 if (users == null)
                     return;
@@ -72,9 +79,9 @@ public class MenuActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.d(TAG, e.getMessage());
                 }
-                int i=0;
-                for(User u : users){
-                    if(u.getRole()==Role.Elder) {
+                int i = 0;
+                for (User u : users) {
+                    if (u.getRole() == Role.Elder) {
                         user.add(u.getName());
                         i++;
                     }
@@ -96,33 +103,16 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-
     public void openData() {
-        String show_data = "您的姓名為：" +name+"\n手環名稱為："+band_serial;
-        String str_name = "您的身分證字號為："+ID;
-        Toast.makeText(getApplicationContext(),show_data,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(),str_name,Toast.LENGTH_SHORT).show();
+        String show_data = "您的姓名為：" + name + "\n手環名稱為：" + band_serial;
+        String str_name = "您的身分證字號為：" + ID;
+        Toast.makeText(getApplicationContext(), show_data, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), str_name, Toast.LENGTH_SHORT).show();
 
         Intent its = new Intent(MenuActivity.this, DataInfo.class);
-        its.putExtra("name",name);
-        its.putExtra("ID",ID);
-        its.putExtra("dt",dt.getText().toString());
+        its.putExtra("name", name);
+        its.putExtra("ID", ID);
+        its.putExtra("dt", dt.getText().toString());
         startActivity(its);
     }
-
-    private Spinner.OnItemSelectedListener spinnerItemSelLis = new Spinner.OnItemSelectedListener () {
-        @Override
-        public void onItemSelected(AdapterView parent, View v, int position, long id) {
-            name = parent.getSelectedItem().toString();
-            try{
-                ID = mUserViewModel.getUserID(name);
-            }
-            catch (Exception e){
-                Log.d(TAG, e.getMessage());
-            }
-        }
-        @Override
-        public void onNothingSelected(AdapterView parent) {
-        }
-    };
 }

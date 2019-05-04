@@ -2,27 +2,16 @@ package tw.edu.pu.cs.wrist_band;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
 public class socialfun extends AppCompatActivity {
     Intent intent;
-    Button coll,upload;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle("功能選單");
-        setContentView(R.layout.activity_socialfun);
-        coll=findViewById(R.id.blecoll);
-        upload=findViewById(R.id.uploadd);
-        coll.setOnClickListener(myListener);
-        upload.setOnClickListener(myListener);
-    }
-
+    Button coll, upload;
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
                 @Override
@@ -53,6 +42,17 @@ public class socialfun extends AppCompatActivity {
         finish();
     }*/
             };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle("功能選單");
+        setContentView(R.layout.activity_socialfun);
+        coll = findViewById(R.id.blecoll);
+        upload = findViewById(R.id.uploadd);
+        coll.setOnClickListener(myListener);
+        upload.setOnClickListener(myListener);
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

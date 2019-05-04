@@ -12,17 +12,17 @@ public class RawdataViewModel extends AndroidViewModel {
 
     private LiveData<List<Rawdata>> mAllRawdata;
 
-    public RawdataViewModel(Application application){
+    public RawdataViewModel(Application application) {
         super(application);
         mRepository = new RawdataRepository(application);
         mAllRawdata = mRepository.getAllRawdata();
     }
 
-    LiveData<List<Rawdata>> getAllRawdata(){
+    LiveData<List<Rawdata>> getAllRawdata() {
         return mAllRawdata;
     }
 
-    public void insert(Rawdata data){
+    public void insert(Rawdata data) {
         mRepository.insert(data);
     }
 }

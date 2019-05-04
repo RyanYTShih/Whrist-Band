@@ -2,28 +2,16 @@ package tw.edu.pu.cs.wrist_band;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
 public class doctorfun extends AppCompatActivity {
     Intent intent;
-    Button rawdata,analyze,healthre;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle("功能選單");
-        setContentView(R.layout.activity_doctorfun);
-        rawdata=findViewById(R.id.button2);
-        analyze=findViewById(R.id.button3);
-        healthre=findViewById(R.id.button4);
-        rawdata.setOnClickListener(myListener);
-        analyze.setOnClickListener(myListener);
-        healthre.setOnClickListener(myListener);
-    }
+    Button rawdata, analyze, healthre;
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
                 @Override
@@ -47,6 +35,19 @@ public class doctorfun extends AppCompatActivity {
                     }
                 }
             };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle("功能選單");
+        setContentView(R.layout.activity_doctorfun);
+        rawdata = findViewById(R.id.button2);
+        analyze = findViewById(R.id.button3);
+        healthre = findViewById(R.id.button4);
+        rawdata.setOnClickListener(myListener);
+        analyze.setOnClickListener(myListener);
+        healthre.setOnClickListener(myListener);
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

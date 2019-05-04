@@ -11,9 +11,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class GetNetworkJson extends AsyncTask<String,Void,String> {
+public class GetNetworkJson extends AsyncTask<String, Void, String> {
     String data = "";
     InputStream inputStream = null;
+
     @Override
     protected String doInBackground(String... urlStrings) {
         try {
@@ -37,8 +38,9 @@ public class GetNetworkJson extends AsyncTask<String,Void,String> {
         }
         return data;
     }
+
     protected void onPostExecute(String data) {//執行完的結果會傳入這裡
         super.onPostExecute(data);
-      //  MainActivity.tv.setText(data);
+        //  MainActivity.tv.setText(data);
     }
 }

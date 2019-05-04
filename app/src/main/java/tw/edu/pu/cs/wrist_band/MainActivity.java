@@ -38,23 +38,20 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-
-    private UserViewModel mUserViewModel;
-
-    private LiveData<List<User>> users;
-
-    private SharedPreferences aqiValue;
     private static final User[] sampleUsers = {
             new User("A123456789", "張小心", "1", Role.Manager),
             new User("B123456789", "時小唐", "2", Role.SocialWorker),
             new User("C123456789", "廖小勛", "3", Role.Elder),
             new User("D123456789", "林小宏", "4", Role.Doctor)
     };
-
+    private UserViewModel mUserViewModel;
+    private LiveData<List<User>> users;
+    private SharedPreferences aqiValue;
     private EditText edUserid, edPasswd;
     private ConstraintLayout bg;
     private ListView lv;
     private ImageButton imgbt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,17 +60,17 @@ public class MainActivity extends AppCompatActivity {
 
         edUserid = findViewById(R.id.ed_userid);
         edPasswd = findViewById(R.id.ed_passwd);
-        bg=findViewById(R.id.back);
-        lv=findViewById(R.id.pm25);
-        imgbt=findViewById(R.id.imageButton);
+        bg = findViewById(R.id.back);
+        lv = findViewById(R.id.pm25);
+        imgbt = findViewById(R.id.imageButton);
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
 
         aqiValue = getSharedPreferences("AQI_Value", Context.MODE_PRIVATE);
 
-        for (User user: sampleUsers) {
+        for (User user : sampleUsers) {
             mUserViewModel.insert(user);
         }
-        String url2 ="http://223.200.80.137/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=+T2Appnb4kmEXBhOwSLuLw";
+        String url2 = "http://223.200.80.137/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=+T2Appnb4kmEXBhOwSLuLw";
 
         GetNetworkJson process = new GetNetworkJson();
         getData(url2);
@@ -94,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private String getData(String urlString) {
         String result = "";
 
@@ -117,22 +115,23 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                //Response.ErrorListener 監聽錯誤
-                                Log.e(TAG, "回傳結果 錯誤訊息：" + error.toString());
-                            }
-                        });
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Response.ErrorListener 監聽錯誤
+                        Log.e(TAG, "回傳結果 錯誤訊息：" + error.toString());
+                    }
+                });
         Volley.newRequestQueue(this).add(jsonObjectRequest);
         return result;
     }
+
     @SuppressLint("ShowToast")
-    private void parseJSON(JSONObject jsonObject) throws JSONException{
+    private void parseJSON(JSONObject jsonObject) throws JSONException {
         JSONArray data = jsonObject.getJSONObject("result").getJSONArray("records");
-        for  (int i = 0 ; i < data.length(); i++){
+        for (int i = 0; i < data.length(); i++) {
             JSONObject o = data.getJSONObject(i);
-            if(o.getString("SiteName").equals("沙鹿")) {
-                int aqi=o.getInt("AQI");
+            if (o.getString("SiteName").equals("沙鹿")) {
+                int aqi = o.getInt("AQI");
                 setBackgroundByAQI(o.getString("SiteName"), aqi);
             }
         }
@@ -145,25 +144,26 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("AQI", aqi);
         editor.apply();
 
-        if(aqi<50) {
+        if (aqi < 50) {
             bg.setBackgroundColor(Color.GREEN);
-        }else if(aqi<101){
+        } else if (aqi < 101) {
             bg.setBackgroundColor(Color.YELLOW);
-        }else if(aqi<151){
+        } else if (aqi < 151) {
             bg.setBackgroundColor(Color.parseColor("#FFBB66"));
-        }else if(aqi<201){
-            bg.setBackgroundColor(Color.parseColor(	"#FF0000"));
-        }else if(aqi<301){
-            bg.setBackgroundColor(Color.parseColor(	"#FF0000"));
-        }else{
-            bg.setBackgroundColor(Color.parseColor(	"#FF0000"));
+        } else if (aqi < 201) {
+            bg.setBackgroundColor(Color.parseColor("#FF0000"));
+        } else if (aqi < 301) {
+            bg.setBackgroundColor(Color.parseColor("#FF0000"));
+        } else {
+            bg.setBackgroundColor(Color.parseColor("#FF0000"));
         }
-        String str =  siteName +"   AQI: "
+        String str = siteName + "   AQI: "
                 + aqi;
         ArrayList<String> list = new ArrayList<>();
         list.add(str);
-        lv.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, list));
+        lv.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list));
     }
+
     public void login(View v) {
 
         String uid = edUserid.getText().toString();
@@ -178,14 +178,14 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.d(TAG, e.getMessage());
             new AlertDialog.Builder(this)
-                .setTitle("返老「環」童")
-                .setMessage("資料庫失敗")
-                .setPositiveButton("OK", null)
-                .show();
+                    .setTitle("返老「環」童")
+                    .setMessage("資料庫失敗")
+                    .setPositiveButton("OK", null)
+                    .show();
             return;
         }
 
-        for (User user: userList) {
+        for (User user : userList) {
             Log.d(TAG, user.toString());
             if (user.getId().equals(uid)) {
                 selectedUser = user;
@@ -228,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         }
     }
+
     public void touch_surprise(View v) {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("AQI簡介")

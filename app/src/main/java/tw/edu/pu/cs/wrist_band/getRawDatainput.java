@@ -4,15 +4,14 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,39 +19,50 @@ import java.util.List;
 public class getRawDatainput extends AppCompatActivity {
 
     private static final String TAG = "getRawDatainput";
-
+    ListView name_view, id_view, bandid_view, heart_view;
+    Button input_ana;
+    Intent intent;
+    String id_;
     private RawdataViewModel mRawdataViewModel;
     private UserViewModel mUserViewModel;
     private LiveData<List<Rawdata>> data;
-
     private ArrayList<String> name = new ArrayList<>();
     private ArrayList<String> id = new ArrayList<>();
     private ArrayList<String> bandid = new ArrayList<>();
     private ArrayList<String> heart = new ArrayList<>();
-    private ArrayAdapter name_adapter,id_adapter,bandid_adapter,heart_adapter;
+    private ArrayAdapter name_adapter, id_adapter, bandid_adapter, heart_adapter;
+    private Button.OnClickListener myListener = new
+            Button.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (v.getId()) {
+                        case R.id.button13: {
+                            intent = new Intent(getRawDatainput.this, healthreport.class);
+                            startActivity(intent);
+                            break;
+                        }
 
-    ListView name_view,id_view,bandid_view,heart_view;
-    Button input_ana;
-    Intent intent;
-    String id_;
+                    }
+                }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("原始資料");
         setContentView(R.layout.activity_get_raw_datainput);
-        input_ana=findViewById(R.id.button13);
+        input_ana = findViewById(R.id.button13);
         input_ana.setOnClickListener(myListener);
 
-        name_view=findViewById(R.id.NAME_view);
-        id_view=findViewById(R.id.id_view);
-        bandid_view=findViewById(R.id.bandid_view);
-        heart_view=findViewById(R.id.heart_view);
+        name_view = findViewById(R.id.NAME_view);
+        id_view = findViewById(R.id.id_view);
+        bandid_view = findViewById(R.id.bandid_view);
+        heart_view = findViewById(R.id.heart_view);
 
-        name_adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,name);
-        id_adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,id);
-        bandid_adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,bandid);
-        heart_adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,heart);
+        name_adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, name);
+        id_adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, id);
+        bandid_adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, bandid);
+        heart_adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, heart);
 
         name_view.setAdapter(name_adapter);
         id_view.setAdapter(id_adapter);
@@ -73,12 +83,11 @@ public class getRawDatainput extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.d(TAG, e.getMessage());
                 }
-                for(Rawdata r : rawdata){
+                for (Rawdata r : rawdata) {
 
-                    try{
+                    try {
                         name.add(mUserViewModel.getUserNAME(r.getPersonal_id()));
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         Log.d(TAG, e.getMessage());
                     }
 
@@ -95,18 +104,4 @@ public class getRawDatainput extends AppCompatActivity {
         });
 
     }
-    private Button.OnClickListener myListener = new
-            Button.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    switch (v.getId()) {
-                        case R.id.button13: {
-                            intent = new Intent(getRawDatainput.this, healthreport.class);
-                            startActivity(intent);
-                            break;
-                        }
-
-                    }
-                }
-            };
 }

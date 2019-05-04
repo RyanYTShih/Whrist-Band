@@ -26,6 +26,14 @@ public class UserRepository {
         new insertAsyncTask(mUserDao).execute(user);
     }
 
+    public String getUserID(String name) throws ExecutionException, InterruptedException {
+        return new selectIDAsyncTask(mUserDao).execute(name).get();
+    }
+
+    public String getUserNAME(String id) throws ExecutionException, InterruptedException {
+        return new selectNAMEAsyncTask(mUserDao).execute(id).get();
+    }
+
     private static class insertAsyncTask extends AsyncTask<User, Void, Void> {
         private UserDao mAsyncTaskDao;
 
@@ -40,35 +48,31 @@ public class UserRepository {
         }
     }
 
-    public String getUserID(String name) throws ExecutionException, InterruptedException {
-        return new selectIDAsyncTask(mUserDao).execute(name).get();
-    }
-
-    private static class selectIDAsyncTask extends AsyncTask<String,Void,String>{
+    private static class selectIDAsyncTask extends AsyncTask<String, Void, String> {
 
         private UserDao mAsyncTaskDao;
 
         selectIDAsyncTask(UserDao dao) {
-            mAsyncTaskDao=dao;
+            mAsyncTaskDao = dao;
         }
 
         @Override
-        protected String doInBackground(String ... s) {
+        protected String doInBackground(String... s) {
             return mAsyncTaskDao.getUserID(s[0]);
         }
     }
 
-    public String getUserNAME(String id) throws ExecutionException, InterruptedException{
-        return new selectNAMEAsyncTask(mUserDao).execute(id).get();
-    }
-
-    private static class selectNAMEAsyncTask extends AsyncTask<String,Void,String>{
+    private static class selectNAMEAsyncTask extends AsyncTask<String, Void, String> {
 
         private UserDao mAsyncTaskDao;
 
-        selectNAMEAsyncTask(UserDao dao) {mAsyncTaskDao=dao; }
+        selectNAMEAsyncTask(UserDao dao) {
+            mAsyncTaskDao = dao;
+        }
 
         @Override
-        protected String doInBackground(String ... s) { return mAsyncTaskDao.getUserNAME(s[0]); }
+        protected String doInBackground(String... s) {
+            return mAsyncTaskDao.getUserNAME(s[0]);
+        }
     }
 }

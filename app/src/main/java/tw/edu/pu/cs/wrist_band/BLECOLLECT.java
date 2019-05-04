@@ -7,12 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,9 +37,9 @@ import java.util.ArrayList;
 public class BLECOLLECT extends AppCompatActivity {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 10;
-
+    ImageView image;
     private WellnessCommunication mWellnessCommunication;
-    private TextView name_text, uuid_text, name_, uuid_,mBleStateTextView;
+    private TextView name_text, uuid_text, name_, uuid_, mBleStateTextView;
     private Switch sw;
     private ListView name_list, uuid_list;
     private Button start_button, stop_button, register_button, unregister_button, connect_button;
@@ -48,87 +48,12 @@ public class BLECOLLECT extends AppCompatActivity {
     private ArrayList<Peripheral> device = new ArrayList<>();
     private ArrayAdapter name_adapter, uuid_adpater;
     private Dialog dialog;
-    ImageView image;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle("手環配對");
-        setContentView(R.layout.activity_blecollect);
-        name_text = findViewById(R.id.name_text);
-        uuid_text = findViewById(R.id.uuid_text);
-        name_ = findViewById(R.id.name);
-        uuid_ = findViewById(R.id.uuid);
-        sw = findViewById(R.id.switch1);
-        name_list = findViewById(R.id.ListView1);
-        uuid_list = findViewById(R.id.ListView2);
-        start_button = findViewById(R.id.button);
-        stop_button = findViewById(R.id.button2);
-        register_button = findViewById(R.id.register_button);
-        unregister_button = findViewById(R.id.unregister_button);
-        connect_button = findViewById(R.id.connect_button);
-        mBleStateTextView= findViewById(R.id.mBleStateTextView);
-        image=findViewById(R.id.imageView8);
-
-        name_adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, name);
-        name_list.setAdapter(name_adapter);
-
-        uuid_adpater = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, uuid);
-        uuid_list.setAdapter(uuid_adpater);
-
-        sw.setOnCheckedChangeListener(swChancedChangeListener);
-        start_button.setOnClickListener(startbuttonChangeListener);
-        stop_button.setOnClickListener(stopbuttonChangeListener);
-        register_button.setOnClickListener(registerbuttonChangeListener);
-        unregister_button.setOnClickListener(unregisterbuttonChangeListener);
-        name_list.setOnItemClickListener(namelistOnItemClickListener);
-        connect_button.setOnClickListener(connectbuttonChangeListner);
-
-        mWellnessCommunication = WellnessCommunication.getInstance(getApplicationContext());
-        mWellnessCommunication.setConnectPeripheralCallback(mConnectPheCallback);
-
-        Peripheral peripheral = mWellnessCommunication.getRegisteredPeripheral();
-        if (peripheral != null) {
-            name_.setText(peripheral.getName());
-            uuid_.setText(peripheral.getUuid());
-
-        }
-
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        mWellnessCommunication.setBleStateChangedCallback(mBleStateChangedCallback);
-
-        initBleSwitchValue();
-    }
-
-    private void initBleSwitchValue() {
-        boolean isBleEnabled = mWellnessCommunication.isBleEnabled();
-        this.changeBleStateText(isBleEnabled);
-    }
-
-    private void changeBleStateText(boolean isBleEnabled) {
-        sw.setChecked(isBleEnabled);
-        if(isBleEnabled){
-            mBleStateTextView.setText(R.string.label_ble_state_on);
-            image.setColorFilter(Color.BLUE);
-        }else {
-            mBleStateTextView.setText(R.string.label_ble_state_off);
-            image.setColorFilter(Color.BLACK);
-            sw.setOnCheckedChangeListener(null);
-            sw.setOnCheckedChangeListener(swChancedChangeListener);
-        }
-    }
-
     private CompoundButton.OnCheckedChangeListener swChancedChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             mWellnessCommunication.enableBle(isChecked);
         }
     };
-
     private View.OnClickListener startbuttonChangeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -167,21 +92,6 @@ public class BLECOLLECT extends AppCompatActivity {
             uuid_adpater.notifyDataSetChanged();
         }
     };
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        mWellnessCommunication.setConnectPeripheralCallback(mConnectPheCallback);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        mWellnessCommunication.setConnectPeripheralCallback(null);
-
-    }
-
     private View.OnClickListener stopbuttonChangeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -192,7 +102,6 @@ public class BLECOLLECT extends AppCompatActivity {
             uuid_text.setText("uuid");
         }
     };
-
     private View.OnClickListener registerbuttonChangeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -216,7 +125,6 @@ public class BLECOLLECT extends AppCompatActivity {
             }
         }
     };
-
     private View.OnClickListener unregisterbuttonChangeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -226,7 +134,6 @@ public class BLECOLLECT extends AppCompatActivity {
             Toast.makeText(BLECOLLECT.this, "取消註冊", Toast.LENGTH_SHORT).show();
         }
     };
-
     private AdapterView.OnItemClickListener namelistOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -260,14 +167,6 @@ public class BLECOLLECT extends AppCompatActivity {
 
         }
     };
-    private View.OnClickListener connectbuttonChangeListner = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            mWellnessCommunication.connectPeripheral(mConnectPheCallback);
-            dialog = ProgressDialog.show(BLECOLLECT.this,"連接中","請等待...",true);
-        }
-    };
-
     private ConnectPeripheralCallback mConnectPheCallback = new ConnectPeripheralCallback() {
         @Override
         public void onConnected() {
@@ -277,18 +176,16 @@ public class BLECOLLECT extends AppCompatActivity {
                 public void run() {
                     try {
                         Thread.sleep(300);
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    }
-                    finally {
+                    } finally {
                         dialog.dismiss();
                     }
                 }
             }).start();
             Intent intent = new Intent(BLECOLLECT.this, MenuActivity.class);
             intent.setAction(Intent.ACTION_VIEW);
-            intent.putExtra("name",name_.getText().toString());
+            intent.putExtra("name", name_.getText().toString());
             startActivity(intent);
 
         }
@@ -310,23 +207,115 @@ public class BLECOLLECT extends AppCompatActivity {
 
         @Override
         public void onError(LocalError localError) {
-            Toast.makeText(BLECOLLECT.this,"請註冊",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BLECOLLECT.this, "請註冊", Toast.LENGTH_SHORT).show();
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         Thread.sleep(300);
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    }
-                    finally {
+                    } finally {
                         dialog.dismiss();
                     }
                 }
             }).start();
         }
     };
+    private View.OnClickListener connectbuttonChangeListner = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mWellnessCommunication.connectPeripheral(mConnectPheCallback);
+            dialog = ProgressDialog.show(BLECOLLECT.this, "連接中", "請等待...", true);
+        }
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle("手環配對");
+        setContentView(R.layout.activity_blecollect);
+        name_text = findViewById(R.id.name_text);
+        uuid_text = findViewById(R.id.uuid_text);
+        name_ = findViewById(R.id.name);
+        uuid_ = findViewById(R.id.uuid);
+        sw = findViewById(R.id.switch1);
+        name_list = findViewById(R.id.ListView1);
+        uuid_list = findViewById(R.id.ListView2);
+        start_button = findViewById(R.id.button);
+        stop_button = findViewById(R.id.button2);
+        register_button = findViewById(R.id.register_button);
+        unregister_button = findViewById(R.id.unregister_button);
+        connect_button = findViewById(R.id.connect_button);
+        mBleStateTextView = findViewById(R.id.mBleStateTextView);
+        image = findViewById(R.id.imageView8);
+
+        name_adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, name);
+        name_list.setAdapter(name_adapter);
+
+        uuid_adpater = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, uuid);
+        uuid_list.setAdapter(uuid_adpater);
+
+        sw.setOnCheckedChangeListener(swChancedChangeListener);
+        start_button.setOnClickListener(startbuttonChangeListener);
+        stop_button.setOnClickListener(stopbuttonChangeListener);
+        register_button.setOnClickListener(registerbuttonChangeListener);
+        unregister_button.setOnClickListener(unregisterbuttonChangeListener);
+        name_list.setOnItemClickListener(namelistOnItemClickListener);
+        connect_button.setOnClickListener(connectbuttonChangeListner);
+
+        mWellnessCommunication = WellnessCommunication.getInstance(getApplicationContext());
+        mWellnessCommunication.setConnectPeripheralCallback(mConnectPheCallback);
+
+        Peripheral peripheral = mWellnessCommunication.getRegisteredPeripheral();
+        if (peripheral != null) {
+            name_.setText(peripheral.getName());
+            uuid_.setText(peripheral.getUuid());
+
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mWellnessCommunication.setBleStateChangedCallback(mBleStateChangedCallback);
+
+        initBleSwitchValue();
+    }
+
+    private void initBleSwitchValue() {
+        boolean isBleEnabled = mWellnessCommunication.isBleEnabled();
+        this.changeBleStateText(isBleEnabled);
+    }
+
+    private void changeBleStateText(boolean isBleEnabled) {
+        sw.setChecked(isBleEnabled);
+        if (isBleEnabled) {
+            mBleStateTextView.setText(R.string.label_ble_state_on);
+            image.setColorFilter(Color.BLUE);
+        } else {
+            mBleStateTextView.setText(R.string.label_ble_state_off);
+            image.setColorFilter(Color.BLACK);
+            sw.setOnCheckedChangeListener(null);
+            sw.setOnCheckedChangeListener(swChancedChangeListener);
+        }
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        mWellnessCommunication.setConnectPeripheralCallback(mConnectPheCallback);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        mWellnessCommunication.setConnectPeripheralCallback(null);
+
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

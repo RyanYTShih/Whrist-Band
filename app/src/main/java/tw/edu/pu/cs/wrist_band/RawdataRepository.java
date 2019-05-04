@@ -13,11 +13,11 @@ public class RawdataRepository {
 
     RawdataRepository(Application application) {
         BandRoomDatabase db = BandRoomDatabase.getDatabase(application);
-        mRawdao= db.rawdataDao();
+        mRawdao = db.rawdataDao();
         mAllRawdata = mRawdao.getAllRawdata();
     }
 
-    LiveData<List<Rawdata>> getAllRawdata(){
+    LiveData<List<Rawdata>> getAllRawdata() {
         return mAllRawdata;
     }
 
@@ -25,16 +25,16 @@ public class RawdataRepository {
         new insertAsyncTask(mRawdao).execute(data);
     }
 
-    private static class insertAsyncTask extends AsyncTask<Rawdata,Void ,Void>{
+    private static class insertAsyncTask extends AsyncTask<Rawdata, Void, Void> {
 
         private RawdataDao mAsyncTaskDao;
 
-        insertAsyncTask(RawdataDao dao){
+        insertAsyncTask(RawdataDao dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
-        protected Void doInBackground(final Rawdata... params){
+        protected Void doInBackground(final Rawdata... params) {
             mAsyncTaskDao.insert(params[0]);
             return null;
         }

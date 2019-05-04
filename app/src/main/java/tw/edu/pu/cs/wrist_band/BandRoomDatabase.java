@@ -10,9 +10,6 @@ import android.content.Context;
 @TypeConverters(RawDataConverter.class)
 public abstract class BandRoomDatabase extends RoomDatabase {
 
-    public abstract UserDao userDao();
-    public abstract RawdataDao rawdataDao();
-
     private static volatile BandRoomDatabase INSTANCE;
 
     static BandRoomDatabase getDatabase(final Context context) {
@@ -27,4 +24,8 @@ public abstract class BandRoomDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    public abstract UserDao userDao();
+
+    public abstract RawdataDao rawdataDao();
 }

@@ -2,9 +2,7 @@ package tw.edu.pu.cs.wrist_band;
 
 import android.arch.persistence.room.TypeConverter;
 
-import com.epson.pulsenseapi.model.IBinaryModel;
 import com.epson.pulsenseapi.model.MeasureLogModel;
-import com.epson.pulsenseapi.model.SimpleDate;
 
 public class RawDataConverter {
 
