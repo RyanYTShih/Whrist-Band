@@ -13,7 +13,6 @@ public class Level extends AppCompatActivity {
     ImageButton imageButton,imageButton2,imageButton3;
     TextView txv,txv2,txv3;
     Intent intent;
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
