@@ -4,9 +4,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ExerLevel extends AppCompatActivity implements SensorEventListener {
@@ -18,7 +23,9 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
     private float[] magValues = new float[3];
     private float r[] = new float[9];
     private float values[] = new float[3];
-
+    int sound,theEnd;
+    TextView txv;
+    Button btn;
     private LevelView levelView;
     private TextView tvHorz;
     private TextView tvVert;
@@ -30,9 +37,33 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         levelView = (LevelView) findViewById(R.id.gv_hv);
         tvVert = (TextView) findViewById(R.id.tvv_vertical);
         tvHorz = (TextView) findViewById(R.id.tvv_horz);
+        txv = findViewById(R.id.txv);
+        btn = findViewById(R.id.btn);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
+        soundPool =new SoundPool(1, AudioManager.STREAM_MUSIC,5);
+        theEnd = soundPool.load(this,R.raw.theend,1);
+        btn.setOnClickListener(restart);
     }
+    Button.OnClickListener restart = new
+            Button.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    timer.start();
+                }
+            };
+    CountDownTimer timer = new CountDownTimer(10000,1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            txv.setText("剩餘時間:"+millisUntilFinished/1000);
+        }
+
+        @Override
+        public void onFinish() {
+            txv.setText("結束");
+            txv.setEnabled(true);
+            soundPool.play(theEnd,1.0F,1.0F,0,0,1.0F);
+        }
+    };
 
     @Override
     public void onResume() {
