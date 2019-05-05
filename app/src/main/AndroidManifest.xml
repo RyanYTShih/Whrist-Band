@@ -17,35 +17,36 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name=".ExerLevel"></activity>
-        <activity android:name=".Level" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ExerLevel" android:screenOrientation="portrait"></activity>
+        <activity android:name=".Level" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".socialfun" />
-        <activity android:name=".BLECOLLECT" />
-        <activity android:name=".UPLOADDATA" />
-        <activity android:name=".ELDER" />
-        <activity android:name=".MANAGEMENT" />
-        <activity android:name=".healthreport" />
-        <activity android:name=".addaccount" />
-        <activity android:name=".delaccount" />
-        <activity android:name=".doctorfun" />
-        <activity android:name=".resetPasswd" />
-        <activity android:name=".resetpw" />
-        <activity android:name=".reviseacc" />
-        <activity android:name=".reviseaccount" />
-        <activity android:name=".analyzeData" />
-        <activity android:name=".healthre_doc" />
-        <activity android:name=".getRawDatainput" />
-        <activity android:name=".docgetrawdata" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".DataInfo" />
-        <activity android:name=".ScanActivity" />
+        <activity android:name=".socialfun" android:screenOrientation="portrait"/>
+        <activity android:name=".BLECOLLECT" android:screenOrientation="portrait"/>
+        <activity android:name=".UPLOADDATA" android:screenOrientation="portrait"/>
+        <activity android:name=".ELDER" android:screenOrientation="portrait"/>
+        <activity android:name=".MANAGEMENT" android:screenOrientation="portrait"/>
+        <activity android:name=".healthreport" android:screenOrientation="portrait"/>
+        <activity android:name=".addaccount" android:screenOrientation="portrait"/>
+        <activity android:name=".delaccount" android:screenOrientation="portrait"/>
+        <activity android:name=".doctorfun" android:screenOrientation="portrait"/>
+        <activity android:name=".resetPasswd" android:screenOrientation="portrait"/>
+        <activity android:name=".resetpw" android:screenOrientation="portrait"/>
+        <activity android:name=".reviseacc" android:screenOrientation="portrait"/>
+        <activity android:name=".reviseaccount" android:screenOrientation="portrait"/>
+        <activity android:name=".analyzeData" android:screenOrientation="portrait"/>
+        <activity android:name=".healthre_doc" android:screenOrientation="portrait"/>
+        <activity android:name=".getRawDatainput" android:screenOrientation="portrait"/>
+        <activity android:name=".docgetrawdata" android:screenOrientation="portrait"/>
+        <activity android:name=".MenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".DataInfo" android:screenOrientation="portrait"/>
+        <activity android:name=".ScanActivity" android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

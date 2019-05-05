@@ -42,6 +42,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         soundPool =new SoundPool(1, AudioManager.STREAM_MUSIC,5);
         theEnd = soundPool.load(this,R.raw.theend,1);
+        sound = soundPool.load(this,R.raw.warning1,1);
         btn.setOnClickListener(restart);
     }
     Button.OnClickListener restart = new
@@ -55,6 +56,9 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         @Override
         public void onTick(long millisUntilFinished) {
             txv.setText("剩餘時間:"+millisUntilFinished/1000);
+            if(-values[2]!=0 && values[1]!=0){
+                soundPool.play(sound,1.0F,1.0F,0,0,1.0F);
+            }
         }
 
         @Override
