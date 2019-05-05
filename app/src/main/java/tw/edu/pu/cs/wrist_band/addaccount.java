@@ -13,7 +13,7 @@ import android.widget.Spinner;
 
 public class addaccount extends AppCompatActivity {
 
-    private static final String[] actor = {"長輩", "社工", "醫生", "社區主委"};
+    private static final String[] actor = {"長輩", "社工", "醫生"};
     private Button back1;
     private Spinner roleSpinner;
     private EditText edName;

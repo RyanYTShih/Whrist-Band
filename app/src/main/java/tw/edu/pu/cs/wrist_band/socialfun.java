@@ -12,11 +12,22 @@ import android.widget.Button;
 public class socialfun extends AppCompatActivity {
     Intent intent;
     Button coll, upload;
+    Button addcount, rawdata;
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     switch (v.getId()) {
+                        case R.id.button2: {
+                            intent = new Intent(socialfun.this, addaccount.class);
+                            startActivity(intent);
+                            break;
+                        }
+                        case R.id.button3: {
+                            intent = new Intent(socialfun.this, getRawDatainput.class);
+                            startActivity(intent);
+                            break;
+                        }
                         case R.id.blecoll: {
                             intent = new Intent(socialfun.this, ScanActivity.class);
                             startActivity(intent);
@@ -48,8 +59,12 @@ public class socialfun extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("功能選單");
         setContentView(R.layout.activity_socialfun);
+        addcount = findViewById(R.id.button2);
+        rawdata = findViewById(R.id.button3);
         coll = findViewById(R.id.blecoll);
         upload = findViewById(R.id.uploadd);
+        addcount.setOnClickListener(myListener);
+        rawdata.setOnClickListener(myListener);
         coll.setOnClickListener(myListener);
         upload.setOnClickListener(myListener);
     }

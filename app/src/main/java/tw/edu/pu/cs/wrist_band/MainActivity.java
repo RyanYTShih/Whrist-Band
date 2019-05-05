@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final User[] sampleUsers = {
-            new User("A123456789", "張小心", "1", Role.Manager),
+            new User("A123456789", "張小心", "1", Role.Elder),
             new User("B123456789", "時小唐", "2", Role.SocialWorker),
             new User("C123456789", "廖小勛", "3", Role.Elder),
             new User("D123456789", "林小宏", "4", Role.Doctor)
@@ -196,10 +196,10 @@ public class MainActivity extends AppCompatActivity {
         if (selectedUser != null) {
             if (pw.equals(selectedUser.getPasswd())) {
                 switch (selectedUser.getRole()) {
-                    case Role.Manager:
-                        Toast.makeText(this, "您好，" + selectedUser.getName() + "！", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(this, MANAGEMENT.class));
-                        break;
+//                    case Role.Manager:
+//                        Toast.makeText(this, "您好，" + selectedUser.getName() + "！", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(this, MANAGEMENT.class));
+//                        break;
                     case Role.SocialWorker:
                         Toast.makeText(this, "您好，" + selectedUser.getName() + "！", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(this, socialfun.class));
