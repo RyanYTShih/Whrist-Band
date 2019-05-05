@@ -10,8 +10,10 @@
         app:bubbleRuleColor="#ffffff"
         app:bubbleRuleRadius="27dp"
         app:bubbleRuleWidth="1dp"
+        app:horizontalColor="#00ff00"
         app:limitCircleWidth="6dp"
-        app:limitColor="#e03524" app:limitRadius="119dp" app:horizontalColor="#00ff00"/>
+        app:limitColor="#e03524"
+        app:limitRadius="119dp" />
 
 
     <LinearLayout
@@ -81,25 +83,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_below="@+id/Line">
-
-        <TextView
-            android:id="@+id/txv"
-            android:layout_width="335dp"
-            android:layout_height="106dp"
-            android:layout_weight="1"
-            android:text="舉起放下手機\n維持水平垂直0°"
-            android:textColor="@android:color/white"
-            android:textSize="30sp" />
 
         <Button
             android:id="@+id/btn"
-            android:layout_width="396dp"
-            android:layout_height="107dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="開始"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="舉起放下手機\n維持水平垂直0°"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </RelativeLayout>
