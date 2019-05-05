@@ -50,15 +50,16 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
                 @Override
                 public void onClick(View v) {
                     timer.start();
+                    btn.setEnabled(false);
+
                 }
             };
-    CountDownTimer timer = new CountDownTimer(10000,1000) {
+    CountDownTimer timer = new CountDownTimer(3000,1000) {
         @Override
         public void onTick(long millisUntilFinished) {
             txv.setText("剩餘時間:"+millisUntilFinished/1000);
-            if(-values[2]!=0 && values[1]!=0){
                 soundPool.play(sound,1.0F,1.0F,0,0,1.0F);
-            }
+
         }
 
         @Override
@@ -66,6 +67,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
             txv.setText("結束");
             txv.setEnabled(true);
             soundPool.play(theEnd,1.0F,1.0F,0,0,1.0F);
+            btn.setEnabled(true);
         }
     };
 
