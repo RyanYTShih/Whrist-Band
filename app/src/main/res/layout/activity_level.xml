@@ -6,17 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".Level">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="269dp"
-        android:layout_height="241dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginRight="54dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/down" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(1)學習放下"
+                android:textSize="30sp" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="269dp"
+                android:layout_height="241dp"
+                app:srcCompat="@drawable/down" />
+
+            <TextView
+                android:id="@+id/txv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(2)抬頭挺胸"
+                android:textSize="30sp" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="272dp"
+                android:layout_height="239dp"
+                app:srcCompat="@drawable/chest" />
+
+            <TextView
+                android:id="@+id/txv3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(3)農夫拿鋤頭"
+                android:textSize="30sp" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="275dp"
+                android:layout_height="227dp"
+                app:srcCompat="@drawable/putdown" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
