@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/passwd"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:textAlignment="center"
             android:textColorLink="@color/colorPrimary"

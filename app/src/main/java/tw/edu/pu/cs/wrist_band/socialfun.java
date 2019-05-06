@@ -8,11 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class socialfun extends AppCompatActivity {
     Intent intent;
-    Button coll, upload;
-    Button addcount, rawdata;
+    ImageButton coll, upload;
+    ImageButton addcount, rawdata;
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
                 @Override
