@@ -273,7 +273,12 @@ public class ScanActivity extends AppCompatActivity {
                     @Override
                     public void onProgress(int i, int i1) {
                         strMeasureLog += i + "/" + i1 + ". ";
-                        textMeasureLog.setText(strMeasureLog);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                textMeasureLog.setText(strMeasureLog);
+                            }
+                        });
                         retrieveProgress.setMax(i1);
                         retrieveProgress.setProgress(i, true);
                     }
