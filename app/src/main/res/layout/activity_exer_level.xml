@@ -104,4 +104,10 @@
             android:textSize="20sp" />
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="387dp"
+        app:srcCompat="@android:color/black" />
+
 </RelativeLayout>

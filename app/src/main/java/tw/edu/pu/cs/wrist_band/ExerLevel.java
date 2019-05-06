@@ -9,9 +9,11 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.provider.MediaStore;
+import android.renderscript.Sampler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ExerLevel extends AppCompatActivity implements SensorEventListener {
@@ -23,13 +25,13 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
     private float[] magValues = new float[3];
     private float r[] = new float[9];
     private float values[] = new float[3];
-    int sound,theEnd;
+    int sound,theEnd,Warn;
     TextView txv;
     Button btn;
     private LevelView levelView;
     private TextView tvHorz;
     private TextView tvVert;
-
+    ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +41,12 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         tvHorz = (TextView) findViewById(R.id.tvv_horz);
         txv = findViewById(R.id.txv);
         btn = findViewById(R.id.btn);
+        img = findViewById(R.id.img);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         soundPool =new SoundPool(1, AudioManager.STREAM_MUSIC,5);
         theEnd = soundPool.load(this,R.raw.theend,1);
         sound = soundPool.load(this,R.raw.warning1,1);
+        Warn = soundPool.load(this,R.raw.warn,1);
         btn.setOnClickListener(restart);
     }
     Button.OnClickListener restart = new
@@ -51,7 +55,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
                 public void onClick(View v) {
                     timer.start();
                     btn.setEnabled(false);
-
+                    img.setVisibility(View.INVISIBLE);
                 }
             };
     CountDownTimer timer = new CountDownTimer(3000,1000) {
@@ -68,6 +72,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
             txv.setEnabled(true);
             soundPool.play(theEnd,1.0F,1.0F,0,0,1.0F);
             btn.setEnabled(true);
+            img.setVisibility(View.VISIBLE);
         }
     };
 
