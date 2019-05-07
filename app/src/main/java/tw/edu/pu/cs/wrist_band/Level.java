@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class Level extends AppCompatActivity {
     ImageButton imageButton, imageButton2, imageButton3;
-    TextView txv, txv2, txv3;
+    TextView txv, txv2;
     Intent intent;
 
     @Override
@@ -18,10 +18,9 @@ public class Level extends AppCompatActivity {
         setContentView(R.layout.activity_level);
         imageButton = findViewById(R.id.imageButton);
         imageButton2 = findViewById(R.id.imageButton2);
-        imageButton3 = findViewById(R.id.imageButton3);
         txv = findViewById(R.id.txv);
         txv2 = findViewById(R.id.txv2);
-        txv3 = findViewById(R.id.txv3);
+
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,6 +28,15 @@ public class Level extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(Level.this, EzGame.class);
+                startActivity(intent);
+            }
+        });
+
+        }
 
     }
-}
+
