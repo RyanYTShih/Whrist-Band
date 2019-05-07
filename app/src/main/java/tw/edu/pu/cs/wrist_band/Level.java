@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class Level extends AppCompatActivity {
-    ImageButton imageButton, imageButton2, imageButton3;
+    ImageButton imageButton, imageButton2;
     TextView txv, txv2;
     Intent intent;
 
