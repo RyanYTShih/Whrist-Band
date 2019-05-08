@@ -8,8 +8,6 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.provider.MediaStore;
-import android.renderscript.Sampler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +24,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
     private float r[] = new float[9];
     private float values[] = new float[3];
     int sound,theEnd,Warn;
-    TextView txv;
+    TextView txv2;
     Button btn;
     private LevelView levelView;
     private TextView tvHorz;
@@ -39,7 +37,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         levelView = (LevelView) findViewById(R.id.gv_hv);
         tvVert = (TextView) findViewById(R.id.tvv_vertical);
         tvHorz = (TextView) findViewById(R.id.tvv_horz);
-        txv = findViewById(R.id.txv);
+        txv2 = findViewById(R.id.txv2);
         btn = findViewById(R.id.btn);
         img = findViewById(R.id.img);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -58,18 +56,18 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
                     img.setVisibility(View.INVISIBLE);
                 }
             };
-    CountDownTimer timer = new CountDownTimer(3000,1000) {
+    CountDownTimer timer = new CountDownTimer(10000,1000) {
         @Override
         public void onTick(long millisUntilFinished) {
-            txv.setText("剩餘時間:"+millisUntilFinished/1000);
+            txv2.setText("剩餘時間:"+millisUntilFinished/1000);
                 soundPool.play(sound,1.0F,1.0F,0,0,1.0F);
 
         }
 
         @Override
         public void onFinish() {
-            txv.setText("結束");
-            txv.setEnabled(true);
+            txv2.setText("結束");
+            txv2.setEnabled(true);
             soundPool.play(theEnd,1.0F,1.0F,0,0,1.0F);
             btn.setEnabled(true);
             img.setVisibility(View.VISIBLE);

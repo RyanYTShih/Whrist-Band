@@ -4,8 +4,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -16,10 +14,9 @@ public class EzGame extends AppCompatActivity implements SensorEventListener {
     SensorManager sm;
     Sensor sr;
     ImageView igv;
-    TextView txv,txv2;
+    TextView txv2;
     RelativeLayout layout;
-    SoundPool soundPool;
-    int Loud;
+
 
     double mx = 0,my = 0;
     float x,y,z;
@@ -29,12 +26,10 @@ public class EzGame extends AppCompatActivity implements SensorEventListener {
         setContentView(R.layout.activity_ez_game);
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         sr =  sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        txv = findViewById(R.id.txv);
         igv = findViewById(R.id.igvmove);
         layout = findViewById(R.id.layout);
         txv2 = findViewById(R.id.txv2);
-        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,5);
-        Loud = soundPool.load(this,R.raw.loud,1);
+
     }
 
     @Override
@@ -53,14 +48,13 @@ public class EzGame extends AppCompatActivity implements SensorEventListener {
         String values = "X:"+String.valueOf(event.values[0])+"\n"+
                 "Y:"+String.valueOf(event.values[1])+"\n"+
                 "Z:"+String.valueOf(event.values[2]);
-        if (event.sensor.equals(sr))
-            txv.setText(values);
+
         if (Math.abs(x)<1 && Math.abs(y)>4 && Math.abs(y)<5 && Math.abs(z)<10 && Math.abs(z)>8){
             txv2.setText("成功");
 
         }else{
             txv2.setText("請找尋小紅帽");
-            soundPool.play(Loud,1.0F,1.0F,0,0,1.0F);
+
         }
     }
 
