@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 public class Level extends AppCompatActivity {
     ImageButton imageButton, imageButton2;
-    TextView txv, txv2;
     Intent intent;
 
     @Override
@@ -18,8 +17,7 @@ public class Level extends AppCompatActivity {
         setContentView(R.layout.activity_level);
         imageButton = findViewById(R.id.imageButton);
         imageButton2 = findViewById(R.id.imageButton2);
-        txv = findViewById(R.id.txv);
-        txv2 = findViewById(R.id.txv2);
+
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override

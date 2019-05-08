@@ -6,42 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".Level">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/back1"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="177dp"
+            android:backgroundTint="@android:color/transparent"
+            app:srcCompat="@drawable/concentrate" />
 
-            <TextView
-                android:id="@+id/txv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(1)專注力簡單"
-                android:textSize="30sp" />
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="193dp"
+            android:backgroundTint="@android:color/transparent"
+            app:srcCompat="@drawable/muscle" />
 
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/human" />
-
-            <TextView
-                android:id="@+id/txv2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="(2)專注力困難程度"
-                android:textSize="30sp" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/focus" />
-
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
