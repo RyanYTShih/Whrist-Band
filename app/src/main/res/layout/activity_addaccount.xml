@@ -4,102 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back_chair"
     tools:context=".addaccount">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="41dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:ems="10"
-        android:hint="身分證字號"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside"
-        tools:ignore="RtlCompat" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:hint="密碼"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/spinner4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="RtlCompat" />
-
-    <Spinner
-        android:id="@+id/spinner4"
-        android:layout_width="214dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/button9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="RtlCompat" />
-
-    <Button
-        android:id="@+id/button9"
-        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="85dp"
-        android:text="新增"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-        android:textColor="@color/colorPrimaryDark"
+    <TableLayout
+        android:layout_width="373dp"
+        android:layout_height="194dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="RtlCompat" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:ems="10"
-        android:hint="姓名"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editText3"
+                style="@android:style/Widget.Material.Light.AutoCompleteTextView"
+                android:layout_width="130dp"
+                android:layout_height="91dp"
+                android:layout_gravity="center"
+                android:background="@drawable/table3"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="姓名"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="153dp"
+                android:layout_height="91dp"
+                android:background="@drawable/table3"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="身分證字號"
+                android:inputType="text"
+                tools:ignore="RtlCompat" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="147dp"
+                android:layout_height="88dp"
+                android:background="@drawable/table3"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="密碼"
+                android:inputType="textPassword"
+                tools:ignore="RtlCompat" />
+
+            <Spinner
+                android:id="@+id/spinner4"
+                android:layout_width="126dp"
+                android:layout_height="88dp"
+                android:background="@drawable/table3"
+                android:gravity="center"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/button9"
+                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                android:layout_width="71dp"
+                android:layout_height="88dp"
+                android:background="@drawable/buttonback"
+                android:text="新增"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorPrimaryDark"
+                tools:ignore="RtlCompat" />
+        </TableRow>
+
+    </TableLayout>
 
     <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="83dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="151dp"
-        android:layout_marginLeft="151dp"
-        android:layout_marginTop="99dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginRight="150dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        android:id="@+id/imageView25"
+        android:layout_width="174dp"
+        android:layout_height="222dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/addaccount" />
+        app:srcCompat="@drawable/young_avatar" />
 
 </android.support.constraint.ConstraintLayout>

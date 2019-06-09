@@ -2,133 +2,34 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/elder_fun_back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back_elder"
+    android:background="@drawable/elder_back_new1"
     tools:context=".ELDER">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="221dp"
-        android:layout_height="156dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="95dp"
-        android:layout_marginRight="95dp"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/motion"
+            android:layout_width="wrap_content"
+            android:layout_height="233dp"
+            android:backgroundTint="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/elder_sport_use" />
+
+        <ImageButton
+            android:id="@+id/datasearch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="233dp"
+            android:backgroundTint="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/elder_report_new" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cvAddAccount"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                android:clickable="true"
-                android:foreground="?android:selectableItemBackground"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="52dp">
+    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/datasearch"
-                        style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:text="健康報告"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
-
-                    <ImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.2"
-                        android:adjustViewBounds="true"
-                        android:tint="@android:color/background_dark"
-                        app:srcCompat="?android:attr/actionModePasteDrawable" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cvAddAccount2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:clickable="true"
-                android:foreground="?android:selectableItemBackground"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="52dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/motion"
-                        style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:text="體感運動"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
-
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="21dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.8"
-                        app:srcCompat="@drawable/excer" />
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-    </ScrollView>
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="97dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:layout_marginTop="165dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/elder1" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="98dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:srcCompat="@drawable/elder2" />
 </android.support.constraint.ConstraintLayout>

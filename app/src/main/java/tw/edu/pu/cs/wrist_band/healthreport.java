@@ -2,6 +2,7 @@ package tw.edu.pu.cs.wrist_band;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -25,7 +26,8 @@ public class healthreport extends AppCompatActivity {
 
         PieChart pie = findViewById(R.id.piechart);
         BarChart bar = findViewById(R.id.barchart);
-
+        View v= findViewById(R.id.elder_report);
+        v.getBackground().setAlpha(100);
         ArrayList<PieEntry> calorie = new ArrayList<>();
         calorie.add(new PieEntry(2500f, 0));
         PieDataSet dataSet = new PieDataSet(calorie, "今日攝取總熱量");

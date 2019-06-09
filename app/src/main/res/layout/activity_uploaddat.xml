@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back_social"
+    android:background="@drawable/scanback"
     tools:context=".UPLOADDATA">
 
     <Button
@@ -45,14 +45,14 @@
         android:layout_width="100dp"
         android:layout_height="108dp"
         android:layout_marginStart="142dp"
-        android:layout_marginLeft="142dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="142dp"
-        android:layout_marginRight="142dp"
         android:layout_marginBottom="53dp"
         app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/up_load" />
 </android.support.constraint.ConstraintLayout>

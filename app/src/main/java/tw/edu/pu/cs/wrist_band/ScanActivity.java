@@ -123,7 +123,7 @@ public class ScanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
         setTitle("手環連線 - 工程模式");
-
+        getSupportActionBar().hide();
         instance = WellnessCommunication.getInstance(this);
 
         textDeviceName = findViewById(R.id.textDeviceName);

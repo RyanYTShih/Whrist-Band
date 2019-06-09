@@ -29,7 +29,7 @@ public class EzGame extends AppCompatActivity implements SensorEventListener {
         igv = findViewById(R.id.igvmove);
         layout = findViewById(R.id.layout);
         txv2 = findViewById(R.id.txv2);
-
+        getSupportActionBar().hide();
     }
 
     @Override

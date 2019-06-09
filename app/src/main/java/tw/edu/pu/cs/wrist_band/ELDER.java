@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class ELDER extends AppCompatActivity {
     Intent intent;
-    Button searchre, motion;
+    ImageButton searchre, motion;
+    View v;
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
                 @Override
@@ -45,6 +47,9 @@ public class ELDER extends AppCompatActivity {
         searchre.setOnClickListener(myListener);
         motion = findViewById(R.id.motion);
         motion.setOnClickListener(moListener);
+        v=findViewById(R.id.elder_fun_back);
+        v.getBackground().setAlpha(100);
+        getSupportActionBar().hide();
     }
 
     @Override

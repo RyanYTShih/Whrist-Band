@@ -4,72 +4,165 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1"
+    android:background="@drawable/socialback"
     tools:context=".socialfun">
 
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView53"
+                android:layout_width="74dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/young9" />
+
+            <ImageView
+                android:id="@+id/imageView52"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/young8" />
+
+            <ImageView
+                android:id="@+id/imageView46"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/young2" />
+
+            <ImageView
+                android:id="@+id/imageView45"
+                android:layout_width="74dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/young1" />
+        </TableRow>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/blecoll"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/blescan" />
+                android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
+                <ImageButton
+                    android:id="@+id/blecoll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="209dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="TODO"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/blescan" />
+
+                <ImageButton
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="209dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="TODO"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/addd" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView56"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    app:srcCompat="@drawable/young11" />
+
+                <ImageView
+                    android:id="@+id/imageView57"
+                    android:layout_width="54dp"
+                    android:layout_height="52dp"
+                    android:backgroundTint="@android:color/holo_blue_bright"
+                    app:srcCompat="@drawable/grandfather" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/addd" />
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="210dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/heartdata" />
+
+                <ImageButton
+                    android:id="@+id/uploadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/upload" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="94dp"
+            android:gravity="center">
 
-            <ImageButton
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/imageView51"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/heartdata" />
+                app:srcCompat="@drawable/young7" />
 
-            <ImageButton
-                android:id="@+id/uploadd"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/imageView50"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/upload" />
-        </LinearLayout>
+                app:srcCompat="@drawable/young6" />
+
+            <ImageView
+                android:id="@+id/imageView49"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/young5" />
+
+            <ImageView
+                android:id="@+id/imageView48"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/young4" />
+
+            <ImageView
+                android:id="@+id/imageView47"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/young3" />
+        </TableRow>
 
     </LinearLayout>
 

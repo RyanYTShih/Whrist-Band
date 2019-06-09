@@ -61,7 +61,7 @@ public class addaccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("新增帳號");
         setContentView(R.layout.activity_addaccount);
-
+        getSupportActionBar().hide();
         edName = findViewById(R.id.editText3);
         edId = findViewById(R.id.editText);
         edPasswd = findViewById(R.id.editText2);

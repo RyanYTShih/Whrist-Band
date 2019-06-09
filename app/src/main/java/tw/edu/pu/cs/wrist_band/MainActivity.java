@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         for (User user : sampleUsers) {
             mUserViewModel.insert(user);
         }
-        String url2 = "http://223.200.80.137/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=+T2Appnb4kmEXBhOwSLuLw";
+        String url2 = "http://223.200.80.137/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=n8PcukbV2kGguEmuCxNZ/Q";
 
         GetNetworkJson process = new GetNetworkJson();
         getData(url2);

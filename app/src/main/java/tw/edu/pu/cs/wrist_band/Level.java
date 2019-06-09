@@ -11,14 +11,17 @@ public class Level extends AppCompatActivity {
     ImageButton imageButton, imageButton2;
     Intent intent;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_level);
         imageButton = findViewById(R.id.imageButton);
         imageButton2 = findViewById(R.id.imageButton2);
-
-
+        getSupportActionBar().hide();
+        View v= findViewById(R.id.elder_level_back);
+        v.getBackground().setAlpha(100);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
