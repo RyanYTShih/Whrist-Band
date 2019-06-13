@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class Level extends AppCompatActivity {
-    ImageButton imageButton, imageButton2;
+    ImageButton imageButton3, imageButton2;
     Intent intent;
 
 
@@ -17,12 +17,12 @@ public class Level extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_level);
-        imageButton = findViewById(R.id.imageButton);
+        imageButton3 = findViewById(R.id.imageButton3);
         imageButton2 = findViewById(R.id.imageButton2);
         getSupportActionBar().hide();
         View v= findViewById(R.id.elder_level_back);
-        v.getBackground().setAlpha(100);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        v.getBackground().setAlpha(150);
+        imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(Level.this, ExerLevel.class);

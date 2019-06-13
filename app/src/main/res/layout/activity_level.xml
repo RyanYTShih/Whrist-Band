@@ -11,21 +11,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="232dp"
             android:backgroundTint="@android:color/transparent"
-            app:srcCompat="@drawable/conc_back" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/elder_sport_model1" />
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
-            android:layout_height="210dp"
+            android:layout_height="232dp"
             android:backgroundTint="@android:color/transparent"
-            app:srcCompat="@drawable/musc_back" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/elder_sport_model2" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="match_parent"
+            android:layout_height="228dp"
+            android:backgroundTint="@android:color/transparent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/elder_sport_model3" />
 
     </LinearLayout>
 

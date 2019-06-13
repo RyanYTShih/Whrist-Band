@@ -20,7 +20,7 @@
             android:layout_height="233dp"
             android:backgroundTint="@android:color/transparent"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/elder_sport_use" />
+            app:srcCompat="@drawable/elder_sport_use1" />
 
         <ImageButton
             android:id="@+id/datasearch"
@@ -28,7 +28,7 @@
             android:layout_height="233dp"
             android:backgroundTint="@android:color/transparent"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/elder_report_new" />
+            app:srcCompat="@drawable/elder_report_use1" />
 
     </LinearLayout>
 

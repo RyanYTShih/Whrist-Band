@@ -20,14 +20,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/imageButton"
+        <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="158dp"
-            android:backgroundTint="@android:color/transparent"
-            android:contentDescription="TODO"
-            android:onClick="touch_surprise"
-            app:srcCompat="@drawable/icon_use" />
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="178dp"
+                android:layout_height="149dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="TODO"
+                android:foregroundGravity="center"
+                android:onClick="touch_surprise"
+                android:scaleType="centerCrop"
+                android:tint="#00D52121"
+                app:srcCompat="@drawable/icon_op" />
+        </android.support.v7.widget.CardView>
 
         <EditText
             android:id="@+id/ed_userid"

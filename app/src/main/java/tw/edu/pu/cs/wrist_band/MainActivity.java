@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout bg;
     private ListView lv;
     private ImageButton imgbt;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

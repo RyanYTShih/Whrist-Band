@@ -48,7 +48,7 @@ public class ELDER extends AppCompatActivity {
         motion = findViewById(R.id.motion);
         motion.setOnClickListener(moListener);
         v=findViewById(R.id.elder_fun_back);
-        v.getBackground().setAlpha(100);
+        v.getBackground().setAlpha(125);
         getSupportActionBar().hide();
     }
 
