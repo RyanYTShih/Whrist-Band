@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout bg;
     private ListView lv;
     private ImageButton imgbt;
-    private View view;
+    private CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
         bg = findViewById(R.id.back);
         lv = findViewById(R.id.pm25);
         imgbt = findViewById(R.id.imageButton);
+        cardView=findViewById(R.id.cardview1);
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-
+        bg.getBackground().setAlpha(130);
         aqiValue = getSharedPreferences("AQI_Value", Context.MODE_PRIVATE);
 
         for (User user : sampleUsers) {
@@ -146,17 +148,19 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
 
         if (aqi < 50) {
-            bg.setBackgroundColor(Color.GREEN);
+            cardView.setCardBackgroundColor(Color.GREEN);
+            cardView.getBackground().setAlpha(150);
         } else if (aqi < 101) {
-            bg.setBackgroundColor(Color.YELLOW);
+            cardView.setCardBackgroundColor(Color.YELLOW);
+            cardView.getBackground().setAlpha(150);
         } else if (aqi < 151) {
-            bg.setBackgroundColor(Color.parseColor("#FFBB66"));
+            cardView.setCardBackgroundColor(Color.parseColor("#FFBB66"));
         } else if (aqi < 201) {
-            bg.setBackgroundColor(Color.parseColor("#FF0000"));
+            cardView.setCardBackgroundColor(Color.parseColor("#FF0000"));
         } else if (aqi < 301) {
-            bg.setBackgroundColor(Color.parseColor("#FF0000"));
+            cardView.setCardBackgroundColor(Color.parseColor("#FF0000"));
         } else {
-            bg.setBackgroundColor(Color.parseColor("#FF0000"));
+            cardView.setCardBackgroundColor(Color.parseColor("#FF0000"));
         }
         String str = siteName + "   AQI: "
                 + aqi;
