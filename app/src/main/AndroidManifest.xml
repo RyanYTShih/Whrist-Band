@@ -22,7 +22,21 @@
         android:roundIcon="@drawable/icon_use"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Music"></activity>
+        <activity android:name=".Pin7Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe"/>
+        <activity android:name=".Pin6Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe"/>
+        <activity android:name=".Pin5Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe"/>
+        <activity android:name=".Pin4Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe"/>
+        <activity android:name=".Pin3Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe"/>
+        <activity android:name=".Pin2Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe"/>
+        <activity android:name=".PinActivity"
+            android:theme="@style/AppTheme.NoActionBarPopMe"/>
+        <activity android:name=".Music" />
         <activity android:name=".Mapper" />
 
         <uses-library
