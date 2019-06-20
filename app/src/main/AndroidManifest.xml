@@ -22,7 +22,12 @@
         android:roundIcon="@drawable/icon_use"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Mario"></activity>
+        <activity android:name=".MusicPlayer5"></activity>
+        <activity android:name=".MusicPlayer4" />
+        <activity android:name=".MusicPlayer3" />
+        <activity android:name=".MusicPlayer2" />
+        <activity android:name=".MusicPlayer" />
+        <activity android:name=".Mario" />
         <activity
             android:name=".Pin7Activity"
             android:theme="@style/AppTheme.NoActionBarPopMe" />
