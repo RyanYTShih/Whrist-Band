@@ -68,6 +68,7 @@ public class socialfun extends AppCompatActivity {
         rawdata.setOnClickListener(myListener);
         coll.setOnClickListener(myListener);
         upload.setOnClickListener(myListener);
+        getSupportActionBar().hide();
     }
 
     @Override

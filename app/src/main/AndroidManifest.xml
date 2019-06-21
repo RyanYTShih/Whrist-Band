@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="tw.edu.pu.cs.wrist_band">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -7,6 +8,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +22,41 @@
         android:roundIcon="@drawable/icon_use"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EzGame"></activity>
+        <activity android:name=".MusicPlayer5"></activity>
+        <activity android:name=".MusicPlayer4" />
+        <activity android:name=".MusicPlayer3" />
+        <activity android:name=".MusicPlayer2" />
+        <activity android:name=".MusicPlayer" />
+        <activity android:name=".Mario" />
+        <activity
+            android:name=".Pin7Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe" />
+        <activity
+            android:name=".Pin6Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe" />
+        <activity
+            android:name=".Pin5Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe" />
+        <activity
+            android:name=".Pin4Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe" />
+        <activity
+            android:name=".Pin3Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe" />
+        <activity
+            android:name=".Pin2Activity"
+            android:theme="@style/AppTheme.NoActionBarPopMe" />
+        <activity
+            android:name=".PinActivity"
+            android:theme="@style/AppTheme.NoActionBarPopMe" />
+        <activity android:name=".Music" />
+        <activity android:name=".Mapper" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".EzGame" />
         <activity
             android:name=".ExerLevel"
             android:screenOrientation="portrait" />

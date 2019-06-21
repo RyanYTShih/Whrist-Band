@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,12 +24,9 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -54,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout bg;
     private ListView lv;
     private ImageButton imgbt;
+    private CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,37 +65,15 @@ public class MainActivity extends AppCompatActivity {
         bg = findViewById(R.id.back);
         lv = findViewById(R.id.pm25);
         imgbt = findViewById(R.id.imageButton);
+        cardView=findViewById(R.id.cardview1);
         mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-
+        bg.getBackground().setAlpha(130);
         aqiValue = getSharedPreferences("AQI_Value", Context.MODE_PRIVATE);
-
-        // Install Government certificate
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://gca.nat.gov.tw/web2/index.html";
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.d(TAG, "Response is: "+ response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d(TAG, "Connect to gca.nat.gov.tw didn't work!");
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
 
         for (User user : sampleUsers) {
             mUserViewModel.insert(user);
         }
-        String url2 = "https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=+T2Appnb4kmEXBhOwSLuLw";
+        String url2 = "http://223.200.80.137/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=n8PcukbV2kGguEmuCxNZ/Q";
 
         GetNetworkJson process = new GetNetworkJson();
         getData(url2);
@@ -116,6 +93,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        /* Test for webapi
+        webapi.api_UploadUser("D1234","Kevin","1234","male","56","160","70");
+        webapi.api_UploadSleepSummary("1","D1234","QAZ123","2019-06-13 02:01:09","2019-06-13 02:01:09","2019-06-13 02:01:09","2019-06-13 02:01:09","2019-06-13 02:01:09");
+        webapi.api_UploadMeasureLog("2","D1234","QAZ123","1500","10","150","200","80","2019-06-13 02:01:09","2019-06-13 02:01:09");
+        webapi.api_GetWeekSteps("A1234","QAZ123");
+        webapi.api_GetExerciseCalories("A1234","QAZ123");
+        webapi.api_GetSleepSummary("A1234","QAZ123");
+        */
+
     }
 
     private String getData(String urlString) {
@@ -127,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         setBackgroundByAQI(siteName, aqi);
 
         //使用JsonObjectRequest類別要求JSON資料。
-        final JsonObjectRequest jsonObjectRequest =
+        JsonObjectRequest jsonObjectRequest =
                 new JsonObjectRequest(urlString, null,
                         new Response.Listener<JSONObject>() {
                             @Override
@@ -171,17 +158,19 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
 
         if (aqi < 50) {
-            bg.setBackgroundColor(Color.GREEN);
+            cardView.setCardBackgroundColor(Color.GREEN);
+            cardView.getBackground().setAlpha(150);
         } else if (aqi < 101) {
-            bg.setBackgroundColor(Color.YELLOW);
+            cardView.setCardBackgroundColor(Color.YELLOW);
+            cardView.getBackground().setAlpha(150);
         } else if (aqi < 151) {
-            bg.setBackgroundColor(Color.parseColor("#FFBB66"));
+            cardView.setCardBackgroundColor(Color.parseColor("#FFBB66"));
         } else if (aqi < 201) {
-            bg.setBackgroundColor(Color.parseColor("#FF0000"));
+            cardView.setCardBackgroundColor(Color.parseColor("#FF0000"));
         } else if (aqi < 301) {
-            bg.setBackgroundColor(Color.parseColor("#FF0000"));
+            cardView.setCardBackgroundColor(Color.parseColor("#FF0000"));
         } else {
-            bg.setBackgroundColor(Color.parseColor("#FF0000"));
+            cardView.setCardBackgroundColor(Color.parseColor("#FF0000"));
         }
         String str = siteName + "   AQI: "
                 + aqi;

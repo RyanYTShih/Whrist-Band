@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/map"
+    tools:context=".Mapper">
+
+    <ImageButton
+        android:id="@+id/pin6"
+        android:layout_width="68dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="464dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/pin4"
+        app:layout_constraintHorizontal_bias="0.704"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/local" />
+
+    <ImageButton
+        android:id="@+id/pin4"
+        android:layout_width="68dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="127dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pin3"
+        app:srcCompat="@drawable/local" />
+
+    <ImageButton
+        android:id="@+id/pin3"
+        android:layout_width="68dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="191dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="152dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pin2"
+        app:srcCompat="@drawable/local" />
+
+    <ImageButton
+        android:id="@+id/pin"
+        android:layout_width="68dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="115dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/local" />
+
+    <ImageButton
+        android:id="@+id/pin5"
+        android:layout_width="68dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginBottom="45dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pin4"
+        app:srcCompat="@drawable/local" />
+
+    <ImageButton
+        android:id="@+id/pin2"
+        android:layout_width="68dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="151dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="192dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pin"
+        app:srcCompat="@drawable/local" />
+
+    <ImageButton
+        android:id="@+id/pin7"
+        android:layout_width="68dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="520dp"
+        android:layout_marginBottom="127dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/local" />
+
+</android.support.constraint.ConstraintLayout>

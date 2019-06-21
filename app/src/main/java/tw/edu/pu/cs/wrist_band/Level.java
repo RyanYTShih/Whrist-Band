@@ -8,18 +8,22 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class Level extends AppCompatActivity {
-    ImageButton imageButton, imageButton2;
+    ImageButton imageButton3, imageButton2, imageButton;
     Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_level);
-        imageButton = findViewById(R.id.imageButton);
+        imageButton3 = findViewById(R.id.imageButton3);
         imageButton2 = findViewById(R.id.imageButton2);
-
-
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        imageButton = findViewById(R.id.imageButton);
+        getSupportActionBar().hide();
+        View v= findViewById(R.id.elder_level_back);
+        v.getBackground().setAlpha(150);
+        imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(Level.this, ExerLevel.class);
@@ -33,7 +37,13 @@ public class Level extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(Level.this, Mario.class);
+                startActivity(intent);
+            }
+        });
         }
 
     }
