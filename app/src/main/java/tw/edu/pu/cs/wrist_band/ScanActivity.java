@@ -358,6 +358,20 @@ public class ScanActivity extends AppCompatActivity {
 
                         mMeasureLogViewModel.insert(measureLog);
 
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.TAIWAN);
+
+                        webapi.api_UploadMeasureLog(
+                                measureLog.getSerialID() + "",
+                                measureLog.getPersonalID(),
+                                measureLog.getBandID(),
+                                measureLog.getSteps() + "",
+                                measureLog.getDistance() + "",
+                                measureLog.getExerciseCalories() + "",
+                                measureLog.getRestCalories() + "",
+                                measureLog.getHeartrate(),
+                                simpleDateFormat.format(measureLog.getStartTime()),
+                                simpleDateFormat.format(measureLog.getStopTime()));
+
                         String s = measureLog + "\n";
                         strMeasureLog += s;
                         runOnUiThread(new Runnable() {

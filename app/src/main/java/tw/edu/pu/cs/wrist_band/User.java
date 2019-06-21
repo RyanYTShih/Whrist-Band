@@ -21,6 +21,8 @@ public class User {
 
     private String Gender;
 
+    private int Age;
+
     private float Height;
 
     private float Weight;
@@ -30,6 +32,7 @@ public class User {
                 @NonNull String Password,
                 int Role,
                 String Gender,
+                int Age,
                 float Height,
                 float Weight) {
         this.PersonalID = PersonalID;
@@ -37,6 +40,7 @@ public class User {
         this.Password = Password;
         this.Role = Role;
         this.Gender = Gender;
+        this.Age = Age;
         this.Height = Height;
         this.Weight = Weight;
     }
@@ -62,6 +66,10 @@ public class User {
 
     public String getGender() {
         return Gender;
+    }
+
+    public int getAge() {
+        return Age;
     }
 
     public float getHeight() {

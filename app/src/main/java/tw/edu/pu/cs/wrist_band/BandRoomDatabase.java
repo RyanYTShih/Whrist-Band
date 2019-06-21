@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-@Database(entities = {User.class, Rawdata.class, MeasureLog.class, SleepSummary.class}, version = 3, exportSchema = false)
+@Database(entities = {User.class, Rawdata.class, MeasureLog.class, SleepSummary.class}, version = 4, exportSchema = false)
 @TypeConverters({RawDataConverter.class, MeasureLogConverter.class})
 public abstract class BandRoomDatabase extends RoomDatabase {
 
