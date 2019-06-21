@@ -32,15 +32,19 @@ import android.widget.Toast;
 import com.epson.pulsenseapi.WellnessCommunication;
 import com.epson.pulsenseapi.ble.callback.BleScanCallback;
 import com.epson.pulsenseapi.ble.callback.ConnectPeripheralCallback;
-import com.epson.pulsenseapi.ble.callback.RequestEnumerateDataClassCallback;
+import com.epson.pulsenseapi.ble.callback.RequestDifferenceEnumerateDataClassCallback;
 import com.epson.pulsenseapi.ble.constant.DataClassId;
 import com.epson.pulsenseapi.ble.constant.LocalError;
 import com.epson.pulsenseapi.model.IBinaryModel;
 import com.epson.pulsenseapi.model.MeasureLogModel;
 import com.epson.pulsenseview.wellnesscommunication.bluetooth.Peripheral;
 
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ScanActivity extends AppCompatActivity {
 
@@ -50,10 +54,15 @@ public class ScanActivity extends AppCompatActivity {
     List<String> user = new ArrayList<>();
     private WellnessCommunication instance;
     private MeasureLogModel measureLogModel;
+
     private UserViewModel mUserViewModel;
-    private RawdataViewModel mRawDataViewModel;
+//    private RawdataViewModel mRawDataViewModel;
+    private MeasureLogViewModel mMeasureLogViewModel;
+
     private LiveData<List<User>> users;
+
     private TextView textDeviceName, textUUID, textMeasureLog;
+
     private String strMeasureLog = "";
     private String name, ID;
 
@@ -173,7 +182,8 @@ public class ScanActivity extends AppCompatActivity {
             }
         });
 
-        mRawDataViewModel = ViewModelProviders.of(this).get(RawdataViewModel.class);
+//        mRawDataViewModel = ViewModelProviders.of(this).get(RawdataViewModel.class);
+        mMeasureLogViewModel = ViewModelProviders.of(this).get(MeasureLogViewModel.class);
 
         if (instance.isBleEnabled()) {
             bluetoothSwitch.setChecked(true);
@@ -268,10 +278,22 @@ public class ScanActivity extends AppCompatActivity {
         retrieveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                instance.requestEnumerateDataClass(DataClassId.MeasurementLog, new RequestEnumerateDataClassCallback() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
+                instance.requestDifferenceEnumerateDataClass(DataClassId.MeasurementLog, new RequestDifferenceEnumerateDataClassCallback() {
                     @Override
                     public void onProgress(int i, int i1) {
+
+                    }
+
+                    @Override
+                    public void onStartEnumerate(int i) {
+                        Toast.makeText(ScanActivity.this, "StartEnumerate - " + i, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onEnumerate(IBinaryModel iBinaryModel, int i, int i1) {
+                        measureLogModel = (MeasureLogModel) iBinaryModel;
+
                         strMeasureLog += i + "/" + i1 + ". ";
                         runOnUiThread(new Runnable() {
                             @Override
@@ -281,48 +303,62 @@ public class ScanActivity extends AppCompatActivity {
                         });
                         retrieveProgress.setMax(i1);
                         retrieveProgress.setProgress(i, true);
-                    }
 
-                    @Override
-                    public void onStartEnumerate(int i) {
-                        Toast.makeText(ScanActivity.this, "StartEnumerate - " + i, Toast.LENGTH_SHORT).show();
-                    }
+//                        Rawdata rawdata = new Rawdata(
+//                                ID,
+//                                textUUID.getText().toString(),
+////                                measureLogModel.getMeasureStartDate(),
+////                                measureLogModel.getMeasureStartTime(),
+////                                measureLogModel.getMeasureStopDate(),
+////                                measureLogModel.getMeasureStopTime(),
+//                                measureLogModel
+//                        );
 
-                    @Override
-                    public void onEnumerate(IBinaryModel iBinaryModel) {
-                        measureLogModel = (MeasureLogModel) iBinaryModel;
+                        String heartrateString = "";
+                        int[] heartRate = measureLogModel.getHeartrate();
+                        for (int j = 0; j < heartRate.length; j++) {
+                            heartrateString += heartRate[j] + "";
+                            if (j < heartRate.length - 1) {
+                                heartrateString += ",";
+                            }
+                        }
 
-                        Rawdata rawdata = new Rawdata(
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss", Locale.TAIWAN);
+
+                        Date startDate = new Date(), stopDate = new Date();
+                        try {
+                            startDate = dateFormat.parse(measureLogModel.getMeasureStartDate().getYear() + "/"
+                                    + measureLogModel.getMeasureStartDate().getMonth() + "/"
+                                    + measureLogModel.getMeasureStartDate().getDay() + " "
+                                    + measureLogModel.getMeasureStartTime().getHour() + ":"
+                                    + measureLogModel.getMeasureStartTime().getMinute() + ":"
+                                    + measureLogModel.getMeasureStartTime().getSecond());
+                            stopDate = dateFormat.parse(measureLogModel.getMeasureStopDate().getYear() + "/"
+                                    + measureLogModel.getMeasureStopDate().getMonth() + "/"
+                                    + measureLogModel.getMeasureStopDate().getDay() + " "
+                                    + measureLogModel.getMeasureStopTime().getHour() + ":"
+                                    + measureLogModel.getMeasureStopTime().getMinute() + ":"
+                                    + measureLogModel.getMeasureStopTime().getSecond());
+                        } catch (Exception e) {
+                            Log.d(TAG, e.getMessage());
+                        }
+
+                        MeasureLog measureLog = new MeasureLog(
+                                0L,
                                 ID,
-                                textUUID.getText().toString(),
-//                                measureLogModel.getMeasureStartDate(),
-//                                measureLogModel.getMeasureStartTime(),
-//                                measureLogModel.getMeasureStopDate(),
-//                                measureLogModel.getMeasureStopTime(),
-                                measureLogModel
+                                textDeviceName.getText().toString(),
+                                measureLogModel.getSteps(),
+                                new BigInteger(measureLogModel.getDistance() + ""),
+                                measureLogModel.getExerciseCalories(),
+                                measureLogModel.getRestCalories(),
+                                heartrateString,
+                                startDate,
+                                stopDate
                         );
 
-                        mRawDataViewModel.insert(rawdata);
+                        mMeasureLogViewModel.insert(measureLog);
 
-                        String s = measureLogModel.getMeasureStartDate().getYear() + "/"
-                                + measureLogModel.getMeasureStartDate().getMonth() + "/"
-                                + measureLogModel.getMeasureStartDate().getDay() + " "
-                                + measureLogModel.getMeasureStartTime().getHour() + ":"
-                                + measureLogModel.getMeasureStartTime().getMinute() + ":"
-                                + measureLogModel.getMeasureStartTime().getSecond() + " steps:"
-                                + measureLogModel.getSteps() + " distance:"
-                                + measureLogModel.getDistance() + " exerciseCalories:"
-                                + measureLogModel.getExerciseCalories() + " heartRate:";
-                        int heartRate[] = measureLogModel.getHeartrate();
-                        for (int r : heartRate) {
-                            s += r + ",";
-                        }
-                        s += measureLogModel.getMeasureStopDate().getYear() + "/"
-                                + measureLogModel.getMeasureStopDate().getMonth() + "/"
-                                + measureLogModel.getMeasureStopDate().getDay() + " "
-                                + measureLogModel.getMeasureStopTime().getHour() + ":"
-                                + measureLogModel.getMeasureStopTime().getMinute() + ":"
-                                + measureLogModel.getMeasureStopTime().getSecond() + "\n";
+                        String s = measureLog + "\n";
                         strMeasureLog += s;
                         runOnUiThread(new Runnable() {
                             @Override

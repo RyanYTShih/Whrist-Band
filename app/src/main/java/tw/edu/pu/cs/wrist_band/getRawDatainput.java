@@ -25,12 +25,13 @@ public class getRawDatainput extends AppCompatActivity {
     private Button input_ana;
     private Intent intent;
 
-    private RawdataViewModel mRawdataViewModel;
+//    private RawdataViewModel mRawdataViewModel;
+    private MeasureLogViewModel mMeasureLogViewModel;
     private UserViewModel mUserViewModel;
-    private LiveData<List<Rawdata>> data;
+    private LiveData<List<MeasureLog>> measureLog;
 
     private ListView dataList;
-    private RawDataAdapter dataAdapter;
+    private MeasureLogAdapter dataAdapter;
 
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
@@ -59,32 +60,33 @@ public class getRawDatainput extends AppCompatActivity {
         input_ana = findViewById(R.id.button13);
         input_ana.setOnClickListener(myListener);
 
-        startTimeText.setText("資料開始時間");
-        stopTimeText.setText("資料結束時間");
+//        startTimeText.setText("資料開始時間");
+//        stopTimeText.setText("資料結束時間");
 
         dataList = findViewById(R.id.RawDataList);
-        dataAdapter = new RawDataAdapter(this, R.layout.rawdata_adapter);
+        dataAdapter = new MeasureLogAdapter(this, R.layout.measure_log_adapter);
         dataList.setAdapter(dataAdapter);
 
         mUserViewModel = ViewModelProviders.of(getRawDatainput.this).get(UserViewModel.class);
-        mRawdataViewModel = ViewModelProviders.of(getRawDatainput.this).get(RawdataViewModel.class);
-        data = mRawdataViewModel.getAllRawdata();
-        data.observe(getRawDatainput.this, new Observer<List<Rawdata>>() {
+//        mRawdataViewModel = ViewModelProviders.of(getRawDatainput.this).get(RawdataViewModel.class);
+        mMeasureLogViewModel = ViewModelProviders.of(getRawDatainput.this).get(MeasureLogViewModel.class);
+        measureLog = mMeasureLogViewModel.getAllMeasureLog();
+        measureLog.observe(getRawDatainput.this, new Observer<List<MeasureLog>>() {
             @Override
-            public void onChanged(@Nullable List<Rawdata> rawdata) {
+            public void onChanged(@Nullable List<MeasureLog> data) {
                 Log.d(TAG, "rawdata list updated");
-                if (rawdata == null)
+                if (data == null)
                     return;
                 try {
-                    getRawDatainput.this.data = mRawdataViewModel.getAllRawdata();
+                    getRawDatainput.this.measureLog = mMeasureLogViewModel.getAllMeasureLog();
                 } catch (Exception e) {
                     Log.d(TAG, e.getMessage());
                 }
-                for (Rawdata r : rawdata) {
+                for (MeasureLog m : data) {
 
                     try {
-                        dataAdapter.add(r);
-                        Log.d(TAG, r.getSerial_id() + "");
+                        dataAdapter.add(m);
+                        Log.d(TAG, m.getSerialID() + "");
                     } catch (Exception e) {
                         Log.d(TAG, e.getMessage());
                     }

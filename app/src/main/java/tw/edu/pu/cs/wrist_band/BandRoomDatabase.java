@@ -6,8 +6,8 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-@Database(entities = {User.class, Rawdata.class}, version = 2)
-@TypeConverters(RawDataConverter.class)
+@Database(entities = {User.class, Rawdata.class, MeasureLog.class, SleepSummary.class}, version = 3, exportSchema = false)
+@TypeConverters({RawDataConverter.class, MeasureLogConverter.class})
 public abstract class BandRoomDatabase extends RoomDatabase {
 
     private static volatile BandRoomDatabase INSTANCE;
@@ -28,4 +28,8 @@ public abstract class BandRoomDatabase extends RoomDatabase {
     public abstract UserDao userDao();
 
     public abstract RawdataDao rawdataDao();
+
+    public abstract MeasureLogDao measureLogDao();
+
+    public abstract SleepSummaryDao sleepSummaryDao();
 }

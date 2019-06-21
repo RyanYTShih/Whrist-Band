@@ -23,9 +23,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -39,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final User[] sampleUsers = {
-            new User("A123456789", "張小心", "1", Role.Elder),
-            new User("B123456789", "時小唐", "2", Role.SocialWorker),
-            new User("C123456789", "廖小勛", "3", Role.Elder),
-            new User("D123456789", "林小宏", "4", Role.Doctor)
+            new User("A123456789", "張小心", "1", Role.Elder, "F", 180, 70),
+            new User("B123456789", "時小唐", "2", Role.SocialWorker, "M", 180, 70),
+            new User("C123456789", "廖小勛", "3", Role.Elder, "M", 180, 70),
+            new User("D123456789", "林小宏", "4", Role.Doctor, "M", 180, 70)
     };
     private UserViewModel mUserViewModel;
     private LiveData<List<User>> users;
@@ -67,10 +70,33 @@ public class MainActivity extends AppCompatActivity {
 
         aqiValue = getSharedPreferences("AQI_Value", Context.MODE_PRIVATE);
 
+        // Install Government certificate
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="https://gca.nat.gov.tw/web2/index.html";
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Log.d(TAG, "Response is: "+ response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "Connect to gca.nat.gov.tw didn't work!");
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
         for (User user : sampleUsers) {
             mUserViewModel.insert(user);
         }
-        String url2 = "http://223.200.80.137/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=+T2Appnb4kmEXBhOwSLuLw";
+        String url2 = "https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=+T2Appnb4kmEXBhOwSLuLw";
 
         GetNetworkJson process = new GetNetworkJson();
         getData(url2);
@@ -101,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         setBackgroundByAQI(siteName, aqi);
 
         //使用JsonObjectRequest類別要求JSON資料。
-        JsonObjectRequest jsonObjectRequest =
+        final JsonObjectRequest jsonObjectRequest =
                 new JsonObjectRequest(urlString, null,
                         new Response.Listener<JSONObject>() {
                             @Override
@@ -187,14 +213,14 @@ public class MainActivity extends AppCompatActivity {
 
         for (User user : userList) {
             Log.d(TAG, user.toString());
-            if (user.getId().equals(uid)) {
+            if (user.getPersonalID().equals(uid)) {
                 selectedUser = user;
                 break;
             }
         }
 
         if (selectedUser != null) {
-            if (pw.equals(selectedUser.getPasswd())) {
+            if (pw.equals(selectedUser.getPassword())) {
                 switch (selectedUser.getRole()) {
 //                    case Role.Manager:
 //                        Toast.makeText(this, "您好，" + selectedUser.getName() + "！", Toast.LENGTH_SHORT).show();

@@ -38,7 +38,7 @@ public class addaccount extends AppCompatActivity {
                                 .show();
                         break;
                     } else {
-                        User user = new User(id, name, passwd, selectedRole);
+                        User user = new User(id, name, passwd, selectedRole, null, 0, 0);
                         mUserViewModel.insert(user);
 //                        Toast.makeText(addaccount.this, "已為" + user.getName() + "建立新" + actor[user.getRole()] + "帳號", Toast.LENGTH_SHORT).show();
                         new AlertDialog.Builder(addaccount.this)
