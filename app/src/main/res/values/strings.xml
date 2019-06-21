@@ -28,4 +28,6 @@
     <string name="unregister">Unregister</string>
     <string name="device_name">Registered Device Name</string>
     <string name="UUID">UUID</string>
+    <string name="hello_world">Now Playing:</string>
+    <string name="inital_Time">0 min, 0 sec</string>
 </resources>

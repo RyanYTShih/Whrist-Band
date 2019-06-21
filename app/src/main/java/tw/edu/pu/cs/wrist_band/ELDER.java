@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 
 public class ELDER extends AppCompatActivity {
     Intent intent;
-    ImageButton searchre, motion;
+    ImageButton searchre, motion, mapbtn, musicbtn;
     View v;
     private Button.OnClickListener myListener = new
             Button.OnClickListener() {
@@ -37,7 +37,20 @@ public class ELDER extends AppCompatActivity {
                     startActivity(intent);
                 }
             };
-
+    private Button.OnClickListener mapListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent mapIntent = new Intent(ELDER.this, Mapper.class);
+            startActivity(mapIntent);
+        }
+    };
+    private Button.OnClickListener musicListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent musicIntent = new Intent(ELDER.this, Music.class);
+            startActivity(musicIntent);
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +60,10 @@ public class ELDER extends AppCompatActivity {
         searchre.setOnClickListener(myListener);
         motion = findViewById(R.id.motion);
         motion.setOnClickListener(moListener);
+        mapbtn = findViewById(R.id.mapbtn);
+        mapbtn.setOnClickListener(mapListener);
+        musicbtn = findViewById(R.id.musicbtn);
+        musicbtn.setOnClickListener(musicListener);
         v=findViewById(R.id.elder_fun_back);
         v.getBackground().setAlpha(125);
         getSupportActionBar().hide();
