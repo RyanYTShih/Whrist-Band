@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final User[] sampleUsers = {
-            new User("A123456789", "張小心", "1", Role.Elder),
-            new User("B123456789", "時小唐", "2", Role.SocialWorker),
-            new User("C123456789", "廖小勛", "3", Role.Elder),
-            new User("D123456789", "林小宏", "4", Role.Doctor)
+            new User("A123456789", "張小心", "1", Role.Elder, "F", 20, 180, 70),
+            new User("B123456789", "時小唐", "2", Role.SocialWorker, "M", 20, 180, 70),
+            new User("C123456789", "廖小勛", "3", Role.Elder, "M", 20, 180, 70),
+            new User("D123456789", "林小宏", "4", Role.Doctor, "M", 20, 180, 70)
     };
     private UserViewModel mUserViewModel;
     private LiveData<List<User>> users;
@@ -72,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
 
         for (User user : sampleUsers) {
             mUserViewModel.insert(user);
+            webapi.api_UploadUser(
+                    user.getPersonalID(),
+                    user.getName(),
+                    user.getPassword(),
+                    user.getGender(),
+                    user.getAge() + "",
+                    user.getHeight() + "",
+                    user.getWeight() + ""
+            );
         }
         String url2 = "http://223.200.80.137/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=n8PcukbV2kGguEmuCxNZ/Q";
 
@@ -202,14 +211,14 @@ public class MainActivity extends AppCompatActivity {
 
         for (User user : userList) {
             Log.d(TAG, user.toString());
-            if (user.getId().equals(uid)) {
+            if (user.getPersonalID().equals(uid)) {
                 selectedUser = user;
                 break;
             }
         }
 
         if (selectedUser != null) {
-            if (pw.equals(selectedUser.getPasswd())) {
+            if (pw.equals(selectedUser.getPassword())) {
                 switch (selectedUser.getRole()) {
 //                    case Role.Manager:
 //                        Toast.makeText(this, "您好，" + selectedUser.getName() + "！", Toast.LENGTH_SHORT).show();

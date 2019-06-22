@@ -34,6 +34,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exer_level);
+        getSupportActionBar().hide(); //隱藏標題
         levelView = (LevelView) findViewById(R.id.gv_hv);
         tvVert = (TextView) findViewById(R.id.tvv_vertical);
         tvHorz = (TextView) findViewById(R.id.tvv_horz);

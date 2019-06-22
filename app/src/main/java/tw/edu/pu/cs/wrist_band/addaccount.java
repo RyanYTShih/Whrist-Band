@@ -38,8 +38,17 @@ public class addaccount extends AppCompatActivity {
                                 .show();
                         break;
                     } else {
-                        User user = new User(id, name, passwd, selectedRole);
+                        User user = new User(id, name, passwd, selectedRole, "M", 0, 0, 0);
                         mUserViewModel.insert(user);
+                        webapi.api_UploadUser(
+                                user.getPersonalID(),
+                                user.getName(),
+                                user.getPassword(),
+                                user.getGender(),
+                                user.getAge() + "",
+                                user.getHeight() + "",
+                                user.getWeight() + ""
+                        );
 //                        Toast.makeText(addaccount.this, "已為" + user.getName() + "建立新" + actor[user.getRole()] + "帳號", Toast.LENGTH_SHORT).show();
                         new AlertDialog.Builder(addaccount.this)
                                 .setTitle(R.string.message)

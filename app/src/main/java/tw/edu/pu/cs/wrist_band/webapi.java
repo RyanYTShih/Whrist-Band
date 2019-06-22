@@ -118,7 +118,17 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_UploadMeasureLog(final String SerialID, final String PersonalID, final String BandID, final String Steps, final String Distance, final String ExerciseCalories, final String RestCalories, final String Heartrate, final String StartTime, final String StopTime){
+    static void api_UploadMeasureLog(
+            final String SerialID,
+            final String PersonalID,
+            final String BandID,
+            final String Steps,
+            final String Distance,
+            final String ExerciseCalories,
+            final String RestCalories,
+            final String Heartrate,
+            final String StartTime,
+            final String StopTime) {
 
         Runnable exec = new Runnable() {
             @Override

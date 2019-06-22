@@ -18,7 +18,7 @@
             android:id="@+id/igvmove"
             android:layout_width="67dp"
             android:layout_height="67dp"
-            app:srcCompat="@drawable/wolf" />
+            app:srcCompat="@drawable/wolf1" />
 
         android:layout
     </RelativeLayout>
@@ -47,6 +47,6 @@
         app:layout_constraintEnd_toStartOf="@+id/layout"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/redcap" />
+        app:srcCompat="@drawable/redcup1" />
 
 </android.support.constraint.ConstraintLayout>

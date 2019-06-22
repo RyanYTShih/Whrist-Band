@@ -12,6 +12,7 @@ public class Mapper extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapper);
+        getSupportActionBar().hide(); //隱藏標題
         pin = findViewById(R.id.pin);
         pin2 = findViewById(R.id.pin2);
         pin3 = findViewById(R.id.pin3);
