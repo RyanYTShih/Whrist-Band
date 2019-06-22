@@ -42,6 +42,7 @@ public class Mario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mario);
+        getSupportActionBar().hide(); //隱藏標題
         gameFrame = findViewById(R.id.gameFrame);
         startLayout = findViewById(R.id.startLayout);
         mario = findViewById(R.id.mario);

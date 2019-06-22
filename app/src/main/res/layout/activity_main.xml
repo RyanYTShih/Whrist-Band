@@ -68,7 +68,7 @@
 
         <ListView
             android:id="@+id/pm25"
-            android:layout_width="152dp"
+            android:layout_width="174dp"
             android:layout_height="54dp"
             android:listSelector="@android:color/transparent"
             tools:layout_editor_absoluteX="0dp"
