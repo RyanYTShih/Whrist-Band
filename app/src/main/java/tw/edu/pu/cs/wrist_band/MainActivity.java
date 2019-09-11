@@ -103,14 +103,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /* Test for webapi
-        webapi.api_UploadUser("D1234","Kevin","1234","male","56","160","70");
-        webapi.api_UploadSleepSummary("1","D1234","QAZ123","2019-06-13 02:01:09","2019-06-13 02:01:09","2019-06-13 02:01:09","2019-06-13 02:01:09","2019-06-13 02:01:09");
-        webapi.api_UploadMeasureLog("2","D1234","QAZ123","1500","10","150","200","80","2019-06-13 02:01:09","2019-06-13 02:01:09");
-        webapi.api_GetWeekSteps("A1234","QAZ123");
-        webapi.api_GetExerciseCalories("A1234","QAZ123");
-        webapi.api_GetSleepSummary("A1234","QAZ123");
-        */
+        // Test for webapi
+       // webapi.api_UploadUser("D1234","Kevin","1234","male","56","160","70");
+       // webapi.api_UploadSleepSummary("1","D1234","QAZ123","2019-06-13 02:01:09","2019-06-13 02:01:09","2019-06-13 02:01:09","2019-06-13 02:01:09","2019-06-13 02:01:09");
+       // webapi.api_UploadMeasureLog("2","D1234","QAZ123","1500","10","150","200","80","2019-06-13 02:01:09","2019-06-13 02:01:09");
+       // webapi.api_GetDaySteps("A123456789","PS-100 425");
+       // webapi.api_GetSleepInterval("A123456789","PS-100 425");
+       // webapi.api_GetDeepLightTime("A123456789","PS-100 425");
+       // webapi.api_GetExerciseCalories("A123456789","PS-100 425");
+       // webapi.api_GetRestCalories("A123456789","PS-100 425");
+        // webapi.api_GetTotalCalories("A123456789","PS-100 425");
+
+        //
 
     }
 

@@ -181,12 +181,12 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_GetWeekSteps(final String PersonalID, final String BandID){
+    static void api_GetDaySteps(final String PersonalID, final String BandID){
 
         Runnable exec = new Runnable() {
             @Override
             public void run() {
-                String url = "http://120.110.112.151:8080/GetWeekSteps";
+                String url = "http://120.110.112.151:8080/GetDaySteps";
                 DefaultHttpClient client4 = new DefaultHttpClient();
                 try {
                     // 利用get method 取得laravel csrf token;
@@ -214,7 +214,7 @@ public class webapi {
                     result = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("WeekSteps",result);
+                    Log.d("DaySteps",result);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");
@@ -228,17 +228,17 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_GetSleepSummary(final String PersonalID, final String BandID){
+    static void api_GetSleepInterval(final String PersonalID, final String BandID){
 
         Runnable exec = new Runnable() {
             @Override
             public void run() {
-                String url = "http://120.110.112.151:8080/GetSleepSummary";
-                DefaultHttpClient client4 = new DefaultHttpClient();
+                String url = "http://120.110.112.151:8080/GetSleepInterval";
+                DefaultHttpClient client5 = new DefaultHttpClient();
                 try {
                     // 利用get method 取得laravel csrf token;
                     HttpGet get = new HttpGet(url);
-                    HttpResponse response = client4.execute(get);
+                    HttpResponse response = client5.execute(get);
                     HttpEntity resEntity = response.getEntity();
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
@@ -256,12 +256,59 @@ public class webapi {
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-                    response = client4.execute(post);
+                    response = client5.execute(post);
                     resEntity = response.getEntity();
                     result = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("SleepSummary",result);
+                    Log.d("SleepInterval",result);
+                }
+                catch (Exception e) {
+                    Log.e("Label", "----------------");
+                    e.printStackTrace();
+                    //Log.d("error1:", e.getMessage());
+                }
+
+            }
+        };
+
+        (new Thread(exec)).start();
+
+    }
+    static void api_GetDeepLightTime(final String PersonalID, final String BandID){
+
+        Runnable exec = new Runnable() {
+            @Override
+            public void run() {
+                String url = "http://120.110.112.151:8080/GetDeepLightTime";
+                DefaultHttpClient client6 = new DefaultHttpClient();
+                try {
+                    // 利用get method 取得laravel csrf token;
+                    HttpGet get = new HttpGet(url);
+                    HttpResponse response = client6.execute(get);
+                    HttpEntity resEntity = response.getEntity();
+                    String result = EntityUtils.toString(resEntity);
+                    int pos = result.indexOf("_token");
+                    String substr = result.substring(pos);
+                    String token = substr.substring(15,substr.length()-11);
+                    Log.e("Label", "----------------");
+                    Log.d("----substr",substr);
+                    Log.d("----token",token);
+
+
+                    //利用post mothod 傳入web api;
+                    HttpPost post = new HttpPost(url);
+                    List<NameValuePair> params = new ArrayList<>();
+                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("PersonalID", PersonalID));
+                    params.add(new BasicNameValuePair("BandID", BandID));
+                    post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+                    response = client6.execute(post);
+                    resEntity = response.getEntity();
+                    result = EntityUtils.toString(resEntity);
+                    int status = response.getStatusLine().getStatusCode();
+                    Log.d("api status", String.valueOf(status));
+                    Log.d("DeepLightTime",result);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");
@@ -281,11 +328,11 @@ public class webapi {
             @Override
             public void run() {
                 String url = "http://120.110.112.151:8080/GetExerciseCalories";
-                DefaultHttpClient client4 = new DefaultHttpClient();
+                DefaultHttpClient client7 = new DefaultHttpClient();
                 try {
                     // 利用get method 取得laravel csrf token;
                     HttpGet get = new HttpGet(url);
-                    HttpResponse response = client4.execute(get);
+                    HttpResponse response = client7.execute(get);
                     HttpEntity resEntity = response.getEntity();
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
@@ -303,12 +350,106 @@ public class webapi {
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-                    response = client4.execute(post);
+                    response = client7.execute(post);
                     resEntity = response.getEntity();
                     result = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
                     Log.d("ExerciseCalories",result);
+                }
+                catch (Exception e) {
+                    Log.e("Label", "----------------");
+                    e.printStackTrace();
+                    //Log.d("error1:", e.getMessage());
+                }
+
+            }
+        };
+
+        (new Thread(exec)).start();
+
+    }
+    static void api_GetRestCalories(final String PersonalID, final String BandID){
+
+        Runnable exec = new Runnable() {
+            @Override
+            public void run() {
+                String url = "http://120.110.112.151:8080/GetRestCalories";
+                DefaultHttpClient client8 = new DefaultHttpClient();
+                try {
+                    // 利用get method 取得laravel csrf token;
+                    HttpGet get = new HttpGet(url);
+                    HttpResponse response = client8.execute(get);
+                    HttpEntity resEntity = response.getEntity();
+                    String result = EntityUtils.toString(resEntity);
+                    int pos = result.indexOf("_token");
+                    String substr = result.substring(pos);
+                    String token = substr.substring(15,substr.length()-11);
+                    Log.e("Label", "----------------");
+                    Log.d("----substr",substr);
+                    Log.d("----token",token);
+
+
+                    //利用post mothod 傳入web api;
+                    HttpPost post = new HttpPost(url);
+                    List<NameValuePair> params = new ArrayList<>();
+                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("PersonalID", PersonalID));
+                    params.add(new BasicNameValuePair("BandID", BandID));
+                    post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+                    response = client8.execute(post);
+                    resEntity = response.getEntity();
+                    result = EntityUtils.toString(resEntity);
+                    int status = response.getStatusLine().getStatusCode();
+                    Log.d("api status", String.valueOf(status));
+                    Log.d("RestCalories",result);
+                }
+                catch (Exception e) {
+                    Log.e("Label", "----------------");
+                    e.printStackTrace();
+                    //Log.d("error1:", e.getMessage());
+                }
+
+            }
+        };
+
+        (new Thread(exec)).start();
+
+    }
+    static void api_GetTotalCalories(final String PersonalID, final String BandID){
+
+        Runnable exec = new Runnable() {
+            @Override
+            public void run() {
+                String url = "http://120.110.112.151:8080/GetTotalCalories";
+                DefaultHttpClient client9 = new DefaultHttpClient();
+                try {
+                    // 利用get method 取得laravel csrf token;
+                    HttpGet get = new HttpGet(url);
+                    HttpResponse response = client9.execute(get);
+                    HttpEntity resEntity = response.getEntity();
+                    String result = EntityUtils.toString(resEntity);
+                    int pos = result.indexOf("_token");
+                    String substr = result.substring(pos);
+                    String token = substr.substring(15,substr.length()-11);
+                    Log.e("Label", "----------------");
+                    Log.d("----substr",substr);
+                    Log.d("----token",token);
+
+
+                    //利用post mothod 傳入web api;
+                    HttpPost post = new HttpPost(url);
+                    List<NameValuePair> params = new ArrayList<>();
+                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("PersonalID", PersonalID));
+                    params.add(new BasicNameValuePair("BandID", BandID));
+                    post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+                    response = client9.execute(post);
+                    resEntity = response.getEntity();
+                    result = EntityUtils.toString(resEntity);
+                    int status = response.getStatusLine().getStatusCode();
+                    Log.d("api status", String.valueOf(status));
+                    Log.d("TotalCalories",result);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");
