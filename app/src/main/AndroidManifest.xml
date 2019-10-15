@@ -3,17 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="tw.edu.pu.cs.wrist_band">
 
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission
-        android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +11,8 @@
         android:roundIcon="@drawable/icon_use"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MusicPlayer5"></activity>
+        <activity android:name=".MPAndroidChart"></activity>
+        <activity android:name=".MusicPlayer5" />
         <activity android:name=".MusicPlayer4" />
         <activity android:name=".MusicPlayer3" />
         <activity android:name=".MusicPlayer2" />
@@ -52,11 +42,8 @@
         <activity android:name=".Music" />
         <activity android:name=".Mapper" />
 
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
         <activity android:name=".EzGame" />
+
         <activity
             android:name=".ExerLevel"
             android:screenOrientation="portrait" />
@@ -132,6 +119,20 @@
         <activity
             android:name=".ScanActivity"
             android:screenOrientation="portrait" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
 </manifest>

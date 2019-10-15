@@ -20,7 +20,7 @@ public class ELDER extends AppCompatActivity {
                 public void onClick(View v) {
                     switch (v.getId()) {
                         case R.id.datasearch: {
-                            intent = new Intent(ELDER.this, healthreport.class);
+                            intent = new Intent(ELDER.this, MPAndroidChart.class);
                             startActivity(intent);
                             break;
                         }
