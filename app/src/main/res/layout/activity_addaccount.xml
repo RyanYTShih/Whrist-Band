@@ -6,81 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".addaccount">
 
-    <TableLayout
-        android:layout_width="373dp"
-        android:layout_height="194dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginEnd="19dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/editText3"
-                style="@android:style/Widget.Material.Light.AutoCompleteTextView"
-                android:layout_width="130dp"
-                android:layout_height="91dp"
-                android:layout_gravity="center"
-                android:background="@drawable/table3"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="姓名"
-                android:inputType="textPersonName" />
-
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="153dp"
-                android:layout_height="91dp"
-                android:background="@drawable/table3"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="身分證字號"
-                android:inputType="text"
-                tools:ignore="RtlCompat" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/editText2"
-                android:layout_width="147dp"
-                android:layout_height="88dp"
-                android:background="@drawable/table3"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="密碼"
-                android:inputType="textPassword"
-                tools:ignore="RtlCompat" />
-
-            <Spinner
-                android:id="@+id/spinner4"
-                android:layout_width="126dp"
-                android:layout_height="88dp"
-                android:background="@drawable/table3"
-                android:gravity="center"
-                tools:ignore="RtlCompat" />
-
-            <Button
-                android:id="@+id/button9"
-                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-                android:layout_width="71dp"
-                android:layout_height="88dp"
-                android:background="@drawable/buttonback"
-                android:text="新增"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@color/colorPrimaryDark"
-                tools:ignore="RtlCompat" />
-        </TableRow>
-
-    </TableLayout>
-
     <ImageView
         android:id="@+id/imageView25"
         android:layout_width="174dp"
@@ -91,5 +16,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/young_avatar" />
+
+    <LinearLayout
+        android:layout_width="411dp"
+        android:layout_height="483dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView25">
+
+        <EditText
+            android:id="@+id/editText3"
+            style="@android:style/Widget.Material.Light.AutoCompleteTextView"
+            android:layout_width="399dp"
+            android:layout_height="98dp"
+            android:layout_gravity="center"
+
+            android:ems="10"
+            android:gravity="center"
+            android:hint="姓名"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editText"
+            style="@android:style/Widget.Material.Light.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="107dp"
+
+            android:ems="10"
+            android:gravity="center"
+            android:hint="身分證字號"
+            android:inputType="text"
+            tools:ignore="RtlCompat" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+
+            android:ems="10"
+            android:gravity="center"
+            android:hint="密碼"
+            android:inputType="textPassword"
+            tools:ignore="RtlCompat" />
+
+        <Spinner
+            android:id="@+id/spinner4"
+            android:layout_width="426dp"
+            android:layout_height="83dp"
+
+            android:gravity="center"
+            tools:ignore="RtlCompat" />
+
+        <Button
+            android:id="@+id/button9"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="421dp"
+            android:layout_height="82dp"
+            android:background="@drawable/buttonback"
+            android:text="新增"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorPrimaryDark"
+            tools:ignore="RtlCompat" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -104,11 +104,20 @@ public class MusicPlayer4 extends AppCompatActivity implements SensorEventListen
     public void pause(View view){
         Toast.makeText(getApplicationContext(), "Pausing sound",
                 Toast.LENGTH_SHORT).show();
-        mediaPlayer.pause();
+        if (mediaPlayer.isPlaying()){
+            mediaPlayer.pause();
+        }
         pauseButton.setEnabled(false);
         playButton.setEnabled(true);
         sm.unregisterListener(this);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mediaPlayer.stop();
+    }
+
     public void forward(View view){
         int temp = (int)startTime;
         if((temp+forwardTime)<=finalTime){

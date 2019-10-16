@@ -12,7 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/motion"
@@ -30,29 +34,14 @@
             android:scaleType="fitXY"
             app:srcCompat="@drawable/elder_report_use1" />
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/musicbtn01"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:orientation="horizontal">
+            android:layout_height="233dp"
+            android:backgroundTint="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/musicbtn01" />
 
-            <ImageButton
-                android:id="@+id/musicbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/elder_music" />
-
-            <ImageButton
-                android:id="@+id/mapbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/elder_map" />
-        </LinearLayout>
 
     </LinearLayout>
 

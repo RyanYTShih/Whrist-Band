@@ -88,15 +88,17 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
     @Override
     protected void onPause() {
 
-        sensorManager.unregisterListener(this);
         super.onPause();
+        sensorManager.unregisterListener(this);
+        soundPool.stop(sound);
     }
 
     @Override
     protected void onStop() {
 
-        sensorManager.unregisterListener(this);
         super.onStop();
+        sensorManager.unregisterListener(this);
+        soundPool.stop(sound);
     }
 
 
