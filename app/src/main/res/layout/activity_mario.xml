@@ -22,65 +22,72 @@
         />
 
     <FrameLayout
+        android:id="@+id/gameFrame"
         android:layout_width="260dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:background="@android:color/white"
-        android:id="@+id/gameFrame">
+        android:background="@android:color/white">
 
         <ImageView
             android:id="@+id/mario"
             android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_height="77dp"
             android:layout_gravity="bottom"
+            android:scaleType="centerCrop"
             android:src="@drawable/mario_right"
-            android:visibility="invisible"/>
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/coin"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/coin"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
+
         <ImageView
             android:id="@+id/box"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/box"
             android:visibility="invisible" />
+
         <LinearLayout
+            android:id="@+id/startLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/startLayout"
-            android:orientation="vertical"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:layout_gravity="center">
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="catch the coin"
-                android:textSize="24sp"
-                android:layout_marginTop="20dp"/>
+                android:textSize="24sp" />
+
             <TextView
                 android:id="@+id/highScoreLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
                 android:text="High Score : 300"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginTop="80dp"/>
+                android:textStyle="bold" />
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="START"
                 android:layout_marginTop="60dp"
-                android:onClick="startGame"/>
+                android:onClick="startGame"
+                android:text="START" />
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="QUIT"
+                android:layout_marginTop="20dp"
                 android:onClick="quitGame"
-                android:layout_marginTop="20dp"/>
+                android:text="QUIT" />
 
 
         </LinearLayout>

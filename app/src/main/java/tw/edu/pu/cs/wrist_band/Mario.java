@@ -1,5 +1,6 @@
 package tw.edu.pu.cs.wrist_band;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -53,6 +54,10 @@ public class Mario extends AppCompatActivity {
 
         imageMarioLeft = getResources().getDrawable(R.drawable.mario_left);
         imageMarioRight = getResources().getDrawable(R.drawable.mario_right);
+
+        settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
+        highscore = settings.getInt("HIGH_SCORE",0);
+        hightScoreLabel.setText("High Score : "+highscore);
 
     }
     public void changePos(){
@@ -143,6 +148,14 @@ public class Mario extends AppCompatActivity {
         mario.setVisibility(View.INVISIBLE);
         box.setVisibility(View.INVISIBLE);
         coin.setVisibility(View.INVISIBLE);
+
+        if (score > highscore){
+            highscore = score;
+            hightScoreLabel.setText("High Score : "+highscore);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("HIGH_SCORE",highscore);
+            editor.commit();
+        }
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
