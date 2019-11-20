@@ -24,12 +24,13 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
     private float r[] = new float[9];
     private float values[] = new float[3];
     int sound,theEnd,Warn;
-    TextView txv2;
+    TextView txv2,txv3;
     Button btn;
     private LevelView levelView;
     private TextView tvHorz;
     private TextView tvVert;
     ImageView img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         tvVert = (TextView) findViewById(R.id.tvv_vertical);
         tvHorz = (TextView) findViewById(R.id.tvv_horz);
         txv2 = findViewById(R.id.txv2);
+        txv3 = findViewById(R.id.txv3);
         btn = findViewById(R.id.btn);
         img = findViewById(R.id.img);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -57,6 +59,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
                     img.setVisibility(View.INVISIBLE);
                 }
             };
+
     CountDownTimer timer = new CountDownTimer(10000,1000) {
         @Override
         public void onTick(long millisUntilFinished) {
@@ -136,5 +139,15 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         tvHorz.setText(String.valueOf((int) Math.toDegrees(rollAngle)) + "°");
         tvVert.setText(String.valueOf((int) Math.toDegrees(pitchAngle)) + "°");
 
+        if(levelView.isCenter) {
+            txv3.setVisibility(View.VISIBLE);
+            btn.setEnabled(true);
+            img.setVisibility(View.VISIBLE);
+            txv2.setText("結束");
+
+            timer.cancel();
+        }else{
+            txv3.setVisibility(View.INVISIBLE);
+        }
     }
 }

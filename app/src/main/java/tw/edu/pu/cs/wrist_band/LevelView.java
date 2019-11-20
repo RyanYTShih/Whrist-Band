@@ -8,6 +8,7 @@ import android.graphics.PointF;
 import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.TextView;
 
 public class LevelView extends View {
     private float mLimitRadius = 0;
@@ -27,6 +28,8 @@ public class LevelView extends View {
     private double pitchAngle = -90;
     private double rollAngle = -90;
     private Vibrator vibrator;
+    public boolean isCenter;
+
 
     public LevelView(Context context) {
         super(context);
@@ -48,7 +51,6 @@ public class LevelView extends View {
                 attrs, R.styleable.LevelView, defStyle, 0);
 
         mBubbleRuleColor = a.getColor(R.styleable.LevelView_bubbleRuleColor, mBubbleRuleColor);
-
         mBubbleColor = a.getColor(R.styleable.LevelView_bubbleColor, mBubbleColor);
         mLimitColor = a.getColor(R.styleable.LevelView_limitColor, mLimitColor);
 
@@ -113,14 +115,15 @@ public class LevelView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        boolean isCenter = isCenter(bubblePoint);
+        isCenter = isCenter(bubblePoint);
         int limitCircleColor = isCenter ? mHorizontalColor : mLimitColor;
         int bubbleColor = isCenter ? mHorizontalColor : mBubbleColor;
 
         //水平时振动
         if (isCenter) {
             vibrator.vibrate(10);
-        }
+
+    }
 
         mBubblePaint.setColor(bubbleColor);
         mLimitPaint.setColor(limitCircleColor);
@@ -136,9 +139,11 @@ public class LevelView extends View {
 
         if (bubblePoint == null) {
             return false;
+
         }
 
         return Math.abs(bubblePoint.x - centerPnt.x) < 1 && Math.abs(bubblePoint.y - centerPnt.y) < 1;
+
     }
 
     private void drawBubble(Canvas canvas) {
