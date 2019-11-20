@@ -28,8 +28,7 @@ public class LevelView extends View {
     private double pitchAngle = -90;
     private double rollAngle = -90;
     private Vibrator vibrator;
-    public boolean isCenter;
-
+    private boolean isCenter;
 
     public LevelView(Context context) {
         super(context);
@@ -215,6 +214,8 @@ public class LevelView extends View {
         return this.rollAngle;
     }
 
-
+    public boolean isCenter() {
+        return isCenter;
+    }
 }
 

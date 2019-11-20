@@ -75,6 +75,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
             soundPool.play(theEnd,1.0F,1.0F,0,0,1.0F);
             btn.setEnabled(true);
             img.setVisibility(View.VISIBLE);
+            txv3.setVisibility(View.INVISIBLE);
         }
     };
 
@@ -139,7 +140,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         tvHorz.setText(String.valueOf((int) Math.toDegrees(rollAngle)) + "°");
         tvVert.setText(String.valueOf((int) Math.toDegrees(pitchAngle)) + "°");
 
-        if(levelView.isCenter) {
+        if(levelView.isCenter()) {
             txv3.setVisibility(View.VISIBLE);
             btn.setEnabled(true);
             img.setVisibility(View.VISIBLE);
