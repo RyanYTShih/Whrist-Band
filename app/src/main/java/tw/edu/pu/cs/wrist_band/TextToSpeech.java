@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -53,6 +54,7 @@ public class TextToSpeech {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, error.toString());
+                Toast.makeText(mContext, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
@@ -103,12 +105,14 @@ public class TextToSpeech {
                     mediaPlayer.start();
                 } catch (Exception e) {
                     Log.d(TAG, e.getMessage());
+                    Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, error.toString());
+                Toast.makeText(mContext, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
