@@ -16,6 +16,13 @@ import java.util.List;
 
 public class webapi {
 
+    static String step="";
+    static String sleepinterval="";
+    static String deeplighttime="";
+    static String exercisecalories="";
+    static String restcalories="";
+    static String totalcalories="";
+    static String heartrate="";
 
     static void api_UploadUser(final String PersonalID,final String Name,final String Password,final String Gender,final String Age,final String Height,final String Weight){
 
@@ -211,10 +218,10 @@ public class webapi {
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
                     response = client4.execute(post);
                     resEntity = response.getEntity();
-                    result = EntityUtils.toString(resEntity);
+                    step= EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("DaySteps",result);
+                    Log.d("DaySteps",step);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");
@@ -258,10 +265,10 @@ public class webapi {
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
                     response = client5.execute(post);
                     resEntity = response.getEntity();
-                    result = EntityUtils.toString(resEntity);
+                    sleepinterval = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("SleepInterval",result);
+                    Log.d("SleepInterval",sleepinterval);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");
@@ -305,10 +312,10 @@ public class webapi {
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
                     response = client6.execute(post);
                     resEntity = response.getEntity();
-                    result = EntityUtils.toString(resEntity);
+                    deeplighttime = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("DeepLightTime",result);
+                    Log.d("DeepLightTime",deeplighttime);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");
@@ -352,10 +359,10 @@ public class webapi {
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
                     response = client7.execute(post);
                     resEntity = response.getEntity();
-                    result = EntityUtils.toString(resEntity);
+                    exercisecalories = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("ExerciseCalories",result);
+                    Log.d("ExerciseCalories",exercisecalories);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");
@@ -399,10 +406,10 @@ public class webapi {
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
                     response = client8.execute(post);
                     resEntity = response.getEntity();
-                    result = EntityUtils.toString(resEntity);
+                    restcalories = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("RestCalories",result);
+                    Log.d("RestCalories",restcalories);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");
@@ -446,10 +453,10 @@ public class webapi {
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
                     response = client9.execute(post);
                     resEntity = response.getEntity();
-                    result = EntityUtils.toString(resEntity);
+                    totalcalories = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("TotalCalories",result);
+                    Log.d("TotalCalories",totalcalories);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");
@@ -493,10 +500,10 @@ public class webapi {
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
                     response = client10.execute(post);
                     resEntity = response.getEntity();
-                    result = EntityUtils.toString(resEntity);
+                    heartrate = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("Heartrate",result);
+                    Log.d("Heartrate",heartrate);
                 }
                 catch (Exception e) {
                     Log.e("Label", "----------------");

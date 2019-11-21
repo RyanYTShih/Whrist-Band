@@ -3,6 +3,7 @@ package tw.edu.pu.cs.wrist_band;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -26,6 +27,9 @@ public class MPAndroidChart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mpandroid_chart);
 
+        String heartrate = webapi.heartrate;
+       // Toast.makeText(this,heartrate,Toast.LENGTH_LONG).show();
+
         pieChart=findViewById(R.id.ppie);
         pieChart.setDrawHoleEnabled(false);
         PieDataSet pieDataSet=new PieDataSet(dataValuese(),"");
@@ -36,6 +40,8 @@ public class MPAndroidChart extends AppCompatActivity {
         pieChart.invalidate();
 
 
+        String step = webapi.step;
+      //  Toast.makeText(this,step,Toast.LENGTH_LONG).show();
 
         barChart = findViewById(R.id.chart1);
 
