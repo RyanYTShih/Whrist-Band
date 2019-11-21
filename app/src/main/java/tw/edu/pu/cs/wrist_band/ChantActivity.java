@@ -54,17 +54,13 @@ public class ChantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chant);
 
-        setTitle("讀經");
+        setTitle("誦經");
 
         Book[] books = new Book[] {
                 new Book(getString(R.string.心經title), getString(R.string.心經text), ""),
                 new Book(getString(R.string.大悲咒title), getString(R.string.大悲咒text), ""),
                 new Book(getString(R.string.金剛經title), getString(R.string.金剛經text), ""),
                 new Book(getString(R.string.陀羅尼title), getString(R.string.陀羅尼text), "")
-//                new Book("PS-100-425", "CD:C1:16:DD:35:E4", ""),
-//                new Book("PS-100-525", "CD:C1:16:DD:35:E4", ""),
-//                new Book("PS-100-625", "CD:C1:16:DD:35:E4", ""),
-//                new Book("PS-100-725", "CD:C1:16:DD:35:E4", "")
         };
 
         cardAdapter = new CardAdapter(this, R.layout.article_adapter);
