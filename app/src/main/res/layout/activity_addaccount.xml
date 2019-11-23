@@ -15,7 +15,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/young_avatar" />
+        app:srcCompat="@drawable/icon_use" />
 
     <LinearLayout
         android:layout_width="411dp"
@@ -29,55 +29,63 @@
         <EditText
             android:id="@+id/editText3"
             style="@android:style/Widget.Material.Light.AutoCompleteTextView"
-            android:layout_width="399dp"
+            android:layout_width="346dp"
             android:layout_height="98dp"
             android:layout_gravity="center"
 
             android:ems="10"
             android:gravity="center"
             android:hint="姓名"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="48sp" />
 
         <EditText
             android:id="@+id/editText"
             style="@android:style/Widget.Material.Light.AutoCompleteTextView"
-            android:layout_width="match_parent"
+            android:layout_width="346dp"
             android:layout_height="107dp"
 
+            android:layout_gravity="center"
             android:ems="10"
             android:gravity="center"
             android:hint="身分證字號"
             android:inputType="text"
+            android:textSize="48sp"
             tools:ignore="RtlCompat" />
 
         <EditText
             android:id="@+id/editText2"
-            android:layout_width="match_parent"
+            android:layout_width="346dp"
             android:layout_height="95dp"
 
+            android:layout_gravity="center"
             android:ems="10"
             android:gravity="center"
             android:hint="密碼"
             android:inputType="textPassword"
+            android:textSize="48sp"
             tools:ignore="RtlCompat" />
 
         <Spinner
             android:id="@+id/spinner4"
-            android:layout_width="426dp"
+            android:layout_width="346dp"
             android:layout_height="83dp"
 
+            android:layout_gravity="center"
             android:gravity="center"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/button9"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="421dp"
+            android:layout_width="346dp"
             android:layout_height="82dp"
+            android:layout_gravity="center"
             android:background="@drawable/buttonback"
             android:text="新增"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/colorPrimaryDark"
+            android:textSize="48sp"
             tools:ignore="RtlCompat" />
     </LinearLayout>
 

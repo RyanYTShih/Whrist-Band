@@ -20,34 +20,34 @@
 
             <ImageButton
                 android:id="@+id/blecoll"
-                android:layout_width="wrap_content"
-                android:layout_height="231dp"
+                android:layout_width="match_parent"
+                android:layout_height="202dp"
                 android:backgroundTint="@android:color/transparent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/ps01" />
 
             <ImageButton
                 android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="231dp"
+                android:layout_width="match_parent"
+                android:layout_height="202dp"
                 android:backgroundTint="@android:color/transparent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/account01" />
 
             <ImageButton
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
-                android:layout_height="231dp"
+                android:layout_height="202dp"
                 android:backgroundTint="@android:color/transparent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/data02" />
 
             <ImageButton
                 android:id="@+id/uploadd"
                 android:layout_width="match_parent"
-                android:layout_height="231dp"
+                android:layout_height="202dp"
                 android:backgroundTint="@android:color/transparent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/upload02" />
 
 
