@@ -98,24 +98,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center|top"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="維持水平垂直0°"
+                android:gravity="center|top"
+                android:text="維持水平"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="36sp" />
 
-            <TextView
-                android:id="@+id/txv3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="成功"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:visibility="invisible" />
         </LinearLayout>
 
     </LinearLayout>

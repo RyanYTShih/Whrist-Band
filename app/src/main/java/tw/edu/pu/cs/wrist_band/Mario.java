@@ -3,6 +3,8 @@ package tw.edu.pu.cs.wrist_band;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Mario extends AppCompatActivity {
     FrameLayout gameFrame;
-    int frameHeight,frameWidth,initalframeWidth;
+    int frameHeight,frameWidth,initalframeWidth,coinsound,lose;
     Drawable imageMarioRight,imageMarioLeft;
     LinearLayout startLayout;
     ImageView box,mario,coin;
@@ -35,6 +37,8 @@ public class Mario extends AppCompatActivity {
     //class
     Timer timer;
     Handler handler = new Handler();
+    SoundPool soundPool;
+
 
     //Status
     boolean start_flg = false;
@@ -59,17 +63,23 @@ public class Mario extends AppCompatActivity {
         highscore = settings.getInt("HIGH_SCORE",0);
         hightScoreLabel.setText("High Score : "+highscore);
 
+        soundPool =new SoundPool(1, AudioManager.STREAM_MUSIC,5);
+        coinsound = soundPool.load(this,R.raw.coinsound,1);
+        lose = soundPool.load(this,R.raw.lose,1);
+
     }
     public void changePos(){
         timeCount +=20;
 
         //coin
         coinY +=12;
+
         float coinCenterX = coinX + coin.getWidth() / 2;
         float coinCenterY = coinY + coin.getHeight() / 2;
         if(hitCheck(coinCenterX, coinCenterY)){
             coinY = frameHeight + 100;
             score += 10;
+            soundPool.play(coinsound,1.0F,1.0F,0,0,1.0F);
             if (initalframeWidth > frameWidth *110/100){
                 frameWidth = frameWidth *110/100;
                 changeFrameWidth(frameWidth);
@@ -148,7 +158,7 @@ public class Mario extends AppCompatActivity {
         mario.setVisibility(View.INVISIBLE);
         box.setVisibility(View.INVISIBLE);
         coin.setVisibility(View.INVISIBLE);
-
+        soundPool.play(lose,1.0F,1.0F,0,0,1.0F);
         if (score > highscore){
             highscore = score;
             hightScoreLabel.setText("High Score : "+highscore);
