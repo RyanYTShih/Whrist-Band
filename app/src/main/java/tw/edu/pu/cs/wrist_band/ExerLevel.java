@@ -24,7 +24,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
     private float[] magValues = new float[3];
     private float r[] = new float[9];
     private float values[] = new float[3];
-    int sound,theEnd,Warn,correct;
+    int sound,theEnd,Warn,correct,county;
     TextView txv2,txv3;
     Button btn;
     private LevelView levelView;
@@ -58,6 +58,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
             Button.OnClickListener(){
                 @Override
                 public void onClick(View v) {
+                    county=1;
                     timer.start();
                     btn.setEnabled(false);
                     img.setVisibility(View.INVISIBLE);
@@ -71,10 +72,12 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
             txv2.setText("剩餘時間:"+millisUntilFinished/1000);
                 soundPool.play(sound,1.0F,1.0F,0,0,1.0F);
 
+
         }
 
         @Override
         public void onFinish() {
+            county=0;
             txv2.setText("結束");
             txv2.setEnabled(true);
             soundPool.play(theEnd,1.0F,1.0F,0,0,1.0F);
@@ -114,24 +117,22 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        int sensorType = event.sensor.getType();
-        switch (sensorType) {
-            case Sensor.TYPE_ACCELEROMETER:
-                accValues = event.values.clone();
-                break;
-            case Sensor.TYPE_MAGNETIC_FIELD:
-                magValues = event.values.clone();
-                break;
-        }
-        SensorManager.getRotationMatrix(r, null, accValues, magValues);
-        SensorManager.getOrientation(r, values);
+            int sensorType = event.sensor.getType();
+            switch (sensorType) {
+                case Sensor.TYPE_ACCELEROMETER:
+                    accValues = event.values.clone();
+                    break;
+                case Sensor.TYPE_MAGNETIC_FIELD:
+                    magValues = event.values.clone();
+                    break;
+            }
+            SensorManager.getRotationMatrix(r, null, accValues, magValues);
+            SensorManager.getOrientation(r, values);
 
-
-        float azimuth = values[0];
-        float pitchAngle = values[1];
-        float rollAngle = -values[2];
-
-        onAngleChanged(rollAngle, pitchAngle, azimuth);
+            float azimuth = values[0];
+            float pitchAngle = values[1];
+            float rollAngle = -values[2];
+            onAngleChanged(rollAngle, pitchAngle, azimuth);
     }
 
     @Override
@@ -141,24 +142,21 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
 
     private void onAngleChanged(float rollAngle, float pitchAngle, float azimuth) {
 
-        levelView.setAngle(rollAngle, pitchAngle);
+            levelView.setAngle(rollAngle, pitchAngle);
 
-        tvHorz.setText(String.valueOf((int) Math.toDegrees(rollAngle)) + "°");
-        tvVert.setText(String.valueOf((int) Math.toDegrees(pitchAngle)) + "°");
+            tvHorz.setText(String.valueOf((int) Math.toDegrees(rollAngle)) + "°");
+            tvVert.setText(String.valueOf((int) Math.toDegrees(pitchAngle)) + "°");
 
+            if(county==1) {
+                if (levelView.isCenter()) {
 
-
-        if(levelView.isCenter()) {
-
-            btn.setEnabled(true);
-            img.setVisibility(View.VISIBLE);
-            txv2.setText("結束");
-            soundPool.play(correct,1.0F,1.0F,0,0,1.0F);
-            timer.cancel();
-            finish();
-
-
-        }
-
+                    btn.setEnabled(true);
+                    img.setVisibility(View.VISIBLE);
+                    txv2.setText("結束");
+                    soundPool.play(correct, 1.0F, 1.0F, 0, 0, 1.0F);
+                    timer.cancel();
+                    county=0;
+                }
+            }
     }
 }

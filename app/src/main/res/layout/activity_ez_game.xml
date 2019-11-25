@@ -11,8 +11,8 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-38dp">
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="27dp">
 
         <ImageView
             android:id="@+id/igvmove"
@@ -20,21 +20,22 @@
             android:layout_height="67dp"
             app:srcCompat="@drawable/wolf1" />
 
+        <TextView
+            android:id="@+id/txv2"
+            android:layout_width="353dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="29dp"
+            android:layout_marginEnd="29dp"
+            android:layout_marginBottom="23dp"
+            android:text="角度"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="36sp" />
+
         android:layout
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/txv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="角度"
-        android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
 
     <ImageView
         android:id="@+id/imageView2"
