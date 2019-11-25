@@ -1,10 +1,12 @@
 package tw.edu.pu.cs.wrist_band;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,7 +34,7 @@ public class Mario extends AppCompatActivity {
     float boxX,boxY;
     //score
     TextView scoreLabel,hightScoreLabel;
-    int score,highscore,timeCount;
+    int score,highscore,timeCount,monster;
     SharedPreferences settings;
     //class
     Timer timer;
@@ -66,6 +68,7 @@ public class Mario extends AppCompatActivity {
         soundPool =new SoundPool(1, AudioManager.STREAM_MUSIC,5);
         coinsound = soundPool.load(this,R.raw.coinsound,1);
         lose = soundPool.load(this,R.raw.lose,1);
+        monster = soundPool.load(this,R.raw.monster,1);
 
     }
     public void changePos(){
@@ -93,14 +96,14 @@ public class Mario extends AppCompatActivity {
         coin.setY(coinY);
 
         //box
-        boxY  += 18;
+        boxY  += 14;
         float boxCenterX = boxX + box.getWidth() / 2;
         float boxCenterY = boxY + box.getHeight() /2;
         if(hitCheck(boxCenterX,boxCenterY)){
             boxY = frameHeight + 100;
             frameWidth = frameWidth* 80 /100;
             changeFrameWidth(frameWidth);
-
+            soundPool.play(monster,1.0F,1.0F,0,0,1.0F);
             if(frameWidth<mariosize){
                 //Game over
                 gameover();
@@ -223,6 +226,40 @@ public class Mario extends AppCompatActivity {
         },0,20);
     }
     public void quitGame(View view){
-    finish();
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
+            finishAndRemoveTask();
+        }else {
+            finish();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        timer.cancel();
+        timer = null;
+        start_flg = false;
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        mario.setVisibility(View.INVISIBLE);
+        box.setVisibility(View.INVISIBLE);
+        coin.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+
     }
 }

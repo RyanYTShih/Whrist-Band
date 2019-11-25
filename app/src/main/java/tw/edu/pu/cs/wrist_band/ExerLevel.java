@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Timer;
+
 public class ExerLevel extends AppCompatActivity implements SensorEventListener {
     SoundPool soundPool;
     private SensorManager sensorManager;
@@ -51,6 +53,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         sound = soundPool.load(this,R.raw.warning1,1);
         Warn = soundPool.load(this,R.raw.warn,1);
         correct = soundPool.load(this,R.raw.correct,1);
+
         btn.setOnClickListener(restart);
 
     }
@@ -103,7 +106,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
 
         super.onPause();
         sensorManager.unregisterListener(this);
-        soundPool.stop(sound);
+
     }
 
     @Override
@@ -111,7 +114,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
 
         super.onStop();
         sensorManager.unregisterListener(this);
-        soundPool.stop(sound);
+        timer.cancel();
     }
 
 
@@ -140,6 +143,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
 
     }
 
+
     private void onAngleChanged(float rollAngle, float pitchAngle, float azimuth) {
 
             levelView.setAngle(rollAngle, pitchAngle);
@@ -159,4 +163,5 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
                 }
             }
     }
+
 }
