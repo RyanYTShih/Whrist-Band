@@ -51,10 +51,13 @@ public class MPAndroidChart extends AppCompatActivity {
         barChart.setPinchZoom(false);
         barChart.setDrawGridBackground(true);
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(1,40f));
-        barEntries.add(new BarEntry(2,44f));
-        barEntries.add(new BarEntry(3,30f));
-        barEntries.add(new BarEntry(4,36f));
+        barEntries.add(new BarEntry(1,1100f));
+        barEntries.add(new BarEntry(2,1200f));
+        barEntries.add(new BarEntry(3,1100f));
+        barEntries.add(new BarEntry(4,1150f));
+        barEntries.add(new BarEntry(5,1175f));
+        barEntries.add(new BarEntry(6,1135f));
+        barEntries.add(new BarEntry(7,1125f));
 
         BarDataSet barDataSet = new BarDataSet(barEntries,"Date Set1");
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
@@ -67,7 +70,7 @@ public class MPAndroidChart extends AppCompatActivity {
     private ArrayList<PieEntry> dataValuese(){
         ArrayList<PieEntry> dataVals = new ArrayList<>();
         webapi.api_GetHeartrate("A123456789","PS-100 425");
-        dataVals.add(new PieEntry(12,"Sun"));
+        dataVals.add(new PieEntry(85,"Sun"));
 
         return dataVals;
     }
