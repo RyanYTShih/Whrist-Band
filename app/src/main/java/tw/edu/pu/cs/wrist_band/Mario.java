@@ -232,34 +232,5 @@ public class Mario extends AppCompatActivity {
             finish();
         }
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        timer.cancel();
-        timer = null;
-        start_flg = false;
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
-
-        mario.setVisibility(View.INVISIBLE);
-        box.setVisibility(View.INVISIBLE);
-        coin.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-
-    }
+    
 }
