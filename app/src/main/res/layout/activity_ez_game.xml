@@ -9,15 +9,17 @@
 
     <RelativeLayout
         android:id="@+id/layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="27dp">
+        android:layout_width="440dp"
+        android:layout_height="592dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/igvmove"
             android:layout_width="67dp"
             android:layout_height="67dp"
+            android:visibility="invisible"
             app:srcCompat="@drawable/wolf1" />
 
         <TextView
@@ -30,24 +32,34 @@
             android:layout_marginStart="29dp"
             android:layout_marginEnd="29dp"
             android:layout_marginBottom="23dp"
-            android:text="角度"
+            android:text="請找出小紅帽"
             android:textColor="@android:color/holo_red_dark"
+            android:layout_centerInParent = "true"
             android:textSize="36sp" />
+
+        <ImageView
+            android:id="@+id/redcap"
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-31dp"
+            android:layout_marginEnd="259dp"
+            android:layout_marginBottom="130dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/redcup1" />
+
+        <ImageButton
+            android:id="@+id/imgbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/house" />
+
 
         android:layout
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="90dp"
-        android:layout_height="81dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="324dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/layout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/redcup1" />
 
 </android.support.constraint.ConstraintLayout>

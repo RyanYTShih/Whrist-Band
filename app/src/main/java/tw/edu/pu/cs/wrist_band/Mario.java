@@ -232,5 +232,5 @@ public class Mario extends AppCompatActivity {
             finish();
         }
     }
-    
+
 }

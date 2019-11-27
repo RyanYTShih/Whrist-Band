@@ -1,6 +1,5 @@
 package tw.edu.pu.cs.wrist_band;
 
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -14,8 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.Timer;
 
 public class ExerLevel extends AppCompatActivity implements SensorEventListener {
     SoundPool soundPool;
@@ -45,7 +42,7 @@ public class ExerLevel extends AppCompatActivity implements SensorEventListener 
         tvHorz = (TextView) findViewById(R.id.tvv_horz);
         txv2 = findViewById(R.id.txv2);
 
-        btn = findViewById(R.id.btn);
+        btn = findViewById(R.id.imgbtn);
         img = findViewById(R.id.img);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         soundPool =new SoundPool(1, AudioManager.STREAM_MUSIC,5);
