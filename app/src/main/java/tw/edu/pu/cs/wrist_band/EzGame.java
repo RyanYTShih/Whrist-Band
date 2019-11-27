@@ -6,20 +6,26 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class EzGame extends AppCompatActivity implements SensorEventListener {
     SensorManager sm;
     Sensor sr;
-    ImageView igv;
+    ImageView igv,redcap;
     TextView txv2;
     RelativeLayout layout;
-
-
+    ImageButton imgbtn;
     double mx = 0,my = 0;
+    int county;
     float x,y,z;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +36,19 @@ public class EzGame extends AppCompatActivity implements SensorEventListener {
         layout = findViewById(R.id.layout);
         txv2 = findViewById(R.id.txv2);
         getSupportActionBar().hide();
+        imgbtn = findViewById(R.id.imgbtn);
+        imgbtn.setOnClickListener(wolf);
+        redcap = findViewById(R.id.redcap);
     }
+    ImageButton.OnClickListener wolf = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            igv.setVisibility(View.VISIBLE);
+            redcap.setVisibility(View.VISIBLE);
+            imgbtn.setVisibility(View.INVISIBLE);
+            county=1;
+        }
+    } ;
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -48,12 +66,13 @@ public class EzGame extends AppCompatActivity implements SensorEventListener {
         String values = "X:"+String.valueOf(event.values[0])+"\n"+
                 "Y:"+String.valueOf(event.values[1])+"\n"+
                 "Z:"+String.valueOf(event.values[2]);
-
-        if (Math.abs(x)<1 && Math.abs(y)>4 && Math.abs(y)<5 && Math.abs(z)<10 && Math.abs(z)>8){
+        if (county == 1){
+        if (Math.abs(x)<1 && Math.abs(y)>2 && Math.abs(y)<5 && Math.abs(z)<9 && Math.abs(z)>8){
             txv2.setText("成功");
 
-        }else{
+        }else {
             txv2.setText("請找尋小紅帽");
+        }
 
         }
     }
