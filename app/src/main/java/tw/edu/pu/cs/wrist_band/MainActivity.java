@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     user.getWeight() + ""
             );
         }
-        String url2 = "http://223.200.80.137/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=40&sort=SiteName&token=n8PcukbV2kGguEmuCxNZ/Q";
+        String url2 = "http://223.200.80.137/webapi/api/rest/datastore/355000000I-000259/?format=json&limit=26&sort=SiteName&token=n8PcukbV2kGguEmuCxNZ/Q";
 
         GetNetworkJson process = new GetNetworkJson();
         getData(url2);
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         JSONArray data = jsonObject.getJSONObject("result").getJSONArray("records");
         for (int i = 0; i < data.length(); i++) {
             JSONObject o = data.getJSONObject(i);
-            if (o.getString("SiteName").equals("前金")) {
+            if (o.getString("SiteName").equals("沙鹿")) {
                 int aqi = o.getInt("AQI");
                 setBackgroundByAQI(o.getString("SiteName"), aqi);
             }
