@@ -25,7 +25,8 @@ public class EzGame extends AppCompatActivity implements SensorEventListener {
     double mx = 0,my = 0;
     int county;
     float x,y,z;
-    
+  
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
