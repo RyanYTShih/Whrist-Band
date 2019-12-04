@@ -25,7 +25,7 @@ public class getRawDatainput extends AppCompatActivity {
     private Button input_ana;
     private Intent intent;
 
-//    private RawdataViewModel mRawdataViewModel;
+    //    private RawdataViewModel mRawdataViewModel;
     private MeasureLogViewModel mMeasureLogViewModel;
     private UserViewModel mUserViewModel;
     private LiveData<List<MeasureLog>> measureLog;

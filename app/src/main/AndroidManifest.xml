@@ -121,10 +121,12 @@
             android:screenOrientation="portrait" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".ChantActivity" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
+
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />

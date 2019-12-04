@@ -1,6 +1,7 @@
 package tw.edu.pu.cs.wrist_band;
 
 import android.util.Log;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -11,20 +12,21 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class webapi {
 
-    static String step="";
-    static String sleepinterval="";
-    static String deeplighttime="";
-    static String exercisecalories="";
-    static String restcalories="";
-    static String totalcalories="";
-    static String heartrate="";
+    static String step = "";
+    static String sleepinterval = "";
+    static String deeplighttime = "";
+    static String exercisecalories = "";
+    static String restcalories = "";
+    static String totalcalories = "";
+    static String heartrate = "";
 
-    static void api_UploadUser(final String PersonalID,final String Name,final String Password,final String Gender,final String Age,final String Height,final String Weight){
+    static void api_UploadUser(final String PersonalID, final String Name, final String Password, final String Gender, final String Age, final String Height, final String Weight) {
 
         Runnable exec = new Runnable() {
             @Override
@@ -39,17 +41,17 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
-                    params.add(new BasicNameValuePair("PersonalID",PersonalID ));
+                    params.add(new BasicNameValuePair("_token", token));
+                    params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("Name", Name));
                     params.add(new BasicNameValuePair("Password", Password));
                     params.add(new BasicNameValuePair("Gender", Gender));
@@ -61,8 +63,7 @@ public class webapi {
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
 
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());
@@ -74,7 +75,8 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_UploadSleepSummary(final String SerialID, final String PersonalID, final String BandID, final String SleepStartTime, final String SleepStopTime, final String DeepSleepStartTime, final String LightSleepStartTime, final String OtherSleepStartTime){
+
+    static void api_UploadSleepSummary(final String SerialID, final String PersonalID, final String BandID, final String SleepStartTime, final String SleepStopTime, final String DeepSleepStartTime, final String LightSleepStartTime, final String OtherSleepStartTime) {
 
         Runnable exec = new Runnable() {
             @Override
@@ -89,16 +91,16 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("_token", token));
                     params.add(new BasicNameValuePair("SerialID", SerialID));
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
@@ -112,8 +114,7 @@ public class webapi {
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
 
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());
@@ -125,6 +126,7 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
+
     static void api_UploadMeasureLog(
             final String SerialID,
             final String PersonalID,
@@ -150,16 +152,16 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("_token", token));
                     params.add(new BasicNameValuePair("SerialID", SerialID));
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
@@ -175,8 +177,7 @@ public class webapi {
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
 
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());
@@ -188,7 +189,8 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_GetDaySteps(final String PersonalID, final String BandID){
+
+    static void api_GetDaySteps(final String PersonalID, final String BandID) {
 
         Runnable exec = new Runnable() {
             @Override
@@ -203,27 +205,26 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("_token", token));
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
                     response = client4.execute(post);
                     resEntity = response.getEntity();
-                    step= EntityUtils.toString(resEntity);
+                    step = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("DaySteps",step);
-                }
-                catch (Exception e) {
+                    Log.d("DaySteps", step);
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());
@@ -235,7 +236,8 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_GetSleepInterval(final String PersonalID, final String BandID){
+
+    static void api_GetSleepInterval(final String PersonalID, final String BandID) {
 
         Runnable exec = new Runnable() {
             @Override
@@ -250,16 +252,16 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("_token", token));
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
@@ -268,9 +270,8 @@ public class webapi {
                     sleepinterval = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("SleepInterval",sleepinterval);
-                }
-                catch (Exception e) {
+                    Log.d("SleepInterval", sleepinterval);
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());
@@ -282,7 +283,8 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_GetDeepLightTime(final String PersonalID, final String BandID){
+
+    static void api_GetDeepLightTime(final String PersonalID, final String BandID) {
 
         Runnable exec = new Runnable() {
             @Override
@@ -297,16 +299,16 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("_token", token));
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
@@ -315,9 +317,8 @@ public class webapi {
                     deeplighttime = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("DeepLightTime",deeplighttime);
-                }
-                catch (Exception e) {
+                    Log.d("DeepLightTime", deeplighttime);
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());
@@ -329,7 +330,8 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_GetExerciseCalories(final String PersonalID, final String BandID){
+
+    static void api_GetExerciseCalories(final String PersonalID, final String BandID) {
 
         Runnable exec = new Runnable() {
             @Override
@@ -344,16 +346,16 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("_token", token));
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
@@ -362,9 +364,8 @@ public class webapi {
                     exercisecalories = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("ExerciseCalories",exercisecalories);
-                }
-                catch (Exception e) {
+                    Log.d("ExerciseCalories", exercisecalories);
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());
@@ -376,7 +377,8 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_GetRestCalories(final String PersonalID, final String BandID){
+
+    static void api_GetRestCalories(final String PersonalID, final String BandID) {
 
         Runnable exec = new Runnable() {
             @Override
@@ -391,16 +393,16 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("_token", token));
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
@@ -409,9 +411,8 @@ public class webapi {
                     restcalories = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("RestCalories",restcalories);
-                }
-                catch (Exception e) {
+                    Log.d("RestCalories", restcalories);
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());
@@ -423,7 +424,8 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_GetTotalCalories(final String PersonalID, final String BandID){
+
+    static void api_GetTotalCalories(final String PersonalID, final String BandID) {
 
         Runnable exec = new Runnable() {
             @Override
@@ -438,16 +440,16 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("_token", token));
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
@@ -456,9 +458,8 @@ public class webapi {
                     totalcalories = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("TotalCalories",totalcalories);
-                }
-                catch (Exception e) {
+                    Log.d("TotalCalories", totalcalories);
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());
@@ -470,7 +471,8 @@ public class webapi {
         (new Thread(exec)).start();
 
     }
-    static void api_GetHeartrate(final String PersonalID, final String BandID){
+
+    static void api_GetHeartrate(final String PersonalID, final String BandID) {
 
         Runnable exec = new Runnable() {
             @Override
@@ -485,16 +487,16 @@ public class webapi {
                     String result = EntityUtils.toString(resEntity);
                     int pos = result.indexOf("_token");
                     String substr = result.substring(pos);
-                    String token = substr.substring(15,substr.length()-11);
+                    String token = substr.substring(15, substr.length() - 11);
                     Log.e("Label", "----------------");
-                    Log.d("----substr",substr);
-                    Log.d("----token",token);
+                    Log.d("----substr", substr);
+                    Log.d("----token", token);
 
 
                     //利用post mothod 傳入web api;
                     HttpPost post = new HttpPost(url);
                     List<NameValuePair> params = new ArrayList<>();
-                    params.add(new BasicNameValuePair("_token",token));
+                    params.add(new BasicNameValuePair("_token", token));
                     params.add(new BasicNameValuePair("PersonalID", PersonalID));
                     params.add(new BasicNameValuePair("BandID", BandID));
                     post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
@@ -503,9 +505,8 @@ public class webapi {
                     heartrate = EntityUtils.toString(resEntity);
                     int status = response.getStatusLine().getStatusCode();
                     Log.d("api status", String.valueOf(status));
-                    Log.d("Heartrate",heartrate);
-                }
-                catch (Exception e) {
+                    Log.d("Heartrate", heartrate);
+                } catch (Exception e) {
                     Log.e("Label", "----------------");
                     e.printStackTrace();
                     //Log.d("error1:", e.getMessage());

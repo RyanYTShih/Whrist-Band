@@ -56,7 +56,7 @@ public class ChantActivity extends AppCompatActivity {
 
         setTitle("誦經");
 
-        Book[] books = new Book[] {
+        Book[] books = new Book[]{
                 new Book(getString(R.string.心經title), getString(R.string.心經text), ""),
                 new Book(getString(R.string.大悲咒title), getString(R.string.大悲咒text), ""),
                 new Book(getString(R.string.金剛經title), getString(R.string.金剛經text), ""),

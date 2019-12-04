@@ -56,7 +56,7 @@ public class ScanActivity extends AppCompatActivity {
     private MeasureLogModel measureLogModel;
 
     private UserViewModel mUserViewModel;
-//    private RawdataViewModel mRawDataViewModel;
+    //    private RawdataViewModel mRawDataViewModel;
     private MeasureLogViewModel mMeasureLogViewModel;
 
     private LiveData<List<User>> users;

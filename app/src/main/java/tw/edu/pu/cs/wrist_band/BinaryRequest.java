@@ -9,7 +9,9 @@ import com.android.volley.toolbox.HttpHeaderParser;
 
 class BinaryRequest extends Request<byte[]> {
 
-    /** Lock to guard mListener as it is cleared on cancel() and read on delivery. */
+    /**
+     * Lock to guard mListener as it is cleared on cancel() and read on delivery.
+     */
     private final Object mLock = new Object();
 
     private Response.Listener<byte[]> mListener;

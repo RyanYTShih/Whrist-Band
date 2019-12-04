@@ -6,7 +6,7 @@ class Book {
     String text;
     String image;
 
-    Book (String title, String text, String image) {
+    Book(String title, String text, String image) {
         this.title = title;
         this.text = text;
         this.image = image;

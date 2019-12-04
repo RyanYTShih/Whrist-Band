@@ -10,8 +10,8 @@ import java.util.Date;
 
 @Entity(indices = {@Index("PersonalID")},
         foreignKeys = @ForeignKey(entity = User.class,
-                                  parentColumns = "PersonalID",
-                                  childColumns = "PersonalID"))
+                parentColumns = "PersonalID",
+                childColumns = "PersonalID"))
 
 public class SleepSummary {
 

@@ -26,7 +26,7 @@ public class healthreport extends AppCompatActivity {
 
         PieChart pie = findViewById(R.id.piechart);
         BarChart bar = findViewById(R.id.barchart);
-        View v= findViewById(R.id.elder_report);
+        View v = findViewById(R.id.elder_report);
         v.getBackground().setAlpha(100);
         ArrayList<PieEntry> calorie = new ArrayList<>();
         calorie.add(new PieEntry(2500f, 0));

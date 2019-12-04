@@ -20,6 +20,18 @@ public class DetailActivity extends AppCompatActivity {
     private TextView contentText;
     private ScrollView scrollView;
     private FloatingActionButton fab;
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private View.OnScrollChangeListener scrollChangeListener = new View.OnScrollChangeListener() {
+        @Override
+        public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//            Log.d(TAG, scrollY + "");
+            if ((scrollY > oldScrollY || scrollY >= v.getHeight()) && scrollY > 0) {
+                fab.hide();
+            } else {
+                fab.show();
+            }
+        }
+    };
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -49,17 +61,4 @@ public class DetailActivity extends AppCompatActivity {
 
         scrollView.setOnScrollChangeListener(scrollChangeListener);
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private View.OnScrollChangeListener scrollChangeListener = new View.OnScrollChangeListener() {
-        @Override
-        public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//            Log.d(TAG, scrollY + "");
-            if ((scrollY > oldScrollY || scrollY >= v.getHeight()) && scrollY > 0) {
-                fab.hide();
-            } else {
-                fab.show();
-            }
-        }
-    };
 }

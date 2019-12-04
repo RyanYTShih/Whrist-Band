@@ -1,13 +1,14 @@
 package tw.edu.pu.cs.wrist_band;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
 public class Mapper extends AppCompatActivity {
-    ImageButton pin,pin2,pin3,pin4,pin5,pin6,pin7;
+    ImageButton pin, pin2, pin3, pin4, pin5, pin6, pin7;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,49 +25,49 @@ public class Mapper extends AppCompatActivity {
         pin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Mapper.this,PinActivity.class);
+                Intent intent = new Intent(Mapper.this, PinActivity.class);
                 startActivity(intent);
             }
         });
         pin2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(Mapper.this,Pin2Activity.class);
+                Intent intent2 = new Intent(Mapper.this, Pin2Activity.class);
                 startActivity(intent2);
             }
         });
         pin3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent(Mapper.this,Pin3Activity.class);
+                Intent intent3 = new Intent(Mapper.this, Pin3Activity.class);
                 startActivity(intent3);
             }
         });
         pin4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(Mapper.this,Pin4Activity.class);
+                Intent intent4 = new Intent(Mapper.this, Pin4Activity.class);
                 startActivity(intent4);
             }
         });
         pin5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent5 = new Intent(Mapper.this,Pin5Activity.class);
+                Intent intent5 = new Intent(Mapper.this, Pin5Activity.class);
                 startActivity(intent5);
             }
         });
         pin6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent6 = new Intent(Mapper.this,Pin6Activity.class);
+                Intent intent6 = new Intent(Mapper.this, Pin6Activity.class);
                 startActivity(intent6);
             }
         });
         pin7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent7 = new Intent(Mapper.this,Pin7Activity.class);
+                Intent intent7 = new Intent(Mapper.this, Pin7Activity.class);
                 startActivity(intent7);
             }
         });

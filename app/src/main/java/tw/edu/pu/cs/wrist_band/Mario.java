@@ -1,15 +1,14 @@
 package tw.edu.pu.cs.wrist_band;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,17 +23,17 @@ import java.util.concurrent.TimeUnit;
 
 public class Mario extends AppCompatActivity {
     FrameLayout gameFrame;
-    int frameHeight,frameWidth,initalframeWidth,coinsound,lose;
-    Drawable imageMarioRight,imageMarioLeft;
+    int frameHeight, frameWidth, initalframeWidth, coinsound, lose;
+    Drawable imageMarioRight, imageMarioLeft;
     LinearLayout startLayout;
-    ImageView box,mario,coin;
+    ImageView box, mario, coin;
     int mariosize;
-    float marioX,marioY;
-    float coinX,coinY;
-    float boxX,boxY;
+    float marioX, marioY;
+    float coinX, coinY;
+    float boxX, boxY;
     //score
-    TextView scoreLabel,hightScoreLabel;
-    int score,highscore,timeCount,monster;
+    TextView scoreLabel, hightScoreLabel;
+    int score, highscore, timeCount, monster;
     SharedPreferences settings;
     //class
     Timer timer;
@@ -45,6 +44,7 @@ public class Mario extends AppCompatActivity {
     //Status
     boolean start_flg = false;
     boolean action_flg = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,97 +62,101 @@ public class Mario extends AppCompatActivity {
         imageMarioRight = getResources().getDrawable(R.drawable.mario_right);
 
         settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
-        highscore = settings.getInt("HIGH_SCORE",0);
-        hightScoreLabel.setText("High Score : "+highscore);
+        highscore = settings.getInt("HIGH_SCORE", 0);
+        hightScoreLabel.setText("High Score : " + highscore);
 
-        soundPool =new SoundPool(1, AudioManager.STREAM_MUSIC,5);
-        coinsound = soundPool.load(this,R.raw.coinsound,1);
-        lose = soundPool.load(this,R.raw.lose,1);
-        monster = soundPool.load(this,R.raw.monster,1);
+        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 5);
+        coinsound = soundPool.load(this, R.raw.coinsound, 1);
+        lose = soundPool.load(this, R.raw.lose, 1);
+        monster = soundPool.load(this, R.raw.monster, 1);
 
     }
-    public void changePos(){
-        timeCount +=20;
+
+    public void changePos() {
+        timeCount += 20;
 
         //coin
-        coinY +=12;
+        coinY += 12;
 
         float coinCenterX = coinX + coin.getWidth() / 2;
         float coinCenterY = coinY + coin.getHeight() / 2;
-        if(hitCheck(coinCenterX, coinCenterY)){
+        if (hitCheck(coinCenterX, coinCenterY)) {
             coinY = frameHeight + 100;
             score += 10;
-            soundPool.play(coinsound,1.0F,1.0F,0,0,1.0F);
-            if (initalframeWidth > frameWidth *110/100){
-                frameWidth = frameWidth *110/100;
+            soundPool.play(coinsound, 1.0F, 1.0F, 0, 0, 1.0F);
+            if (initalframeWidth > frameWidth * 110 / 100) {
+                frameWidth = frameWidth * 110 / 100;
                 changeFrameWidth(frameWidth);
             }
         }
-        if (coinY > frameHeight){
+        if (coinY > frameHeight) {
             coinY = -100;
-            coinX = (float)Math.floor(Math.random() * (frameWidth - coin.getWidth()));
+            coinX = (float) Math.floor(Math.random() * (frameWidth - coin.getWidth()));
         }
         coin.setX(coinX);
         coin.setY(coinY);
 
         //box
-        boxY  += 14;
+        boxY += 14;
         float boxCenterX = boxX + box.getWidth() / 2;
-        float boxCenterY = boxY + box.getHeight() /2;
-        if(hitCheck(boxCenterX,boxCenterY)){
+        float boxCenterY = boxY + box.getHeight() / 2;
+        if (hitCheck(boxCenterX, boxCenterY)) {
             boxY = frameHeight + 100;
-            frameWidth = frameWidth* 80 /100;
+            frameWidth = frameWidth * 80 / 100;
             changeFrameWidth(frameWidth);
-            soundPool.play(monster,1.0F,1.0F,0,0,1.0F);
-            if(frameWidth<mariosize){
+            soundPool.play(monster, 1.0F, 1.0F, 0, 0, 1.0F);
+            if (frameWidth < mariosize) {
                 //Game over
                 gameover();
             }
         }
-        if(boxY > frameHeight){
+        if (boxY > frameHeight) {
             boxY = -100;
-            boxX = (float)Math.floor(Math.random() * (frameWidth - box.getWidth()));
+            boxX = (float) Math.floor(Math.random() * (frameWidth - box.getWidth()));
         }
         box.setX(boxX);
         box.setY(boxY);
-        if(action_flg){
+        if (action_flg) {
             marioX += 14;
             mario.setImageDrawable(imageMarioRight);
-        }else{
+        } else {
             marioX -= 14;
             mario.setImageDrawable(imageMarioLeft);
         }
-        if(marioX < 0){
+        if (marioX < 0) {
             marioX = 0;
             mario.setImageDrawable(imageMarioRight);
         }
-        if(frameWidth - mariosize < marioX){
+        if (frameWidth - mariosize < marioX) {
             marioX = frameWidth - mariosize;
             mario.setImageDrawable(imageMarioLeft);
         }
         mario.setX(marioX);
 
-        scoreLabel.setText("Score :"+score);
+        scoreLabel.setText("Score :" + score);
     }
-    public boolean hitCheck(float x,float y){
-        if(marioX <= x && x <= marioX + mariosize &&
-                marioY <= y && y<frameHeight){
+
+    public boolean hitCheck(float x, float y) {
+        if (marioX <= x && x <= marioX + mariosize &&
+                marioY <= y && y < frameHeight) {
             return true;
         }
         return false;
     }
-    public void changeFrameWidth(int frameWidth){
+
+    public void changeFrameWidth(int frameWidth) {
         ViewGroup.LayoutParams params = gameFrame.getLayoutParams();
         params.width = frameWidth;
         gameFrame.setLayoutParams(params);
     }
-    public void gameover(){
+
+    public void gameover() {
         timer.cancel();
         timer = null;
         start_flg = false;
         try {
             TimeUnit.SECONDS.sleep(1);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         changeFrameWidth(initalframeWidth);
@@ -161,21 +165,22 @@ public class Mario extends AppCompatActivity {
         mario.setVisibility(View.INVISIBLE);
         box.setVisibility(View.INVISIBLE);
         coin.setVisibility(View.INVISIBLE);
-        soundPool.play(lose,1.0F,1.0F,0,0,1.0F);
-        if (score > highscore){
+        soundPool.play(lose, 1.0F, 1.0F, 0, 0, 1.0F);
+        if (score > highscore) {
             highscore = score;
-            hightScoreLabel.setText("High Score : "+highscore);
+            hightScoreLabel.setText("High Score : " + highscore);
             SharedPreferences.Editor editor = settings.edit();
-            editor.putInt("HIGH_SCORE",highscore);
+            editor.putInt("HIGH_SCORE", highscore);
             editor.commit();
         }
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(start_flg){
-            if(event.getAction() == MotionEvent.ACTION_DOWN){
+        if (start_flg) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 action_flg = true;
-            }else if (event.getAction() == MotionEvent.ACTION_UP){
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
                 action_flg = false;
             }
         }
@@ -183,10 +188,10 @@ public class Mario extends AppCompatActivity {
     }
 
 
-    public void startGame(View view){
+    public void startGame(View view) {
         start_flg = true;
         startLayout.setVisibility(View.INVISIBLE);
-        if (frameHeight == 0 ){
+        if (frameHeight == 0) {
             frameHeight = gameFrame.getHeight();
             frameWidth = gameFrame.getWidth();
             initalframeWidth = frameWidth;
@@ -214,7 +219,7 @@ public class Mario extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(start_flg){
+                if (start_flg) {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -223,12 +228,13 @@ public class Mario extends AppCompatActivity {
                     });
                 }
             }
-        },0,20);
+        }, 0, 20);
     }
-    public void quitGame(View view){
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
+
+    public void quitGame(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             finishAndRemoveTask();
-        }else {
+        } else {
             finish();
         }
     }

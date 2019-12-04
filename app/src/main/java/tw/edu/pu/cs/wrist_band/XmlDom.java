@@ -17,14 +17,14 @@ import javax.xml.transform.stream.StreamResult;
 
 public class XmlDom {
 
-    public static String createDom(String voiceName, String textToSynthesize){
+    public static String createDom(String voiceName, String textToSynthesize) {
         Document doc = null;
         Element speak, voice;
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = dbf.newDocumentBuilder();
             doc = builder.newDocument();
-            if (doc != null){
+            if (doc != null) {
                 speak = doc.createElement("speak");
                 speak.setAttribute("version", "1.0");
                 speak.setAttribute("xmlns", "https://www.w3.org/2001/10/synthesis");
@@ -44,7 +44,7 @@ public class XmlDom {
         return transformDom(doc);
     }
 
-    private static String transformDom(Document doc){
+    private static String transformDom(Document doc) {
         StringWriter writer = new StringWriter();
         try {
             TransformerFactory tf = TransformerFactory.newInstance();

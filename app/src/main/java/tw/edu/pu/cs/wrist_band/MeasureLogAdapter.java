@@ -9,12 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.epson.pulsenseapi.model.MeasureLogModel;
-import com.epson.pulsenseapi.model.SimpleDate;
-import com.epson.pulsenseapi.model.SimpleTime;
-
-import java.util.Locale;
-
 public class MeasureLogAdapter extends ArrayAdapter<MeasureLog> {
 
     public MeasureLogAdapter(@NonNull Context context, int resource) {

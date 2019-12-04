@@ -8,7 +8,6 @@ import android.graphics.PointF;
 import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
 
 public class LevelView extends View {
     private float mLimitRadius = 0;
@@ -122,7 +121,7 @@ public class LevelView extends View {
         if (isCenter) {
             vibrator.vibrate(10);
 
-    }
+        }
 
         mBubblePaint.setColor(bubbleColor);
         mLimitPaint.setColor(limitCircleColor);
