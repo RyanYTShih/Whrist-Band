@@ -20,7 +20,7 @@ public class Music extends AppCompatActivity {
         bg=findViewById(R.id.music_back);
         bg.getBackground().setAlpha(130);
         listView = (ListView)findViewById(R.id.listview);
-        String[] str={"愛我別走-張震嶽","何日君再來-鄧麗君","忠孝東路走久遍-動力火車","再出發-任賢齊","愛情釀的酒-紅螞蟻"};
+        String[] str={"愛我別走-張震嶽","何日君再來-鄧麗君","忠孝東路走九遍-動力火車","再出發-任賢齊","愛情釀的酒-紅螞蟻"};
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,str);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
